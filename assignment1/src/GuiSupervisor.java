@@ -77,16 +77,15 @@ public final class GuiSupervisor {
      * which point observe() settles the mode and this starts returning 1.
      */
     public static synchronized int machineMode() {
-        // Draining keeps the line automatic on purpose: admitted bottles have
-        // to finish before a mode change settles.
+        // Draining stays automatic on purpose: admitted bottles have to finish
+        // before a mode change settles.
         if (draining) return 0;
         if (mode.equals("Manual")) return 1;
-        // Paused. Pause used to set running=false and nothing else, which only
-        // stopped admission - the six bottles already on the table carried on
-        // to the end, so the panel said PAUSED while the line visibly ran. The
-        // machines are held here instead, at the same gates manual mode uses:
-        // the station finishes the action it is in and then waits, and because
-        // neither auto nor manual is asserted, nothing can drive it onward.
+        // Paused holds the machines at the same gates manual mode uses, so
+        // each finishes the action it is in and then waits. Neither auto nor
+        // manual is asserted, so nothing can drive one onward. Without this,
+        // pause only stops admission and everything already in the line runs
+        // on to the end.
         if (!running) return 2;
         return 0;
     }

@@ -74,12 +74,10 @@ LidLoaderPlant(
 
 				// Edge triggered, like every other transfer command in the
 				// plants. The controller sustains refill until refilled comes
-				// back, and that acknowledgement crosses a clock-domain
-				// boundary, so the command is present for several ticks here.
-				// Resetting on each of them refilled the magazine more than
-				// once: the pusher took a lid, the next tick put it back, and
-				// the log printed "2 left" twice in a row for two different
-				// bottles. One command, one refill.
+				// back and that acknowledgement crosses a clock-domain
+				// boundary, so the command is present here for several ticks;
+				// resetting on each of them tops the magazine up more than
+				// once. One command, one refill.
 				present(refill){
 					if(!refilling){
 						refilling = true;

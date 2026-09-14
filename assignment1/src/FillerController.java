@@ -85,25 +85,25 @@ public class FillerController extends ClockDomain{
                                 w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 59, column: 5
                                 ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 62, column: 5
                                 asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 63, column: 5
-                                lidded_thread_3 = false;//sysj\fillerController.sysj line: 85, column: 5
-                                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 86, column: 18
-                                  if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 87, column: 36
-                                    w_thread_3.lid();//sysj\fillerController.sysj line: 88, column: 7
-                                    w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 89, column: 7
+                                lidded_thread_3 = false;//sysj\fillerController.sysj line: 76, column: 5
+                                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 77, column: 18
+                                  if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 78, column: 36
+                                    w_thread_3.lid();//sysj\fillerController.sysj line: 79, column: 7
+                                    w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 80, column: 7
                                   }
-                                  lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 91, column: 6
+                                  lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 82, column: 6
                                 }
                                 S62042=1;
-                                if(lidded_thread_3){//sysj\fillerController.sysj line: 94, column: 5
-                                  System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 95, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 96, column: 6
-                                    twin.setPresent();//sysj\fillerController.sysj line: 97, column: 7
+                                if(lidded_thread_3){//sysj\fillerController.sysj line: 85, column: 5
+                                  System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 86, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 87, column: 6
+                                    twin.setPresent();//sysj\fillerController.sysj line: 88, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 97, column: 7
+                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 88, column: 7
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -111,13 +111,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -139,8 +139,8 @@ public class FillerController extends ClockDomain{
                                   else {
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -148,13 +148,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -175,15 +175,15 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 100, column: 13
-                                    if(w_thread_3 != null) {//sysj\fillerController.sysj line: 103, column: 19
-                                      w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 104, column: 7
-                                      w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 105, column: 7
+                                  if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 91, column: 13
+                                    if(w_thread_3 != null) {//sysj\fillerController.sysj line: 94, column: 19
+                                      w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 95, column: 7
+                                      w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 96, column: 7
                                     }
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -191,13 +191,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -217,17 +217,17 @@ public class FillerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 108, column: 13
-                                      System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 110, column: 6
-                                      w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 111, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 112, column: 6
-                                        twin.setPresent();//sysj\fillerController.sysj line: 113, column: 7
+                                    if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 99, column: 13
+                                      System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 101, column: 6
+                                      w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 102, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 103, column: 6
+                                        twin.setPresent();//sysj\fillerController.sysj line: 104, column: 7
                                         currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 113, column: 7
+                                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 104, column: 7
                                         S62042=2;
                                         S62265=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           S62265=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -235,13 +235,13 @@ public class FillerController extends ClockDomain{
                                         }
                                         else {
                                           S62260=0;
-                                          if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                             S62260=1;
-                                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               ends[3]=2;
-                                              ;//sysj\fillerController.sysj line: 171, column: 5
+                                              ;//sysj\fillerController.sysj line: 155, column: 5
                                               S63272=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -263,8 +263,8 @@ public class FillerController extends ClockDomain{
                                       else {
                                         S62042=2;
                                         S62265=0;
-                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           S62265=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -272,13 +272,13 @@ public class FillerController extends ClockDomain{
                                         }
                                         else {
                                           S62260=0;
-                                          if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                             S62260=1;
-                                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               ends[3]=2;
-                                              ;//sysj\fillerController.sysj line: 171, column: 5
+                                              ;//sysj\fillerController.sysj line: 155, column: 5
                                               S63272=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -299,39 +299,39 @@ public class FillerController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 119, column: 33
-                                        ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 134, column: 7
-                                        if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 135, column: 17
-                                          ml_thread_3 = 1;//sysj\fillerController.sysj line: 136, column: 8
+                                      if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 110, column: 33
+                                        ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 118, column: 7
+                                        if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 119, column: 17
+                                          ml_thread_3 = 1;//sysj\fillerController.sysj line: 120, column: 8
                                         }
-                                        System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 138, column: 7
+                                        System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 122, column: 7
                                       }
-                                      System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 140, column: 6
-                                      w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 141, column: 6
-                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 142, column: 6
-                                        twin.setPresent();//sysj\fillerController.sysj line: 143, column: 7
+                                      System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 124, column: 6
+                                      w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 125, column: 6
+                                      if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 126, column: 6
+                                        twin.setPresent();//sysj\fillerController.sysj line: 127, column: 7
                                         currsigs.addElement(twin);
-                                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 143, column: 7
+                                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 127, column: 7
                                         S62049=0;
-                                        if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                        if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                           S62049=1;
-                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                             }
-                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                              twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                              twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                               currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -339,13 +339,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -365,11 +365,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -377,13 +377,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -404,36 +404,36 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                             currsigs.addElement(valveOpen);
-                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                             currsigs.addElement(fillTarget);
-                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                         }
                                         else {
-                                          if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                          if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                             S62049=1;
-                                            if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                              w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                              if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                                System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                                w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                            if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                              w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                              if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                                System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                                w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                               }
-                                              w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                              t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                                twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                              w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                              t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                                twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                                 currsigs.addElement(twin);
-                                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                                 S62042=2;
                                                 S62265=0;
-                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62265=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -441,13 +441,13 @@ public class FillerController extends ClockDomain{
                                                 }
                                                 else {
                                                   S62260=0;
-                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                     S62260=1;
-                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                                       S63272=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -467,11 +467,11 @@ public class FillerController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                                 S62042=2;
                                                 S62265=0;
-                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62265=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -479,13 +479,13 @@ public class FillerController extends ClockDomain{
                                                 }
                                                 else {
                                                   S62260=0;
-                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                     S62260=1;
-                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                                       S63272=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -506,11 +506,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                              valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                               currsigs.addElement(valveOpen);
-                                              fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                              fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                               currsigs.addElement(fillTarget);
-                                              fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                              fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -525,25 +525,25 @@ public class FillerController extends ClockDomain{
                                       }
                                       else {
                                         S62049=0;
-                                        if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                        if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                           S62049=1;
-                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                             }
-                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                              twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                              twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                               currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -551,13 +551,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -577,11 +577,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -589,13 +589,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -616,36 +616,36 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                             currsigs.addElement(valveOpen);
-                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                             currsigs.addElement(fillTarget);
-                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
                                           }
                                         }
                                         else {
-                                          if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                          if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                             S62049=1;
-                                            if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                              w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                              if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                                System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                                w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                            if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                              w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                              if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                                System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                                w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                               }
-                                              w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                              t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                                twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                              w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                              t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                              if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                                twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                                 currsigs.addElement(twin);
-                                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                                 S62042=2;
                                                 S62265=0;
-                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62265=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -653,13 +653,13 @@ public class FillerController extends ClockDomain{
                                                 }
                                                 else {
                                                   S62260=0;
-                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                     S62260=1;
-                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                                       S63272=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -679,11 +679,11 @@ public class FillerController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                                System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                                 S62042=2;
                                                 S62265=0;
-                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62265=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -691,13 +691,13 @@ public class FillerController extends ClockDomain{
                                                 }
                                                 else {
                                                   S62260=0;
-                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                     S62260=1;
-                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                                       S63272=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -718,11 +718,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                              valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                               currsigs.addElement(valveOpen);
-                                              fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                              fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                               currsigs.addElement(fillTarget);
-                                              fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                              fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -760,25 +760,25 @@ public class FillerController extends ClockDomain{
                               w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 59, column: 5
                               ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 62, column: 5
                               asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 63, column: 5
-                              lidded_thread_3 = false;//sysj\fillerController.sysj line: 85, column: 5
-                              if(w_thread_3 != null) {//sysj\fillerController.sysj line: 86, column: 18
-                                if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 87, column: 36
-                                  w_thread_3.lid();//sysj\fillerController.sysj line: 88, column: 7
-                                  w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 89, column: 7
+                              lidded_thread_3 = false;//sysj\fillerController.sysj line: 76, column: 5
+                              if(w_thread_3 != null) {//sysj\fillerController.sysj line: 77, column: 18
+                                if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 78, column: 36
+                                  w_thread_3.lid();//sysj\fillerController.sysj line: 79, column: 7
+                                  w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 80, column: 7
                                 }
-                                lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 91, column: 6
+                                lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 82, column: 6
                               }
                               S62042=1;
-                              if(lidded_thread_3){//sysj\fillerController.sysj line: 94, column: 5
-                                System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 95, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 96, column: 6
-                                  twin.setPresent();//sysj\fillerController.sysj line: 97, column: 7
+                              if(lidded_thread_3){//sysj\fillerController.sysj line: 85, column: 5
+                                System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 86, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 87, column: 6
+                                  twin.setPresent();//sysj\fillerController.sysj line: 88, column: 7
                                   currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 97, column: 7
+                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 88, column: 7
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -786,13 +786,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -814,8 +814,8 @@ public class FillerController extends ClockDomain{
                                 else {
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -823,13 +823,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -850,15 +850,15 @@ public class FillerController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 100, column: 13
-                                  if(w_thread_3 != null) {//sysj\fillerController.sysj line: 103, column: 19
-                                    w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 104, column: 7
-                                    w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 105, column: 7
+                                if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 91, column: 13
+                                  if(w_thread_3 != null) {//sysj\fillerController.sysj line: 94, column: 19
+                                    w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 95, column: 7
+                                    w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 96, column: 7
                                   }
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -866,13 +866,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -892,17 +892,17 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 108, column: 13
-                                    System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 110, column: 6
-                                    w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 111, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 112, column: 6
-                                      twin.setPresent();//sysj\fillerController.sysj line: 113, column: 7
+                                  if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 99, column: 13
+                                    System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 101, column: 6
+                                    w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 102, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 103, column: 6
+                                      twin.setPresent();//sysj\fillerController.sysj line: 104, column: 7
                                       currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 113, column: 7
+                                      twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 104, column: 7
                                       S62042=2;
                                       S62265=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         S62265=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -910,13 +910,13 @@ public class FillerController extends ClockDomain{
                                       }
                                       else {
                                         S62260=0;
-                                        if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                           S62260=1;
-                                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             ends[3]=2;
-                                            ;//sysj\fillerController.sysj line: 171, column: 5
+                                            ;//sysj\fillerController.sysj line: 155, column: 5
                                             S63272=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -938,8 +938,8 @@ public class FillerController extends ClockDomain{
                                     else {
                                       S62042=2;
                                       S62265=0;
-                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         S62265=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -947,13 +947,13 @@ public class FillerController extends ClockDomain{
                                       }
                                       else {
                                         S62260=0;
-                                        if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                           S62260=1;
-                                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             ends[3]=2;
-                                            ;//sysj\fillerController.sysj line: 171, column: 5
+                                            ;//sysj\fillerController.sysj line: 155, column: 5
                                             S63272=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -974,39 +974,39 @@ public class FillerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 119, column: 33
-                                      ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 134, column: 7
-                                      if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 135, column: 17
-                                        ml_thread_3 = 1;//sysj\fillerController.sysj line: 136, column: 8
+                                    if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 110, column: 33
+                                      ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 118, column: 7
+                                      if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 119, column: 17
+                                        ml_thread_3 = 1;//sysj\fillerController.sysj line: 120, column: 8
                                       }
-                                      System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 138, column: 7
+                                      System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 122, column: 7
                                     }
-                                    System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 140, column: 6
-                                    w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 141, column: 6
-                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 142, column: 6
-                                      twin.setPresent();//sysj\fillerController.sysj line: 143, column: 7
+                                    System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 124, column: 6
+                                    w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 125, column: 6
+                                    if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 126, column: 6
+                                      twin.setPresent();//sysj\fillerController.sysj line: 127, column: 7
                                       currsigs.addElement(twin);
-                                      twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 143, column: 7
+                                      twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 127, column: 7
                                       S62049=0;
-                                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                         S62049=1;
-                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                           }
-                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                             currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1014,13 +1014,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1040,11 +1040,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1052,13 +1052,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1079,36 +1079,36 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                           currsigs.addElement(valveOpen);
-                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                           currsigs.addElement(fillTarget);
-                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                       }
                                       else {
-                                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                           S62049=1;
-                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                             }
-                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                              twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                              twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                               currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1116,13 +1116,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -1142,11 +1142,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1154,13 +1154,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -1181,11 +1181,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                             currsigs.addElement(valveOpen);
-                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                             currsigs.addElement(fillTarget);
-                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1200,25 +1200,25 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62049=0;
-                                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                         S62049=1;
-                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                           }
-                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                             currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1226,13 +1226,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1252,11 +1252,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1264,13 +1264,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1291,36 +1291,36 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                           currsigs.addElement(valveOpen);
-                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                           currsigs.addElement(fillTarget);
-                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
                                         }
                                       }
                                       else {
-                                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                           S62049=1;
-                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                             }
-                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                              twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                              twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                               currsigs.addElement(twin);
-                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1328,13 +1328,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -1354,11 +1354,11 @@ public class FillerController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                               S62042=2;
                                               S62265=0;
-                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62265=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1366,13 +1366,13 @@ public class FillerController extends ClockDomain{
                                               }
                                               else {
                                                 S62260=0;
-                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                   S62260=1;
-                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                                     S63272=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -1393,11 +1393,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                            valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                             currsigs.addElement(valveOpen);
-                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                             currsigs.addElement(fillTarget);
-                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1447,25 +1447,25 @@ public class FillerController extends ClockDomain{
                             w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 59, column: 5
                             ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 62, column: 5
                             asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 63, column: 5
-                            lidded_thread_3 = false;//sysj\fillerController.sysj line: 85, column: 5
-                            if(w_thread_3 != null) {//sysj\fillerController.sysj line: 86, column: 18
-                              if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 87, column: 36
-                                w_thread_3.lid();//sysj\fillerController.sysj line: 88, column: 7
-                                w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 89, column: 7
+                            lidded_thread_3 = false;//sysj\fillerController.sysj line: 76, column: 5
+                            if(w_thread_3 != null) {//sysj\fillerController.sysj line: 77, column: 18
+                              if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 78, column: 36
+                                w_thread_3.lid();//sysj\fillerController.sysj line: 79, column: 7
+                                w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 80, column: 7
                               }
-                              lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 91, column: 6
+                              lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 82, column: 6
                             }
                             S62042=1;
-                            if(lidded_thread_3){//sysj\fillerController.sysj line: 94, column: 5
-                              System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 95, column: 6
-                              if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 96, column: 6
-                                twin.setPresent();//sysj\fillerController.sysj line: 97, column: 7
+                            if(lidded_thread_3){//sysj\fillerController.sysj line: 85, column: 5
+                              System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 86, column: 6
+                              if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 87, column: 6
+                                twin.setPresent();//sysj\fillerController.sysj line: 88, column: 7
                                 currsigs.addElement(twin);
-                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 97, column: 7
+                                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 88, column: 7
                                 S62042=2;
                                 S62265=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   S62265=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -1473,13 +1473,13 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   S62260=0;
-                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                     S62260=1;
-                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       ends[3]=2;
-                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                       S63272=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1501,8 +1501,8 @@ public class FillerController extends ClockDomain{
                               else {
                                 S62042=2;
                                 S62265=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   S62265=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -1510,13 +1510,13 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   S62260=0;
-                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                     S62260=1;
-                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       ends[3]=2;
-                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                       S63272=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1537,15 +1537,15 @@ public class FillerController extends ClockDomain{
                               }
                             }
                             else {
-                              if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 100, column: 13
-                                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 103, column: 19
-                                  w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 104, column: 7
-                                  w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 105, column: 7
+                              if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 91, column: 13
+                                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 94, column: 19
+                                  w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 95, column: 7
+                                  w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 96, column: 7
                                 }
                                 S62042=2;
                                 S62265=0;
-                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   S62265=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -1553,13 +1553,13 @@ public class FillerController extends ClockDomain{
                                 }
                                 else {
                                   S62260=0;
-                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                     S62260=1;
-                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       ends[3]=2;
-                                      ;//sysj\fillerController.sysj line: 171, column: 5
+                                      ;//sysj\fillerController.sysj line: 155, column: 5
                                       S63272=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1579,17 +1579,17 @@ public class FillerController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 108, column: 13
-                                  System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 110, column: 6
-                                  w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 111, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 112, column: 6
-                                    twin.setPresent();//sysj\fillerController.sysj line: 113, column: 7
+                                if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 99, column: 13
+                                  System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 101, column: 6
+                                  w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 102, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 103, column: 6
+                                    twin.setPresent();//sysj\fillerController.sysj line: 104, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 113, column: 7
+                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 104, column: 7
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1597,13 +1597,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1625,8 +1625,8 @@ public class FillerController extends ClockDomain{
                                   else {
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -1634,13 +1634,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -1661,39 +1661,39 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 119, column: 33
-                                    ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 134, column: 7
-                                    if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 135, column: 17
-                                      ml_thread_3 = 1;//sysj\fillerController.sysj line: 136, column: 8
+                                  if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 110, column: 33
+                                    ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 118, column: 7
+                                    if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 119, column: 17
+                                      ml_thread_3 = 1;//sysj\fillerController.sysj line: 120, column: 8
                                     }
-                                    System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 138, column: 7
+                                    System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 122, column: 7
                                   }
-                                  System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 140, column: 6
-                                  w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 141, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 142, column: 6
-                                    twin.setPresent();//sysj\fillerController.sysj line: 143, column: 7
+                                  System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 124, column: 6
+                                  w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 125, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 126, column: 6
+                                    twin.setPresent();//sysj\fillerController.sysj line: 127, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 143, column: 7
+                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 127, column: 7
                                     S62049=0;
-                                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                       S62049=1;
-                                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                         }
-                                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                          twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                          twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                           currsigs.addElement(twin);
-                                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                           S62042=2;
                                           S62265=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             S62265=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -1701,13 +1701,13 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             S62260=0;
-                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                               S62260=1;
-                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                                ;//sysj\fillerController.sysj line: 155, column: 5
                                                 S63272=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1727,11 +1727,11 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                           S62042=2;
                                           S62265=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             S62265=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -1739,13 +1739,13 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             S62260=0;
-                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                               S62260=1;
-                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                                ;//sysj\fillerController.sysj line: 155, column: 5
                                                 S63272=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1766,36 +1766,36 @@ public class FillerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                        valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                         currsigs.addElement(valveOpen);
-                                        fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                        fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                         currsigs.addElement(fillTarget);
-                                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                     }
                                     else {
-                                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                         S62049=1;
-                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                           }
-                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                             currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1803,13 +1803,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1829,11 +1829,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -1841,13 +1841,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1868,11 +1868,11 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                           currsigs.addElement(valveOpen);
-                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                           currsigs.addElement(fillTarget);
-                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1887,25 +1887,25 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62049=0;
-                                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                                       S62049=1;
-                                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                         }
-                                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                          twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                          twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                           currsigs.addElement(twin);
-                                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                           S62042=2;
                                           S62265=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             S62265=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -1913,13 +1913,13 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             S62260=0;
-                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                               S62260=1;
-                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                                ;//sysj\fillerController.sysj line: 155, column: 5
                                                 S63272=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1939,11 +1939,11 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                           S62042=2;
                                           S62265=0;
-                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                             S62265=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -1951,13 +1951,13 @@ public class FillerController extends ClockDomain{
                                           }
                                           else {
                                             S62260=0;
-                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                               S62260=1;
-                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                                ;//sysj\fillerController.sysj line: 155, column: 5
                                                 S63272=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1978,36 +1978,36 @@ public class FillerController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                        valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                         currsigs.addElement(valveOpen);
-                                        fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                        fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                         currsigs.addElement(fillTarget);
-                                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
                                       }
                                     }
                                     else {
-                                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                         S62049=1;
-                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                           }
-                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                             currsigs.addElement(twin);
-                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -2015,13 +2015,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -2041,11 +2041,11 @@ public class FillerController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                             S62042=2;
                                             S62265=0;
-                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                               S62265=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -2053,13 +2053,13 @@ public class FillerController extends ClockDomain{
                                             }
                                             else {
                                               S62260=0;
-                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                                 S62260=1;
-                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                                   S63272=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -2080,11 +2080,11 @@ public class FillerController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                           currsigs.addElement(valveOpen);
-                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                           currsigs.addElement(fillTarget);
-                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -2121,25 +2121,25 @@ public class FillerController extends ClockDomain{
                 case 1 : 
                   switch(S62049){
                     case 0 : 
-                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                      if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                         S62049=1;
-                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                           }
-                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2147,13 +2147,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -2173,11 +2173,11 @@ public class FillerController extends ClockDomain{
                             }
                           }
                           else {
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2185,13 +2185,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -2212,36 +2212,36 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                           currsigs.addElement(valveOpen);
-                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                           currsigs.addElement(fillTarget);
-                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                       }
                       else {
-                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                        if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                           S62049=1;
-                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                          if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                            w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                            if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                              System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                              w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                             }
-                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                              twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                            w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                            t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                            if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                              twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                               currsigs.addElement(twin);
-                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                              twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                               S62042=2;
                               S62265=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 S62265=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -2249,13 +2249,13 @@ public class FillerController extends ClockDomain{
                               }
                               else {
                                 S62260=0;
-                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                   S62260=1;
-                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     ends[3]=2;
-                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                     S63272=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -2275,11 +2275,11 @@ public class FillerController extends ClockDomain{
                               }
                             }
                             else {
-                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                              System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                               S62042=2;
                               S62265=0;
-                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 S62265=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -2287,13 +2287,13 @@ public class FillerController extends ClockDomain{
                               }
                               else {
                                 S62260=0;
-                                if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                   S62260=1;
-                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     ends[3]=2;
-                                    ;//sysj\fillerController.sysj line: 171, column: 5
+                                    ;//sysj\fillerController.sysj line: 155, column: 5
                                     S63272=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -2314,11 +2314,11 @@ public class FillerController extends ClockDomain{
                             }
                           }
                           else {
-                            valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                            valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                             currsigs.addElement(valveOpen);
-                            fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                            fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                             currsigs.addElement(fillTarget);
-                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                            fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2333,23 +2333,23 @@ public class FillerController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                         }
-                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                          twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                          twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -2357,13 +2357,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -2383,11 +2383,11 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -2395,13 +2395,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -2422,11 +2422,11 @@ public class FillerController extends ClockDomain{
                         }
                       }
                       else {
-                        valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                        valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                         currsigs.addElement(valveOpen);
-                        fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                         currsigs.addElement(fillTarget);
-                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -2439,8 +2439,8 @@ public class FillerController extends ClockDomain{
                 case 2 : 
                   switch(S62265){
                     case 0 : 
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                         S62265=1;
                         active[3]=1;
                         ends[3]=1;
@@ -2449,13 +2449,13 @@ public class FillerController extends ClockDomain{
                       else {
                         switch(S62260){
                           case 0 : 
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -2475,10 +2475,10 @@ public class FillerController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               ends[3]=2;
-                              ;//sysj\fillerController.sysj line: 171, column: 5
+                              ;//sysj\fillerController.sysj line: 155, column: 5
                               S63272=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2498,8 +2498,8 @@ public class FillerController extends ClockDomain{
                     case 1 : 
                       S62265=1;
                       S62265=0;
-                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                      if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                         S62265=1;
                         active[3]=1;
                         ends[3]=1;
@@ -2507,13 +2507,13 @@ public class FillerController extends ClockDomain{
                       }
                       else {
                         S62260=0;
-                        if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                        if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                           S62260=1;
-                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             ends[3]=2;
-                            ;//sysj\fillerController.sysj line: 171, column: 5
+                            ;//sysj\fillerController.sysj line: 155, column: 5
                             S63272=1;
                             active[3]=1;
                             ends[3]=1;
@@ -2601,25 +2601,25 @@ public class FillerController extends ClockDomain{
                     w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 59, column: 5
                     ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 62, column: 5
                     asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 63, column: 5
-                    lidded_thread_3 = false;//sysj\fillerController.sysj line: 85, column: 5
-                    if(w_thread_3 != null) {//sysj\fillerController.sysj line: 86, column: 18
-                      if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 87, column: 36
-                        w_thread_3.lid();//sysj\fillerController.sysj line: 88, column: 7
-                        w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 89, column: 7
+                    lidded_thread_3 = false;//sysj\fillerController.sysj line: 76, column: 5
+                    if(w_thread_3 != null) {//sysj\fillerController.sysj line: 77, column: 18
+                      if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 78, column: 36
+                        w_thread_3.lid();//sysj\fillerController.sysj line: 79, column: 7
+                        w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 80, column: 7
                       }
-                      lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 91, column: 6
+                      lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 82, column: 6
                     }
                     S62042=1;
-                    if(lidded_thread_3){//sysj\fillerController.sysj line: 94, column: 5
-                      System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 95, column: 6
-                      if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 96, column: 6
-                        twin.setPresent();//sysj\fillerController.sysj line: 97, column: 7
+                    if(lidded_thread_3){//sysj\fillerController.sysj line: 85, column: 5
+                      System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 86, column: 6
+                      if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 87, column: 6
+                        twin.setPresent();//sysj\fillerController.sysj line: 88, column: 7
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 97, column: 7
+                        twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 88, column: 7
                         S62042=2;
                         S62265=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                           S62265=1;
                           active[3]=1;
                           ends[3]=1;
@@ -2627,13 +2627,13 @@ public class FillerController extends ClockDomain{
                         }
                         else {
                           S62260=0;
-                          if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                          if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                             S62260=1;
-                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               ends[3]=2;
-                              ;//sysj\fillerController.sysj line: 171, column: 5
+                              ;//sysj\fillerController.sysj line: 155, column: 5
                               S63272=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2655,8 +2655,8 @@ public class FillerController extends ClockDomain{
                       else {
                         S62042=2;
                         S62265=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                           S62265=1;
                           active[3]=1;
                           ends[3]=1;
@@ -2664,13 +2664,13 @@ public class FillerController extends ClockDomain{
                         }
                         else {
                           S62260=0;
-                          if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                          if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                             S62260=1;
-                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               ends[3]=2;
-                              ;//sysj\fillerController.sysj line: 171, column: 5
+                              ;//sysj\fillerController.sysj line: 155, column: 5
                               S63272=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2691,15 +2691,15 @@ public class FillerController extends ClockDomain{
                       }
                     }
                     else {
-                      if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 100, column: 13
-                        if(w_thread_3 != null) {//sysj\fillerController.sysj line: 103, column: 19
-                          w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 104, column: 7
-                          w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 105, column: 7
+                      if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 91, column: 13
+                        if(w_thread_3 != null) {//sysj\fillerController.sysj line: 94, column: 19
+                          w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 95, column: 7
+                          w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 96, column: 7
                         }
                         S62042=2;
                         S62265=0;
-                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                        if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                           S62265=1;
                           active[3]=1;
                           ends[3]=1;
@@ -2707,13 +2707,13 @@ public class FillerController extends ClockDomain{
                         }
                         else {
                           S62260=0;
-                          if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                          if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                             S62260=1;
-                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               ends[3]=2;
-                              ;//sysj\fillerController.sysj line: 171, column: 5
+                              ;//sysj\fillerController.sysj line: 155, column: 5
                               S63272=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2733,17 +2733,17 @@ public class FillerController extends ClockDomain{
                         }
                       }
                       else {
-                        if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 108, column: 13
-                          System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 110, column: 6
-                          w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 111, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 112, column: 6
-                            twin.setPresent();//sysj\fillerController.sysj line: 113, column: 7
+                        if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 99, column: 13
+                          System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 101, column: 6
+                          w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 102, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 103, column: 6
+                            twin.setPresent();//sysj\fillerController.sysj line: 104, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 113, column: 7
+                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 104, column: 7
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2751,13 +2751,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -2779,8 +2779,8 @@ public class FillerController extends ClockDomain{
                           else {
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -2788,13 +2788,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -2815,39 +2815,39 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 119, column: 33
-                            ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 134, column: 7
-                            if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 135, column: 17
-                              ml_thread_3 = 1;//sysj\fillerController.sysj line: 136, column: 8
+                          if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 110, column: 33
+                            ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 118, column: 7
+                            if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 119, column: 17
+                              ml_thread_3 = 1;//sysj\fillerController.sysj line: 120, column: 8
                             }
-                            System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 138, column: 7
+                            System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 122, column: 7
                           }
-                          System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 140, column: 6
-                          w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 141, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 142, column: 6
-                            twin.setPresent();//sysj\fillerController.sysj line: 143, column: 7
+                          System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 124, column: 6
+                          w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 125, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 126, column: 6
+                            twin.setPresent();//sysj\fillerController.sysj line: 127, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 143, column: 7
+                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 127, column: 7
                             S62049=0;
-                            if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                            if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                               S62049=1;
-                              if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                  System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                  w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                              if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                  System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                  w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                 }
-                                w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                  twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                  twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                   currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -2855,13 +2855,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -2881,11 +2881,11 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -2893,13 +2893,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -2920,36 +2920,36 @@ public class FillerController extends ClockDomain{
                                 }
                               }
                               else {
-                                valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                 currsigs.addElement(valveOpen);
-                                fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                 currsigs.addElement(fillTarget);
-                                fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
-                              if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                              if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                 S62049=1;
-                                if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                  w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                  if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                    System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                    w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                  w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                  if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                    System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                    w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                   }
-                                  w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                  t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                    twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                  w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                  t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                    twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -2957,13 +2957,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -2983,11 +2983,11 @@ public class FillerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -2995,13 +2995,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -3022,11 +3022,11 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                  valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                   currsigs.addElement(valveOpen);
-                                  fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                  fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                   currsigs.addElement(fillTarget);
-                                  fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                  fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3041,25 +3041,25 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62049=0;
-                            if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                            if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                               S62049=1;
-                              if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                  System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                  w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                              if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                  System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                  w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                 }
-                                w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                  twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                  twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                   currsigs.addElement(twin);
-                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                  twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -3067,13 +3067,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -3093,11 +3093,11 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                  System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                   S62042=2;
                                   S62265=0;
-                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                  if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                    done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                     S62265=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -3105,13 +3105,13 @@ public class FillerController extends ClockDomain{
                                   }
                                   else {
                                     S62260=0;
-                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                       S62260=1;
-                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                         ends[3]=2;
-                                        ;//sysj\fillerController.sysj line: 171, column: 5
+                                        ;//sysj\fillerController.sysj line: 155, column: 5
                                         S63272=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -3132,36 +3132,36 @@ public class FillerController extends ClockDomain{
                                 }
                               }
                               else {
-                                valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                 currsigs.addElement(valveOpen);
-                                fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                 currsigs.addElement(fillTarget);
-                                fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                             }
                             else {
-                              if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                              if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                                 S62049=1;
-                                if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                                  w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                                  if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                                    System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                                    w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                                if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                                  w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                                  if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                                    System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                                    w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                                   }
-                                  w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                                  t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                                    twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                                  w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                                  t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                                  if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                                    twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                                     currsigs.addElement(twin);
-                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -3169,13 +3169,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -3195,11 +3195,11 @@ public class FillerController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                                    System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                                     S62042=2;
                                     S62265=0;
-                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                       S62265=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -3207,13 +3207,13 @@ public class FillerController extends ClockDomain{
                                     }
                                     else {
                                       S62260=0;
-                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                         S62260=1;
-                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                           ends[3]=2;
-                                          ;//sysj\fillerController.sysj line: 171, column: 5
+                                          ;//sysj\fillerController.sysj line: 155, column: 5
                                           S63272=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -3234,11 +3234,11 @@ public class FillerController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                                  valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                                   currsigs.addElement(valveOpen);
-                                  fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                                  fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                                   currsigs.addElement(fillTarget);
-                                  fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                                  fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3356,25 +3356,25 @@ public class FillerController extends ClockDomain{
             w_thread_3 = (WorkpieceTwin)(start_in.getVal() == null ? null : ((WorkpieceTwin)start_in.getVal()));//sysj\fillerController.sysj line: 59, column: 5
             ml_thread_3 = (w_thread_3 == null) ? 0 : w_thread_3.nextVolumeMl();//sysj\fillerController.sysj line: 62, column: 5
             asked_thread_3 = ml_thread_3;//sysj\fillerController.sysj line: 63, column: 5
-            lidded_thread_3 = false;//sysj\fillerController.sysj line: 85, column: 5
-            if(w_thread_3 != null) {//sysj\fillerController.sysj line: 86, column: 18
-              if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 87, column: 36
-                w_thread_3.lid();//sysj\fillerController.sysj line: 88, column: 7
-                w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 89, column: 7
+            lidded_thread_3 = false;//sysj\fillerController.sysj line: 76, column: 5
+            if(w_thread_3 != null) {//sysj\fillerController.sysj line: 77, column: 18
+              if(w_thread_3.catchFault("lid-fitted")) {//sysj\fillerController.sysj line: 78, column: 36
+                w_thread_3.lid();//sysj\fillerController.sysj line: 79, column: 7
+                w_thread_3.reject(Machine.FILLER, "arrived with a lid already fitted");//sysj\fillerController.sysj line: 80, column: 7
               }
-              lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 91, column: 6
+              lidded_thread_3 = w_thread_3.isLidded();//sysj\fillerController.sysj line: 82, column: 6
             }
             S62042=1;
-            if(lidded_thread_3){//sysj\fillerController.sysj line: 94, column: 5
-              System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 95, column: 6
-              if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 96, column: 6
-                twin.setPresent();//sysj\fillerController.sysj line: 97, column: 7
+            if(lidded_thread_3){//sysj\fillerController.sysj line: 85, column: 5
+              System.out.println("[FILL] " + w_thread_3 + " has a lid fitted - refusing to fill.");//sysj\fillerController.sysj line: 86, column: 6
+              if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "lid fitted")){//sysj\fillerController.sysj line: 87, column: 6
+                twin.setPresent();//sysj\fillerController.sysj line: 88, column: 7
                 currsigs.addElement(twin);
-                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 97, column: 7
+                twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 88, column: 7
                 S62042=2;
                 S62265=0;
-                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                   S62265=1;
                   active[3]=1;
                   ends[3]=1;
@@ -3382,13 +3382,13 @@ public class FillerController extends ClockDomain{
                 }
                 else {
                   S62260=0;
-                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                     S62260=1;
-                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                       ends[3]=2;
-                      ;//sysj\fillerController.sysj line: 171, column: 5
+                      ;//sysj\fillerController.sysj line: 155, column: 5
                       S63272=1;
                       active[3]=1;
                       ends[3]=1;
@@ -3410,8 +3410,8 @@ public class FillerController extends ClockDomain{
               else {
                 S62042=2;
                 S62265=0;
-                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                   S62265=1;
                   active[3]=1;
                   ends[3]=1;
@@ -3419,13 +3419,13 @@ public class FillerController extends ClockDomain{
                 }
                 else {
                   S62260=0;
-                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                     S62260=1;
-                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                       ends[3]=2;
-                      ;//sysj\fillerController.sysj line: 171, column: 5
+                      ;//sysj\fillerController.sysj line: 155, column: 5
                       S63272=1;
                       active[3]=1;
                       ends[3]=1;
@@ -3446,15 +3446,15 @@ public class FillerController extends ClockDomain{
               }
             }
             else {
-              if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 100, column: 13
-                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 103, column: 19
-                  w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 104, column: 7
-                  w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 105, column: 7
+              if(ml_thread_3 == 0){//sysj\fillerController.sysj line: 91, column: 13
+                if(w_thread_3 != null) {//sysj\fillerController.sysj line: 94, column: 19
+                  w_thread_3.dispensed(0);//sysj\fillerController.sysj line: 95, column: 7
+                  w_thread_3.completed(Machine.FILLER, "zero-percent ingredient");//sysj\fillerController.sysj line: 96, column: 7
                 }
                 S62042=2;
                 S62265=0;
-                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                   S62265=1;
                   active[3]=1;
                   ends[3]=1;
@@ -3462,13 +3462,13 @@ public class FillerController extends ClockDomain{
                 }
                 else {
                   S62260=0;
-                  if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                  if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                    done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                     S62260=1;
-                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                    if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                       ends[3]=2;
-                      ;//sysj\fillerController.sysj line: 171, column: 5
+                      ;//sysj\fillerController.sysj line: 155, column: 5
                       S63272=1;
                       active[3]=1;
                       ends[3]=1;
@@ -3488,17 +3488,17 @@ public class FillerController extends ClockDomain{
                 }
               }
               else {
-                if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 108, column: 13
-                  System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 110, column: 6
-                  w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 111, column: 6
-                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 112, column: 6
-                    twin.setPresent();//sysj\fillerController.sysj line: 113, column: 7
+                if(!w_thread_3.fits(ml_thread_3)){//sysj\fillerController.sysj line: 99, column: 13
+                  System.out.println("[FILL] Refusing " + ml_thread_3 + "ml into " + w_thread_3 + " - would overflow.");//sysj\fillerController.sysj line: 101, column: 6
+                  w_thread_3.reject(Machine.FILLER, "would overflow");//sysj\fillerController.sysj line: 102, column: 6
+                  if(t_thread_3.update(PlantClock.now(), MachineStatus.FAULT, "refuse", "overflow")){//sysj\fillerController.sysj line: 103, column: 6
+                    twin.setPresent();//sysj\fillerController.sysj line: 104, column: 7
                     currsigs.addElement(twin);
-                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 113, column: 7
+                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 104, column: 7
                     S62042=2;
                     S62265=0;
-                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                       S62265=1;
                       active[3]=1;
                       ends[3]=1;
@@ -3506,13 +3506,13 @@ public class FillerController extends ClockDomain{
                     }
                     else {
                       S62260=0;
-                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                         S62260=1;
-                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                           ends[3]=2;
-                          ;//sysj\fillerController.sysj line: 171, column: 5
+                          ;//sysj\fillerController.sysj line: 155, column: 5
                           S63272=1;
                           active[3]=1;
                           ends[3]=1;
@@ -3534,8 +3534,8 @@ public class FillerController extends ClockDomain{
                   else {
                     S62042=2;
                     S62265=0;
-                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                      done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                    if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                      done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                       S62265=1;
                       active[3]=1;
                       ends[3]=1;
@@ -3543,13 +3543,13 @@ public class FillerController extends ClockDomain{
                     }
                     else {
                       S62260=0;
-                      if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                      if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                        done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                         S62260=1;
-                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                          done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                        if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                          done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                           ends[3]=2;
-                          ;//sysj\fillerController.sysj line: 171, column: 5
+                          ;//sysj\fillerController.sysj line: 155, column: 5
                           S63272=1;
                           active[3]=1;
                           ends[3]=1;
@@ -3570,39 +3570,39 @@ public class FillerController extends ClockDomain{
                   }
                 }
                 else {
-                  if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 119, column: 33
-                    ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 134, column: 7
-                    if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 135, column: 17
-                      ml_thread_3 = 1;//sysj\fillerController.sysj line: 136, column: 8
+                  if(w_thread_3.catchFault("misfill")) {//sysj\fillerController.sysj line: 110, column: 33
+                    ml_thread_3 = ml_thread_3 - 30;//sysj\fillerController.sysj line: 118, column: 7
+                    if(ml_thread_3 < 1) {//sysj\fillerController.sysj line: 119, column: 17
+                      ml_thread_3 = 1;//sysj\fillerController.sysj line: 120, column: 8
                     }
-                    System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 138, column: 7
+                    System.out.println("[FILL] Metering fault on " + w_thread_3 + ".");//sysj\fillerController.sysj line: 122, column: 7
                   }
-                  System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 140, column: 6
-                  w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 141, column: 6
-                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 142, column: 6
-                    twin.setPresent();//sysj\fillerController.sysj line: 143, column: 7
+                  System.out.println("[FILL] Liquid " + w_thread_3.nextLiquidName() + ", " + ml_thread_3 + "ml into " + w_thread_3 + ".");//sysj\fillerController.sysj line: 124, column: 6
+                  w_thread_3.started(Machine.FILLER, "liquid " + w_thread_3.nextLiquidName());//sysj\fillerController.sysj line: 125, column: 6
+                  if(t_thread_3.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml_thread_3 + "ml")){//sysj\fillerController.sysj line: 126, column: 6
+                    twin.setPresent();//sysj\fillerController.sysj line: 127, column: 7
                     currsigs.addElement(twin);
-                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 143, column: 7
+                    twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 127, column: 7
                     S62049=0;
-                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                       S62049=1;
-                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                         }
-                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                          twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                          twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -3610,13 +3610,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -3636,11 +3636,11 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -3648,13 +3648,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -3675,36 +3675,36 @@ public class FillerController extends ClockDomain{
                         }
                       }
                       else {
-                        valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                        valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                         currsigs.addElement(valveOpen);
-                        fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                         currsigs.addElement(fillTarget);
-                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                     }
                     else {
-                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                         S62049=1;
-                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                           }
-                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -3712,13 +3712,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -3738,11 +3738,11 @@ public class FillerController extends ClockDomain{
                             }
                           }
                           else {
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -3750,13 +3750,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -3777,11 +3777,11 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                           currsigs.addElement(valveOpen);
-                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                           currsigs.addElement(fillTarget);
-                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -3796,25 +3796,25 @@ public class FillerController extends ClockDomain{
                   }
                   else {
                     S62049=0;
-                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 148, column: 22
+                    if(auto_1.getprestatus()){//sysj\fillerController.sysj line: 132, column: 22
                       S62049=1;
-                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                      if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                        w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                        if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                          System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                          w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                         }
-                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                          twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                        w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                        t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                        if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                          twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -3822,13 +3822,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -3848,11 +3848,11 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                          System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                           S62042=2;
                           S62265=0;
-                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                            done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                          if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                            done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                             S62265=1;
                             active[3]=1;
                             ends[3]=1;
@@ -3860,13 +3860,13 @@ public class FillerController extends ClockDomain{
                           }
                           else {
                             S62260=0;
-                            if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                            if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                               S62260=1;
-                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                              if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                 ends[3]=2;
-                                ;//sysj\fillerController.sysj line: 171, column: 5
+                                ;//sysj\fillerController.sysj line: 155, column: 5
                                 S63272=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -3887,36 +3887,36 @@ public class FillerController extends ClockDomain{
                         }
                       }
                       else {
-                        valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                        valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                         currsigs.addElement(valveOpen);
-                        fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                         currsigs.addElement(fillTarget);
-                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                        fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                     }
                     else {
-                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 148, column: 45
+                      if(valveOpenM.getprestatus()){//sysj\fillerController.sysj line: 132, column: 45
                         S62049=1;
-                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 149, column: 22
-                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 157, column: 6
-                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 158, column: 39
-                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 159, column: 7
-                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 160, column: 7
+                        if(filled.getprestatus()){//sysj\fillerController.sysj line: 133, column: 22
+                          w_thread_3.dispensed(ml_thread_3);//sysj\fillerController.sysj line: 141, column: 6
+                          if(!w_thread_3.lastFillInTolerance(asked_thread_3)) {//sysj\fillerController.sysj line: 142, column: 39
+                            System.out.println("[FILL] Out of tolerance: asked " + asked_thread_3 + "ml, metered " + ml_thread_3 + "ml.");//sysj\fillerController.sysj line: 143, column: 7
+                            w_thread_3.reject(Machine.FILLER, "fill out of tolerance");//sysj\fillerController.sysj line: 144, column: 7
                           }
-                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 162, column: 6
-                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 163, column: 6
-                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 164, column: 6
-                            twin.setPresent();//sysj\fillerController.sysj line: 165, column: 7
+                          w_thread_3.completed(Machine.FILLER, "fill complete");//sysj\fillerController.sysj line: 146, column: 6
+                          t_thread_3.setDispensed(ml_thread_3, ml_thread_3 / 20);//sysj\fillerController.sysj line: 147, column: 6
+                          if(t_thread_3.update(PlantClock.now(), MachineStatus.IDLE, "valveShut", ml_thread_3 + "ml dispensed")){//sysj\fillerController.sysj line: 148, column: 6
+                            twin.setPresent();//sysj\fillerController.sysj line: 149, column: 7
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 165, column: 7
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            twin.setValue(t_thread_3);//sysj\fillerController.sysj line: 149, column: 7
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -3924,13 +3924,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -3950,11 +3950,11 @@ public class FillerController extends ClockDomain{
                             }
                           }
                           else {
-                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 167, column: 6
+                            System.out.println("[FILL] " + w_thread_3 + " now at " + w_thread_3.filledMl() + "ml.");//sysj\fillerController.sysj line: 151, column: 6
                             S62042=2;
                             S62265=0;
-                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 171, column: 5
-                              done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                            if(!done_o.isPartnerPresent() || done_o.isPartnerPreempted()){//sysj\fillerController.sysj line: 155, column: 5
+                              done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                               S62265=1;
                               active[3]=1;
                               ends[3]=1;
@@ -3962,13 +3962,13 @@ public class FillerController extends ClockDomain{
                             }
                             else {
                               S62260=0;
-                              if(done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 171, column: 5
+                              if(done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                done_o.setVal(w_thread_3);//sysj\fillerController.sysj line: 155, column: 5
                                 S62260=1;
-                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 171, column: 5
-                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 171, column: 5
+                                if(!done_o.isACK()){//sysj\fillerController.sysj line: 155, column: 5
+                                  done_o.setREQ(false);//sysj\fillerController.sysj line: 155, column: 5
                                   ends[3]=2;
-                                  ;//sysj\fillerController.sysj line: 171, column: 5
+                                  ;//sysj\fillerController.sysj line: 155, column: 5
                                   S63272=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -3989,11 +3989,11 @@ public class FillerController extends ClockDomain{
                           }
                         }
                         else {
-                          valveOpen.setPresent();//sysj\fillerController.sysj line: 151, column: 8
+                          valveOpen.setPresent();//sysj\fillerController.sysj line: 135, column: 8
                           currsigs.addElement(valveOpen);
-                          fillTarget.setPresent();//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setPresent();//sysj\fillerController.sysj line: 136, column: 8
                           currsigs.addElement(fillTarget);
-                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 152, column: 8
+                          fillTarget.setValue(ml_thread_3);//sysj\fillerController.sysj line: 136, column: 8
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;

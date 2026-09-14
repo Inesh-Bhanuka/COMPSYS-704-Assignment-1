@@ -1,29 +1,19 @@
 /**
  * How many ticks a piece of machine motion takes.
  *
- * Every plant models its actuators with a tick counter - the diverter takes
- * STROKE ticks to cross between end stops, the table takes ROT ticks to turn
- * sixty degrees, the dumper takes DRAIN ticks to empty a bottle. Those numbers
- * were chosen small so a test run finishes quickly, which is the wrong
- * trade-off for a demonstration: at a few ticks each, the machines are a blur
- * and the only thing an observer can follow is the log.
- *
- * Rather than editing a dozen plants every time the demo needs to be slower or
- * faster, each plant asks for its motion times through here and one scale
- * factor moves all of them together. That keeps the relative timing of the
- * machines fixed - the table is still slower than the capper by the same
- * ratio - so the line's behaviour, including which stage is the bottleneck,
- * does not change with the setting.
+ * Each plant models its actuators with a tick counter - STROKE ticks for the
+ * diverter, ROT ticks for a sixty degree turn, DRAIN ticks to empty a bottle.
+ * They ask for those numbers through here so one factor moves all of them
+ * together, which keeps their ratios fixed: the line's behaviour, including
+ * which stage is the bottleneck, does not change with the setting.
  *
  *   -Dabs.timeScale=5    multiplier on every machine's motion time.
- *                        1 restores the original, quick-running numbers.
+ *                        1 gives the original, quick-running numbers.
  *
- * This is deliberately separate from PlantPace, which sets how long a tick
- * lasts in wall-clock time. Pacing slows everything including the
- * cross-domain rendezvous that carry workpieces between machines; scaling
- * changes only how long the machines themselves take, which is what makes an
- * individual operation legible rather than instantaneous. A watchable demo
- * wants both.
+ * Separate from PlantPace, which sets how long a tick lasts. Pacing slows
+ * everything including the cross-domain rendezvous between machines; scaling
+ * changes only the machines, which is what makes one operation legible rather
+ * than instantaneous. A watchable demo wants both.
  */
 public final class PlantTiming {
 
@@ -49,10 +39,7 @@ public final class PlantTiming {
 		return t < 1 ? 1 : t;
 	}
 
-	/**
-	 * A per-tick rate, scaled the other way: pouring 20ml a tick at scale 5
-	 * becomes 4ml a tick, so the same bottle takes five times as long to fill.
-	 */
+	/** A per-tick rate, scaled the other way: 20ml a tick at scale 5 is 4ml a tick. */
 	public static int rate(int base) {
 		int r = (int) Math.round(base / SCALE);
 		return r < 1 ? 1 : r;

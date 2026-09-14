@@ -68,21 +68,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -96,21 +96,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -128,21 +128,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -156,21 +156,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -194,21 +194,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -222,21 +222,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -254,21 +254,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -282,21 +282,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -324,21 +324,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -352,21 +352,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -384,21 +384,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -412,21 +412,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -448,21 +448,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -476,21 +476,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -508,21 +508,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -536,21 +536,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -579,21 +579,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -607,21 +607,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -639,21 +639,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -667,21 +667,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -705,21 +705,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -733,21 +733,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -765,21 +765,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -793,21 +793,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -835,21 +835,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -863,21 +863,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -895,21 +895,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -923,21 +923,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -959,21 +959,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -987,21 +987,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -1019,21 +1019,21 @@ public class LidLoaderPlant extends ClockDomain{
                   if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                     WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                     currsigs.addElement(WPgripped);
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -1047,21 +1047,21 @@ public class LidLoaderPlant extends ClockDomain{
                     }
                   }
                   else {
-                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                    if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                      if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                        refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                        lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                       }
-                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                      refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                       currsigs.addElement(refilled);
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
                     }
                     else {
-                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                      refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                      if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                        magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                         currsigs.addElement(magazineEmpty);
                         active[3]=1;
                         ends[3]=1;
@@ -1169,21 +1169,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1197,21 +1197,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1229,21 +1229,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1257,21 +1257,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1295,21 +1295,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1323,21 +1323,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1355,21 +1355,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1383,21 +1383,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1425,21 +1425,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1453,21 +1453,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1485,21 +1485,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1513,21 +1513,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1549,21 +1549,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1577,21 +1577,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1609,21 +1609,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1637,21 +1637,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1680,21 +1680,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1708,21 +1708,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1740,21 +1740,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1768,21 +1768,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1806,21 +1806,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1834,21 +1834,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1866,21 +1866,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1894,21 +1894,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1936,21 +1936,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1964,21 +1964,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -1996,21 +1996,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -2024,21 +2024,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -2060,21 +2060,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -2088,21 +2088,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -2120,21 +2120,21 @@ public class LidLoaderPlant extends ClockDomain{
               if(holding_thread_3){//sysj\lidLoaderPlant.sysj line: 73, column: 5
                 WPgripped.setPresent();//sysj\lidLoaderPlant.sysj line: 73, column: 18
                 currsigs.addElement(WPgripped);
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;
@@ -2148,21 +2148,21 @@ public class LidLoaderPlant extends ClockDomain{
                 }
               }
               else {
-                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 83, column: 13
-                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 84, column: 20
-                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 85, column: 7
-                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 86, column: 7
+                if(refill.getprestatus()){//sysj\lidLoaderPlant.sysj line: 81, column: 13
+                  if(!refilling_thread_3) {//sysj\lidLoaderPlant.sysj line: 82, column: 20
+                    refilling_thread_3 = true;//sysj\lidLoaderPlant.sysj line: 83, column: 7
+                    lids_thread_3 = STOCK_thread_3;//sysj\lidLoaderPlant.sysj line: 84, column: 7
                   }
-                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 88, column: 6
+                  refilled.setPresent();//sysj\lidLoaderPlant.sysj line: 86, column: 6
                   currsigs.addElement(refilled);
                   active[3]=1;
                   ends[3]=1;
                   tdone[3]=1;
                 }
                 else {
-                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 91, column: 6
-                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 92, column: 9
-                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 93, column: 7
+                  refilling_thread_3 = false;//sysj\lidLoaderPlant.sysj line: 89, column: 6
+                  if(lids_thread_3 == 0 && !lidReady_thread_3 && !holding_thread_3){//sysj\lidLoaderPlant.sysj line: 90, column: 9
+                    magazineEmpty.setPresent();//sysj\lidLoaderPlant.sysj line: 91, column: 7
                     currsigs.addElement(magazineEmpty);
                     active[3]=1;
                     ends[3]=1;

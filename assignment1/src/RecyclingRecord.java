@@ -1,16 +1,13 @@
 /**
  * The outcome of one recycling transaction.
  *
- * The Recycling Station Controller drives five subsystems in sequence and has
- * to fold their status codes into two conclusions: may this bottle be
- * reported as recovered, and may the station take another one. Doing that
- * with local flags puts a conditional between every pair of rendezvous, and
- * SystemJ generates a separate control path for each - the sequencer's
- * runClockDomain method then exceeds the JVM's 64 KB limit, exactly as the
- * rotary table's occupancy handling did before it moved into TableModel.
- *
- * So the accumulation lives here instead, as plain Java, and the reaction
- * keeps a single straight line of sends and receives.
+ * The station folds its subsystems' status codes into two conclusions: may
+ * this bottle be reported as recovered, and may the station take another.
+ * Doing that with local flags puts a conditional between every pair of
+ * rendezvous, and SystemJ generates a separate control path for each, which
+ * takes the sequencer's runClockDomain past the JVM's 64 KB limit. The
+ * accumulation lives here as plain Java so the reaction stays a single
+ * straight line of sends and receives.
  */
 public class RecyclingRecord {
 

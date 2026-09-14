@@ -7,49 +7,24 @@ import java.util.Vector;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * Wall-clock pacing for the whole plant, so the operator display is watchable.
+ * Holds every clock domain to a wall-clock rate, so the display is watchable.
  *
- * ---- The problem ----
+ * Clock domains free-run at around a thousand ticks a second. The reactions
+ * are correct at that rate - none of them depend on how long a tick takes -
+ * but a three tick diverter stroke is three milliseconds and the GUI repaints
+ * ten times a second, so whole machine cycles pass between frames.
  *
- * SystemJ clock domains free-run: each one ticks as fast as its thread is
- * scheduled, which on a modern machine is on the order of a thousand ticks a
- * second. Every reaction in this system is correct at that rate - the logic
- * does not depend on how long a tick takes - but nothing is observable. A
- * diverter stroke of three ticks is three milliseconds, and the GUI only
- * repaints ten times a second, so a whole machine cycle can pass between two
- * frames. Watching the panel, bottles teleport.
+ * The runtime ends each tick with runFinisher(), which is the intended hook
+ * for work at a tick boundary: outside every reaction, outside every
+ * rendezvous, after the tick's signals are resolved. A pacer goes on every
+ * domain, each with its own deadline - the domains stay asynchronous and are
+ * each slowed by the same factor, so every ordering the design relies on is
+ * unchanged.
  *
- * ---- The hook ----
- *
- * The SystemJ runtime calls runClockDomain() once per tick and ends the tick
- * with runFinisher(), which delegates to the domain's TickFinisher. The
- * default finisher does nothing; the debugger installs one that blocks on a
- * barrier. That is the intended extension point for anything that wants to
- * happen at a tick boundary, which is exactly where a delay belongs: outside
- * every reaction, outside every rendezvous, and after the tick's signals have
- * been resolved.
- *
- * So this installs one pacer on every clock domain in the program. Each pacer
- * holds its own next-tick deadline, because the domains are asynchronous and
- * must stay that way - they are not being brought into lockstep, they are
- * each being slowed to the same rate. Relative timing between machines is
- * therefore unchanged, and so is every ordering the design relies on. The
- * simulation is the same simulation, running against a slower clock.
- *
- * ---- Tuning ----
- *
- *   -Dabs.ticksPerSecond=60    the rate every clock domain is held to.
- *                              Lower is slower. 0 restores free-running,
- *                              which is what a regression run wants. At the
- *                              default a tick is about 17ms, so the shortest
- *                              actuator stroke lasts a couple of display
- *                              frames - the GUI only repaints every 100ms,
- *                              which is the floor worth aiming at.
- *
- * A domain that falls behind its deadline does not accumulate debt: it
- * abandons the missed deadline and paces from now. Without that, a garbage
- * collection pause would be followed by a burst of unpaced ticks, which is
- * precisely the stutter this exists to remove.
+ *   -Dabs.ticksPerSecond=60   the rate every domain is held to. Lower is
+ *                             slower; 0 free-runs, which is what a regression
+ *                             run wants. 60 puts the shortest actuator stroke
+ *                             across a couple of display frames.
  */
 public final class PlantPace implements TickFinisher {
 
@@ -60,10 +35,9 @@ public final class PlantPace implements TickFinisher {
 	private static boolean installed = false;
 
 	/**
-	 * Attach a pacer to every clock domain in the running program.
+	 * Attach a pacer to every clock domain. Safe to call more than once.
 	 *
-	 * Safe to call from anywhere and more than once. The program is built by
-	 * SystemJRunner while this is being called from inside a reaction, so the
+	 * The program is still being built while a reaction calls this, so the
 	 * attachment waits on a daemon thread rather than blocking a tick.
 	 */
 	public static synchronized void install() {
@@ -125,6 +99,7 @@ public final class PlantPace implements TickFinisher {
 	private final long period = 1000000000L / TICKS_PER_SECOND;
 	private long deadline = 0;
 
+	/** A domain behind its deadline paces from now rather than catching up in a burst. */
 	public void finishTick(ClockDomain cd) {
 		long now = System.nanoTime();
 		if (deadline == 0) {

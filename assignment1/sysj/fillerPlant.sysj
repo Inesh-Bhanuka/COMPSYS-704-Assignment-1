@@ -28,11 +28,9 @@ FillerPlant(
 					if(poured > target){ poured = target; }
 				}
 				// A target the plant cannot reach must not hang the machine.
-				// Anything at or below zero is reported filled immediately:
-				// the valve is open and there is nothing to deliver, so the
-				// controller gets its answer and the line keeps moving. A
-				// controller should not be able to deadlock a plant by asking
-				// for an impossible volume, whatever put the number there.
+				// At or below zero there is nothing to deliver, so report
+				// filled at once: a controller should not be able to deadlock
+				// a plant by asking for an impossible volume.
 				if(target <= 0 || poured >= target){
 					emit filled;
 				}

@@ -33,10 +33,10 @@ public class LidRemovalController extends ClockDomain{
   public output_Channel status_o = new output_Channel();
   private Signal auto_1;
   private Signal manual_1;
-  private int OK_thread_3;//sysj\lidRemovalController.sysj line: 73, column: 3
-  private int BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 74, column: 3
-  private WorkpieceTwin w_thread_3;//sysj\lidRemovalController.sysj line: 76, column: 3
-  private int code_thread_3;//sysj\lidRemovalController.sysj line: 77, column: 3
+  private int OK_thread_3;//sysj\lidRemovalController.sysj line: 62, column: 3
+  private int BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 63, column: 3
+  private WorkpieceTwin w_thread_3;//sysj\lidRemovalController.sysj line: 65, column: 3
+  private int code_thread_3;//sysj\lidRemovalController.sysj line: 66, column: 3
   private int S155998 = 1;
   private int S105624 = 1;
   private int S155996 = 1;
@@ -59,7 +59,7 @@ public class LidRemovalController extends ClockDomain{
   
   public void thread156189(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -68,7 +68,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156188(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -77,7 +77,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156186(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -86,7 +86,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156185(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -95,7 +95,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156183(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -104,7 +104,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156182(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -113,7 +113,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156180(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -122,7 +122,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156179(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -131,7 +131,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156177(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -140,7 +140,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156176(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -149,7 +149,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156174(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -158,7 +158,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156173(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -167,7 +167,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156171(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -176,7 +176,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156170(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -185,7 +185,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156168(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -194,7 +194,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156167(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -210,7 +210,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+        unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
         currsigs.addElement(unscrewTurnExtend);
         active[7]=1;
         ends[7]=1;
@@ -229,7 +229,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
         currsigs.addElement(cylZaxisExtend);
         active[6]=1;
         ends[6]=1;
@@ -241,7 +241,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156162(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -250,7 +250,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156161(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -259,7 +259,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156159(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -268,7 +268,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156158(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -277,7 +277,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156156(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -286,7 +286,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156155(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -295,7 +295,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156153(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -304,7 +304,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156152(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -320,7 +320,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+        lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
         currsigs.addElement(lidGripperExtend);
         active[5]=1;
         ends[5]=1;
@@ -339,7 +339,7 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
         currsigs.addElement(cylZaxisExtend);
         active[4]=1;
         ends[4]=1;
@@ -351,7 +351,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156147(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -360,7 +360,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156146(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -369,7 +369,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156144(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -378,7 +378,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156143(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -387,7 +387,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156141(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -396,7 +396,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156140(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -405,7 +405,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156138(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -414,7 +414,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156137(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -423,7 +423,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156135(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -432,7 +432,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156134(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -441,7 +441,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156132(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -450,7 +450,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156131(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -459,7 +459,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156129(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -468,7 +468,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156128(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -477,7 +477,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156126(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -486,7 +486,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156125(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -495,7 +495,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156123(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -504,7 +504,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156122(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -513,7 +513,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156120(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -522,7 +522,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156119(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -531,7 +531,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156117(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -540,7 +540,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156116(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -549,7 +549,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156114(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -558,7 +558,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156113(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -567,7 +567,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156111(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -576,7 +576,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156110(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -585,7 +585,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156108(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -594,7 +594,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156107(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -603,7 +603,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156105(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -612,7 +612,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156104(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -621,7 +621,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156102(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -630,7 +630,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156101(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -639,7 +639,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156099(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -648,7 +648,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156098(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -657,7 +657,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156096(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -666,7 +666,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156095(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -675,7 +675,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156093(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -684,7 +684,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156092(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -693,7 +693,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156090(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -702,7 +702,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156089(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -711,7 +711,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156087(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -720,7 +720,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156086(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -729,7 +729,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156084(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -738,7 +738,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156083(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -747,7 +747,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156081(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -756,7 +756,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156080(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -765,7 +765,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156078(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -774,7 +774,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156077(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -783,7 +783,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156075(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -792,7 +792,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156074(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -801,7 +801,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156072(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -810,7 +810,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156071(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -819,7 +819,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156069(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -828,7 +828,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156068(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -837,7 +837,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156066(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -846,7 +846,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156065(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -855,7 +855,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156063(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -864,7 +864,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156062(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -873,7 +873,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156060(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -882,7 +882,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156059(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -891,7 +891,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156057(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -900,7 +900,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156056(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -909,7 +909,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156054(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -918,7 +918,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156053(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -927,7 +927,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156051(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -936,7 +936,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156050(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -945,7 +945,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156048(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -954,7 +954,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156047(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -963,7 +963,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156045(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -972,7 +972,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156044(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -981,7 +981,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156042(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -990,7 +990,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156041(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -999,7 +999,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156039(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -1008,7 +1008,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156038(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -1017,7 +1017,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156036(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -1026,7 +1026,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156035(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -1035,7 +1035,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156033(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -1044,7 +1044,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156032(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -1053,7 +1053,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156030(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -1062,7 +1062,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156029(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -1080,7 +1080,7 @@ public class LidRemovalController extends ClockDomain{
       case 1 : 
         switch(S114020){
           case 0 : 
-            if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 80, column: 20
+            if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 69, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
               S114020=1;
@@ -1093,8 +1093,8 @@ public class LidRemovalController extends ClockDomain{
                 case 0 : 
                   switch(S105632){
                     case 0 : 
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                         S105632=1;
                         active[3]=1;
                         ends[3]=1;
@@ -1103,50 +1103,50 @@ public class LidRemovalController extends ClockDomain{
                       else {
                         switch(S105627){
                           case 0 : 
-                            if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                              enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 81, column: 5
+                            if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                              enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 70, column: 5
                               S105627=1;
-                              if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                              if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 81, column: 5
-                                w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 82, column: 5
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 90, column: 5
+                                ;//sysj\lidRemovalController.sysj line: 70, column: 5
+                                w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 71, column: 5
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 79, column: 5
                                 S105648=1;
-                                if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 92, column: 8
-                                  System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 93, column: 6
+                                if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 81, column: 8
+                                  System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 82, column: 6
                                   S105653=0;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                                     S105653=1;
-                                    if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                    if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                       S105653=2;
-                                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                         S105653=3;
-                                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                           S105653=4;
-                                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                             S105653=5;
-                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                               S105653=6;
-                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                 S105653=7;
-                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -1154,13 +1154,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1188,8 +1188,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -1197,13 +1197,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1224,7 +1224,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -1232,22 +1232,22 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1255,13 +1255,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -1289,8 +1289,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -1298,13 +1298,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1325,7 +1325,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -1340,7 +1340,7 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                 currsigs.addElement(unscrewTurnRetract);
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -1348,26 +1348,26 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                                 S105653=6;
-                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                   S105653=7;
-                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1375,13 +1375,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -1409,8 +1409,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -1418,13 +1418,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1445,7 +1445,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -1453,22 +1453,22 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                       S105653=8;
-                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                         S105653=9;
-                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                             S105648=2;
                                                             S111055=0;
-                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111055=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1476,13 +1476,13 @@ public class LidRemovalController extends ClockDomain{
                                                             }
                                                             else {
                                                               S111050=0;
-                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111050=1;
-                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   ends[3]=2;
-                                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S114020=1;
                                                                   active[3]=1;
                                                                   ends[3]=1;
@@ -1510,8 +1510,8 @@ public class LidRemovalController extends ClockDomain{
                                                         else {
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1519,13 +1519,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -1546,7 +1546,7 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                       }
                                                       else {
-                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                         currsigs.addElement(lidEjectExtend);
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -1561,7 +1561,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                   currsigs.addElement(unscrewTurnRetract);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1583,7 +1583,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S106050=0;
-                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                             S106050=1;
                                             thread156029(tdone,ends);
                                             thread156030(tdone,ends);
@@ -1601,7 +1601,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                               S106050=1;
                                               thread156032(tdone,ends);
                                               thread156033(tdone,ends);
@@ -1628,7 +1628,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S105726=0;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                           S105726=1;
                                           thread156035(tdone,ends);
                                           thread156036(tdone,ends);
@@ -1646,7 +1646,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                          if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                             S105726=1;
                                             thread156038(tdone,ends);
                                             thread156039(tdone,ends);
@@ -1672,7 +1672,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                      cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                       currsigs.addElement(cylZaxisExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -1680,37 +1680,37 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                                    if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                                       S105653=1;
-                                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                         S105653=2;
-                                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                           S105653=3;
-                                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                             S105653=4;
-                                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                               S105653=5;
-                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                                 S105653=6;
-                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                   S105653=7;
-                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1718,13 +1718,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -1752,8 +1752,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -1761,13 +1761,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1788,7 +1788,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -1796,22 +1796,22 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                       S105653=8;
-                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                         S105653=9;
-                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                             S105648=2;
                                                             S111055=0;
-                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111055=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1819,13 +1819,13 @@ public class LidRemovalController extends ClockDomain{
                                                             }
                                                             else {
                                                               S111050=0;
-                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111050=1;
-                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   ends[3]=2;
-                                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S114020=1;
                                                                   active[3]=1;
                                                                   ends[3]=1;
@@ -1853,8 +1853,8 @@ public class LidRemovalController extends ClockDomain{
                                                         else {
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1862,13 +1862,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -1889,7 +1889,7 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                       }
                                                       else {
-                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                         currsigs.addElement(lidEjectExtend);
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -1904,7 +1904,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                   currsigs.addElement(unscrewTurnRetract);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -1912,26 +1912,26 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                                if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                                   S105653=6;
-                                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                     S105653=7;
-                                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                       S105653=8;
-                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                         S105653=9;
-                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                             S105648=2;
                                                             S111055=0;
-                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111055=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -1939,13 +1939,13 @@ public class LidRemovalController extends ClockDomain{
                                                             }
                                                             else {
                                                               S111050=0;
-                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111050=1;
-                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   ends[3]=2;
-                                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S114020=1;
                                                                   active[3]=1;
                                                                   ends[3]=1;
@@ -1973,8 +1973,8 @@ public class LidRemovalController extends ClockDomain{
                                                         else {
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -1982,13 +1982,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -2009,7 +2009,7 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                       }
                                                       else {
-                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                         currsigs.addElement(lidEjectExtend);
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -2017,22 +2017,22 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                         S105653=8;
-                                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                           S105653=9;
-                                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                               S105648=2;
                                                               S111055=0;
-                                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111055=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -2040,13 +2040,13 @@ public class LidRemovalController extends ClockDomain{
                                                               }
                                                               else {
                                                                 S111050=0;
-                                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S111050=1;
-                                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                     ends[3]=2;
-                                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                     S114020=1;
                                                                     active[3]=1;
                                                                     ends[3]=1;
@@ -2074,8 +2074,8 @@ public class LidRemovalController extends ClockDomain{
                                                           else {
                                                             S105648=2;
                                                             S111055=0;
-                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111055=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -2083,13 +2083,13 @@ public class LidRemovalController extends ClockDomain{
                                                             }
                                                             else {
                                                               S111050=0;
-                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111050=1;
-                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   ends[3]=2;
-                                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S114020=1;
                                                                   active[3]=1;
                                                                   ends[3]=1;
@@ -2110,7 +2110,7 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                         }
                                                         else {
-                                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                           currsigs.addElement(lidEjectExtend);
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2125,7 +2125,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                     currsigs.addElement(unscrewTurnRetract);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -2147,7 +2147,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S106050=0;
-                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                               S106050=1;
                                               thread156041(tdone,ends);
                                               thread156042(tdone,ends);
@@ -2165,7 +2165,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                                 S106050=1;
                                                 thread156044(tdone,ends);
                                                 thread156045(tdone,ends);
@@ -2192,7 +2192,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S105726=0;
-                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                             S105726=1;
                                             thread156047(tdone,ends);
                                             thread156048(tdone,ends);
@@ -2210,7 +2210,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                               S105726=1;
                                               thread156050(tdone,ends);
                                               thread156051(tdone,ends);
@@ -2236,7 +2236,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                         currsigs.addElement(cylZaxisExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -2253,8 +2253,8 @@ public class LidRemovalController extends ClockDomain{
                                 else {
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -2262,13 +2262,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -2302,47 +2302,47 @@ public class LidRemovalController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                            if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                              enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                               ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 81, column: 5
-                              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 82, column: 5
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 90, column: 5
+                              ;//sysj\lidRemovalController.sysj line: 70, column: 5
+                              w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 71, column: 5
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 79, column: 5
                               S105648=1;
-                              if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 92, column: 8
-                                System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 93, column: 6
+                              if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 81, column: 8
+                                System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 82, column: 6
                                 S105653=0;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                                   S105653=1;
-                                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                     S105653=2;
-                                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                       S105653=3;
-                                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                         S105653=4;
-                                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                           S105653=5;
-                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                             S105653=6;
-                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                               S105653=7;
-                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                 S105653=8;
-                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                   S105653=9;
-                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -2350,13 +2350,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -2384,8 +2384,8 @@ public class LidRemovalController extends ClockDomain{
                                                   else {
                                                     S105648=2;
                                                     S111055=0;
-                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111055=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -2393,13 +2393,13 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                     else {
                                                       S111050=0;
-                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111050=1;
-                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           ends[3]=2;
-                                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S114020=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2420,7 +2420,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                   currsigs.addElement(lidEjectExtend);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -2428,22 +2428,22 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2451,13 +2451,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -2485,8 +2485,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -2494,13 +2494,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -2521,7 +2521,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -2536,7 +2536,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                               currsigs.addElement(unscrewTurnRetract);
                                               active[3]=1;
                                               ends[3]=1;
@@ -2544,26 +2544,26 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                               S105653=6;
-                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                 S105653=7;
-                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2571,13 +2571,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -2605,8 +2605,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -2614,13 +2614,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -2641,7 +2641,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -2649,22 +2649,22 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -2672,13 +2672,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -2706,8 +2706,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2715,13 +2715,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -2742,7 +2742,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -2757,7 +2757,7 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                 currsigs.addElement(unscrewTurnRetract);
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -2779,7 +2779,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S106050=0;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                           S106050=1;
                                           thread156053(tdone,ends);
                                           thread156054(tdone,ends);
@@ -2797,7 +2797,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                             S106050=1;
                                             thread156056(tdone,ends);
                                             thread156057(tdone,ends);
@@ -2824,7 +2824,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S105726=0;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                         S105726=1;
                                         thread156059(tdone,ends);
                                         thread156060(tdone,ends);
@@ -2842,7 +2842,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                           S105726=1;
                                           thread156062(tdone,ends);
                                           thread156063(tdone,ends);
@@ -2868,7 +2868,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                     currsigs.addElement(cylZaxisExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -2876,37 +2876,37 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                                  if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                                     S105653=1;
-                                    if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                    if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                       S105653=2;
-                                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                         S105653=3;
-                                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                           S105653=4;
-                                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                             S105653=5;
-                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                               S105653=6;
-                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                 S105653=7;
-                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -2914,13 +2914,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -2948,8 +2948,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -2957,13 +2957,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -2984,7 +2984,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -2992,22 +2992,22 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3015,13 +3015,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -3049,8 +3049,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3058,13 +3058,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -3085,7 +3085,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -3100,7 +3100,7 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                 currsigs.addElement(unscrewTurnRetract);
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -3108,26 +3108,26 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                                 S105653=6;
-                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                   S105653=7;
-                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3135,13 +3135,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -3169,8 +3169,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3178,13 +3178,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -3205,7 +3205,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -3213,22 +3213,22 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                       S105653=8;
-                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                         S105653=9;
-                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                             S105648=2;
                                                             S111055=0;
-                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111055=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -3236,13 +3236,13 @@ public class LidRemovalController extends ClockDomain{
                                                             }
                                                             else {
                                                               S111050=0;
-                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S111050=1;
-                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   ends[3]=2;
-                                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                   S114020=1;
                                                                   active[3]=1;
                                                                   ends[3]=1;
@@ -3270,8 +3270,8 @@ public class LidRemovalController extends ClockDomain{
                                                         else {
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3279,13 +3279,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -3306,7 +3306,7 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                       }
                                                       else {
-                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                         currsigs.addElement(lidEjectExtend);
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -3321,7 +3321,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                   currsigs.addElement(unscrewTurnRetract);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -3343,7 +3343,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S106050=0;
-                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                             S106050=1;
                                             thread156065(tdone,ends);
                                             thread156066(tdone,ends);
@@ -3361,7 +3361,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                               S106050=1;
                                               thread156068(tdone,ends);
                                               thread156069(tdone,ends);
@@ -3388,7 +3388,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S105726=0;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                           S105726=1;
                                           thread156071(tdone,ends);
                                           thread156072(tdone,ends);
@@ -3406,7 +3406,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                          if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                             S105726=1;
                                             thread156074(tdone,ends);
                                             thread156075(tdone,ends);
@@ -3432,7 +3432,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                      cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                       currsigs.addElement(cylZaxisExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -3449,8 +3449,8 @@ public class LidRemovalController extends ClockDomain{
                               else {
                                 S105648=2;
                                 S111055=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111055=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -3458,13 +3458,13 @@ public class LidRemovalController extends ClockDomain{
                                 }
                                 else {
                                   S111050=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111050=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S114020=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -3498,8 +3498,8 @@ public class LidRemovalController extends ClockDomain{
                     case 1 : 
                       S105632=1;
                       S105632=0;
-                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                         S105632=1;
                         active[3]=1;
                         ends[3]=1;
@@ -3507,50 +3507,50 @@ public class LidRemovalController extends ClockDomain{
                       }
                       else {
                         S105627=0;
-                        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 81, column: 5
+                        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 70, column: 5
                           S105627=1;
-                          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                             ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 81, column: 5
-                            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 82, column: 5
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 90, column: 5
+                            ;//sysj\lidRemovalController.sysj line: 70, column: 5
+                            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 71, column: 5
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 79, column: 5
                             S105648=1;
-                            if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 92, column: 8
-                              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 93, column: 6
+                            if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 81, column: 8
+                              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 82, column: 6
                               S105653=0;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                                 S105653=1;
-                                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                   S105653=2;
-                                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                     S105653=3;
-                                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                       S105653=4;
-                                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                         S105653=5;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                           S105653=6;
-                                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                             S105653=7;
-                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                               S105653=8;
-                                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                 S105653=9;
-                                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                     S105648=2;
                                                     S111055=0;
-                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111055=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -3558,13 +3558,13 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                     else {
                                                       S111050=0;
-                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111050=1;
-                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           ends[3]=2;
-                                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S114020=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3592,8 +3592,8 @@ public class LidRemovalController extends ClockDomain{
                                                 else {
                                                   S105648=2;
                                                   S111055=0;
-                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111055=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -3601,13 +3601,13 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                   else {
                                                     S111050=0;
-                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111050=1;
-                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         ends[3]=2;
-                                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S114020=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -3628,7 +3628,7 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                 currsigs.addElement(lidEjectExtend);
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -3636,22 +3636,22 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                 S105653=8;
-                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                   S105653=9;
-                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -3659,13 +3659,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3693,8 +3693,8 @@ public class LidRemovalController extends ClockDomain{
                                                   else {
                                                     S105648=2;
                                                     S111055=0;
-                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111055=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -3702,13 +3702,13 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                     else {
                                                       S111050=0;
-                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111050=1;
-                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           ends[3]=2;
-                                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S114020=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3729,7 +3729,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                   currsigs.addElement(lidEjectExtend);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -3744,7 +3744,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                             currsigs.addElement(unscrewTurnRetract);
                                             active[3]=1;
                                             ends[3]=1;
@@ -3752,26 +3752,26 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                             S105653=6;
-                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                               S105653=7;
-                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                 S105653=8;
-                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                   S105653=9;
-                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -3779,13 +3779,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3813,8 +3813,8 @@ public class LidRemovalController extends ClockDomain{
                                                   else {
                                                     S105648=2;
                                                     S111055=0;
-                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111055=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -3822,13 +3822,13 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                     else {
                                                       S111050=0;
-                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111050=1;
-                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           ends[3]=2;
-                                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S114020=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3849,7 +3849,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                   currsigs.addElement(lidEjectExtend);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -3857,22 +3857,22 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -3880,13 +3880,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -3914,8 +3914,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -3923,13 +3923,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -3950,7 +3950,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -3965,7 +3965,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                               currsigs.addElement(unscrewTurnRetract);
                                               active[3]=1;
                                               ends[3]=1;
@@ -3987,7 +3987,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S106050=0;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                         S106050=1;
                                         thread156077(tdone,ends);
                                         thread156078(tdone,ends);
@@ -4005,7 +4005,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                        if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                           S106050=1;
                                           thread156080(tdone,ends);
                                           thread156081(tdone,ends);
@@ -4032,7 +4032,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S105726=0;
-                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                       S105726=1;
                                       thread156083(tdone,ends);
                                       thread156084(tdone,ends);
@@ -4050,7 +4050,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                      if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                         S105726=1;
                                         thread156086(tdone,ends);
                                         thread156087(tdone,ends);
@@ -4076,7 +4076,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                   currsigs.addElement(cylZaxisExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -4084,37 +4084,37 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                                   S105653=1;
-                                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                                     S105653=2;
-                                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                                       S105653=3;
-                                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                         S105653=4;
-                                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                           S105653=5;
-                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                             S105653=6;
-                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                               S105653=7;
-                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                 S105653=8;
-                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                   S105653=9;
-                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -4122,13 +4122,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -4156,8 +4156,8 @@ public class LidRemovalController extends ClockDomain{
                                                   else {
                                                     S105648=2;
                                                     S111055=0;
-                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111055=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -4165,13 +4165,13 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                     else {
                                                       S111050=0;
-                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111050=1;
-                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           ends[3]=2;
-                                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S114020=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -4192,7 +4192,7 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                   currsigs.addElement(lidEjectExtend);
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -4200,22 +4200,22 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -4223,13 +4223,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -4257,8 +4257,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -4266,13 +4266,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -4293,7 +4293,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -4308,7 +4308,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                               currsigs.addElement(unscrewTurnRetract);
                                               active[3]=1;
                                               ends[3]=1;
@@ -4316,26 +4316,26 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                               S105653=6;
-                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                                 S105653=7;
-                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                                   S105653=8;
-                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                     S105653=9;
-                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -4343,13 +4343,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -4377,8 +4377,8 @@ public class LidRemovalController extends ClockDomain{
                                                     else {
                                                       S105648=2;
                                                       S111055=0;
-                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S111055=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -4386,13 +4386,13 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                       else {
                                                         S111050=0;
-                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111050=1;
-                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             ends[3]=2;
-                                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S114020=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -4413,7 +4413,7 @@ public class LidRemovalController extends ClockDomain{
                                                     }
                                                   }
                                                   else {
-                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                     currsigs.addElement(lidEjectExtend);
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -4421,22 +4421,22 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                 }
                                                 else {
-                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                                     S105653=8;
-                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                                       S105653=9;
-                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                           S105648=2;
                                                           S111055=0;
-                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111055=1;
                                                             active[3]=1;
                                                             ends[3]=1;
@@ -4444,13 +4444,13 @@ public class LidRemovalController extends ClockDomain{
                                                           }
                                                           else {
                                                             S111050=0;
-                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S111050=1;
-                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 ends[3]=2;
-                                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                                 S114020=1;
                                                                 active[3]=1;
                                                                 ends[3]=1;
@@ -4478,8 +4478,8 @@ public class LidRemovalController extends ClockDomain{
                                                       else {
                                                         S105648=2;
                                                         S111055=0;
-                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                           S111055=1;
                                                           active[3]=1;
                                                           ends[3]=1;
@@ -4487,13 +4487,13 @@ public class LidRemovalController extends ClockDomain{
                                                         }
                                                         else {
                                                           S111050=0;
-                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                             S111050=1;
-                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               ends[3]=2;
-                                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                               S114020=1;
                                                               active[3]=1;
                                                               ends[3]=1;
@@ -4514,7 +4514,7 @@ public class LidRemovalController extends ClockDomain{
                                                       }
                                                     }
                                                     else {
-                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                                       currsigs.addElement(lidEjectExtend);
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -4529,7 +4529,7 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                                 currsigs.addElement(unscrewTurnRetract);
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -4551,7 +4551,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S106050=0;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                           S106050=1;
                                           thread156089(tdone,ends);
                                           thread156090(tdone,ends);
@@ -4569,7 +4569,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                             S106050=1;
                                             thread156092(tdone,ends);
                                             thread156093(tdone,ends);
@@ -4596,7 +4596,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S105726=0;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                         S105726=1;
                                         thread156095(tdone,ends);
                                         thread156096(tdone,ends);
@@ -4614,7 +4614,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                           S105726=1;
                                           thread156098(tdone,ends);
                                           thread156099(tdone,ends);
@@ -4640,7 +4640,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                                     currsigs.addElement(cylZaxisExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -4657,8 +4657,8 @@ public class LidRemovalController extends ClockDomain{
                             else {
                               S105648=2;
                               S111055=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111055=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -4666,13 +4666,13 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S111050=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111050=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S114020=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -4712,37 +4712,37 @@ public class LidRemovalController extends ClockDomain{
                 case 1 : 
                   switch(S105653){
                     case 0 : 
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                         S105653=1;
-                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                           S105653=2;
-                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                             S105653=3;
-                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                               S105653=4;
-                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                 S105653=5;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                   S105653=6;
-                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                     S105653=7;
-                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -4750,13 +4750,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -4784,8 +4784,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -4793,13 +4793,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -4820,7 +4820,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -4828,22 +4828,22 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -4851,13 +4851,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -4885,8 +4885,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -4894,13 +4894,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -4921,7 +4921,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -4936,7 +4936,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                     currsigs.addElement(unscrewTurnRetract);
                                     active[3]=1;
                                     ends[3]=1;
@@ -4944,26 +4944,26 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -4971,13 +4971,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5005,8 +5005,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -5014,13 +5014,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5041,7 +5041,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -5049,22 +5049,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5072,13 +5072,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -5106,8 +5106,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -5115,13 +5115,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5142,7 +5142,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -5157,7 +5157,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -5179,7 +5179,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S106050=0;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                 S106050=1;
                                 thread156101(tdone,ends);
                                 thread156102(tdone,ends);
@@ -5197,7 +5197,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                   S106050=1;
                                   thread156104(tdone,ends);
                                   thread156105(tdone,ends);
@@ -5224,7 +5224,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                           else {
                             S105726=0;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                               S105726=1;
                               thread156107(tdone,ends);
                               thread156108(tdone,ends);
@@ -5242,7 +5242,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                 S105726=1;
                                 thread156110(tdone,ends);
                                 thread156111(tdone,ends);
@@ -5268,7 +5268,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                           currsigs.addElement(cylZaxisExtend);
                           active[3]=1;
                           ends[3]=1;
@@ -5276,37 +5276,37 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                           S105653=1;
-                          if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                          if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                             S105653=2;
-                            if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                            if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                               S105653=3;
-                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                 S105653=4;
-                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                   S105653=5;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -5314,13 +5314,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5348,8 +5348,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -5357,13 +5357,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5384,7 +5384,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -5392,22 +5392,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5415,13 +5415,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -5449,8 +5449,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -5458,13 +5458,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5485,7 +5485,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -5500,7 +5500,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -5508,26 +5508,26 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                       S105653=6;
-                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                         S105653=7;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5535,13 +5535,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -5569,8 +5569,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -5578,13 +5578,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5605,7 +5605,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -5613,22 +5613,22 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                             S105653=8;
-                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                               S105653=9;
-                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                   S105648=2;
                                                   S111055=0;
-                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111055=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -5636,13 +5636,13 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                   else {
                                                     S111050=0;
-                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111050=1;
-                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         ends[3]=2;
-                                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S114020=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -5670,8 +5670,8 @@ public class LidRemovalController extends ClockDomain{
                                               else {
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -5679,13 +5679,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -5706,7 +5706,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                               currsigs.addElement(lidEjectExtend);
                                               active[3]=1;
                                               ends[3]=1;
@@ -5721,7 +5721,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                         currsigs.addElement(unscrewTurnRetract);
                                         active[3]=1;
                                         ends[3]=1;
@@ -5743,7 +5743,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S106050=0;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                   S106050=1;
                                   thread156113(tdone,ends);
                                   thread156114(tdone,ends);
@@ -5761,7 +5761,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                     S106050=1;
                                     thread156116(tdone,ends);
                                     thread156117(tdone,ends);
@@ -5788,7 +5788,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S105726=0;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                 S105726=1;
                                 thread156119(tdone,ends);
                                 thread156120(tdone,ends);
@@ -5806,7 +5806,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                   S105726=1;
                                   thread156122(tdone,ends);
                                   thread156123(tdone,ends);
@@ -5832,7 +5832,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                            cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                             currsigs.addElement(cylZaxisExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -5848,35 +5848,35 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                      if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                         S105653=2;
-                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                        if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                          System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                           S105653=3;
-                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                          if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                             S105653=4;
-                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                            if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                               S105653=5;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                 S105653=6;
-                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                   S105653=7;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                     S105653=8;
-                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                       S105653=9;
-                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -5884,13 +5884,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -5918,8 +5918,8 @@ public class LidRemovalController extends ClockDomain{
                                       else {
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -5927,13 +5927,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -5954,7 +5954,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                       currsigs.addElement(lidEjectExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -5962,22 +5962,22 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -5985,13 +5985,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -6019,8 +6019,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6028,13 +6028,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6055,7 +6055,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -6070,7 +6070,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                   currsigs.addElement(unscrewTurnRetract);
                                   active[3]=1;
                                   ends[3]=1;
@@ -6078,26 +6078,26 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                   S105653=6;
-                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                     S105653=7;
-                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6105,13 +6105,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -6139,8 +6139,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6148,13 +6148,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6175,7 +6175,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -6183,22 +6183,22 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6206,13 +6206,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -6240,8 +6240,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6249,13 +6249,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -6276,7 +6276,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -6291,7 +6291,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                     currsigs.addElement(unscrewTurnRetract);
                                     active[3]=1;
                                     ends[3]=1;
@@ -6313,7 +6313,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                           else {
                             S106050=0;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                               S106050=1;
                               thread156125(tdone,ends);
                               thread156126(tdone,ends);
@@ -6331,7 +6331,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                 S106050=1;
                                 thread156128(tdone,ends);
                                 thread156129(tdone,ends);
@@ -6358,7 +6358,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                         else {
                           S105726=0;
-                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                             S105726=1;
                             thread156131(tdone,ends);
                             thread156132(tdone,ends);
@@ -6376,7 +6376,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                            if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                               S105726=1;
                               thread156134(tdone,ends);
                               thread156135(tdone,ends);
@@ -6402,7 +6402,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                        cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                         currsigs.addElement(cylZaxisExtend);
                         active[3]=1;
                         ends[3]=1;
@@ -6411,33 +6411,33 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 2 : 
-                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                      if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                        System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                         S105653=3;
-                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                        if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                           S105653=4;
-                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                          if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                             S105653=5;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                               S105653=6;
-                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                 S105653=7;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -6445,13 +6445,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6479,8 +6479,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -6488,13 +6488,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6515,7 +6515,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -6523,22 +6523,22 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                     S105653=8;
-                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                       S105653=9;
-                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6546,13 +6546,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6580,8 +6580,8 @@ public class LidRemovalController extends ClockDomain{
                                       else {
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -6589,13 +6589,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6616,7 +6616,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                       currsigs.addElement(lidEjectExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -6631,7 +6631,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                 currsigs.addElement(unscrewTurnRetract);
                                 active[3]=1;
                                 ends[3]=1;
@@ -6639,26 +6639,26 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                              if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                 S105653=6;
-                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                   S105653=7;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                     S105653=8;
-                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                       S105653=9;
-                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6666,13 +6666,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6700,8 +6700,8 @@ public class LidRemovalController extends ClockDomain{
                                       else {
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -6709,13 +6709,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6736,7 +6736,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                       currsigs.addElement(lidEjectExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -6744,22 +6744,22 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                    if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -6767,13 +6767,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -6801,8 +6801,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -6810,13 +6810,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -6837,7 +6837,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -6852,7 +6852,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                  unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                   currsigs.addElement(unscrewTurnRetract);
                                   active[3]=1;
                                   ends[3]=1;
@@ -6874,7 +6874,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                         else {
                           S106050=0;
-                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                             S106050=1;
                             thread156137(tdone,ends);
                             thread156138(tdone,ends);
@@ -6892,7 +6892,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                            if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                               S106050=1;
                               thread156140(tdone,ends);
                               thread156141(tdone,ends);
@@ -6920,7 +6920,7 @@ public class LidRemovalController extends ClockDomain{
                       else {
                         switch(S105726){
                           case 0 : 
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                               S105726=1;
                               thread156143(tdone,ends);
                               thread156144(tdone,ends);
@@ -6938,7 +6938,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                 S105726=1;
                                 thread156146(tdone,ends);
                                 thread156147(tdone,ends);
@@ -6980,32 +6980,32 @@ public class LidRemovalController extends ClockDomain{
                             }
                             //FINXME code
                             if(biggest156151 == 0){
-                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                               S105653=3;
-                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                 S105653=4;
-                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                   S105653=5;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -7013,13 +7013,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -7047,8 +7047,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -7056,13 +7056,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -7083,7 +7083,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -7091,22 +7091,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -7114,13 +7114,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -7148,8 +7148,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -7157,13 +7157,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -7184,7 +7184,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -7199,7 +7199,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -7207,26 +7207,26 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                       S105653=6;
-                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                         S105653=7;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -7234,13 +7234,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -7268,8 +7268,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -7277,13 +7277,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -7304,7 +7304,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -7312,22 +7312,22 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                             S105653=8;
-                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                               S105653=9;
-                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                   S105648=2;
                                                   S111055=0;
-                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111055=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -7335,13 +7335,13 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                   else {
                                                     S111050=0;
-                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111050=1;
-                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         ends[3]=2;
-                                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S114020=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -7369,8 +7369,8 @@ public class LidRemovalController extends ClockDomain{
                                               else {
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -7378,13 +7378,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -7405,7 +7405,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                               currsigs.addElement(lidEjectExtend);
                                               active[3]=1;
                                               ends[3]=1;
@@ -7420,7 +7420,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                         currsigs.addElement(unscrewTurnRetract);
                                         active[3]=1;
                                         ends[3]=1;
@@ -7442,7 +7442,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S106050=0;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                   S106050=1;
                                   thread156152(tdone,ends);
                                   thread156153(tdone,ends);
@@ -7460,7 +7460,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                     S106050=1;
                                     thread156155(tdone,ends);
                                     thread156156(tdone,ends);
@@ -7492,30 +7492,30 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 3 : 
-                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                         S105653=4;
-                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                           S105653=5;
-                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                             S105653=6;
-                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                               S105653=7;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -7523,13 +7523,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -7557,8 +7557,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -7566,13 +7566,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -7593,7 +7593,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -7601,22 +7601,22 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -7624,13 +7624,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -7658,8 +7658,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -7667,13 +7667,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -7694,7 +7694,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -7709,7 +7709,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                               currsigs.addElement(unscrewTurnRetract);
                               active[3]=1;
                               ends[3]=1;
@@ -7717,26 +7717,26 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                               S105653=6;
-                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                 S105653=7;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -7744,13 +7744,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -7778,8 +7778,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -7787,13 +7787,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -7814,7 +7814,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -7822,22 +7822,22 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                     S105653=8;
-                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                       S105653=9;
-                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -7845,13 +7845,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -7879,8 +7879,8 @@ public class LidRemovalController extends ClockDomain{
                                       else {
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -7888,13 +7888,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -7915,7 +7915,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                       currsigs.addElement(lidEjectExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -7930,7 +7930,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                 currsigs.addElement(unscrewTurnRetract);
                                 active[3]=1;
                                 ends[3]=1;
@@ -7953,7 +7953,7 @@ public class LidRemovalController extends ClockDomain{
                       else {
                         switch(S106050){
                           case 0 : 
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                               S106050=1;
                               thread156158(tdone,ends);
                               thread156159(tdone,ends);
@@ -7971,7 +7971,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                              if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                 S106050=1;
                                 thread156161(tdone,ends);
                                 thread156162(tdone,ends);
@@ -8014,28 +8014,28 @@ public class LidRemovalController extends ClockDomain{
                             //FINXME code
                             if(biggest156166 == 0){
                               S105653=4;
-                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                 S105653=5;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                   S105653=6;
-                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                     S105653=7;
-                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -8043,13 +8043,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -8077,8 +8077,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -8086,13 +8086,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -8113,7 +8113,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -8121,22 +8121,22 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -8144,13 +8144,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -8178,8 +8178,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -8187,13 +8187,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -8214,7 +8214,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -8229,7 +8229,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                     currsigs.addElement(unscrewTurnRetract);
                                     active[3]=1;
                                     ends[3]=1;
@@ -8237,26 +8237,26 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -8264,13 +8264,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -8298,8 +8298,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -8307,13 +8307,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -8334,7 +8334,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -8342,22 +8342,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -8365,13 +8365,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -8399,8 +8399,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -8408,13 +8408,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -8435,7 +8435,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -8450,7 +8450,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -8477,28 +8477,28 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 4 : 
-                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                         S105653=5;
-                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                           S105653=6;
-                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                             S105653=7;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                               S105653=8;
-                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                 S105653=9;
-                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -8506,13 +8506,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -8540,8 +8540,8 @@ public class LidRemovalController extends ClockDomain{
                                 else {
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -8549,13 +8549,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -8576,7 +8576,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                 currsigs.addElement(lidEjectExtend);
                                 active[3]=1;
                                 ends[3]=1;
@@ -8584,22 +8584,22 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -8607,13 +8607,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -8641,8 +8641,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -8650,13 +8650,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -8677,7 +8677,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -8692,7 +8692,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                             currsigs.addElement(unscrewTurnRetract);
                             active[3]=1;
                             ends[3]=1;
@@ -8700,26 +8700,26 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                             S105653=6;
-                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                               S105653=7;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -8727,13 +8727,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -8761,8 +8761,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -8770,13 +8770,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -8797,7 +8797,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -8805,22 +8805,22 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -8828,13 +8828,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -8862,8 +8862,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -8871,13 +8871,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -8898,7 +8898,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -8913,7 +8913,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                               currsigs.addElement(unscrewTurnRetract);
                               active[3]=1;
                               ends[3]=1;
@@ -8935,26 +8935,26 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 5 : 
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                         S105653=6;
-                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                        if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                           S105653=7;
-                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                             S105653=8;
-                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                               S105653=9;
-                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -8962,13 +8962,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -8996,8 +8996,8 @@ public class LidRemovalController extends ClockDomain{
                               else {
                                 S105648=2;
                                 S111055=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111055=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9005,13 +9005,13 @@ public class LidRemovalController extends ClockDomain{
                                 }
                                 else {
                                   S111050=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111050=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S114020=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9032,7 +9032,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                               currsigs.addElement(lidEjectExtend);
                               active[3]=1;
                               ends[3]=1;
@@ -9040,22 +9040,22 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                            if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                               S105653=8;
-                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                 S105653=9;
-                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9063,13 +9063,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -9097,8 +9097,8 @@ public class LidRemovalController extends ClockDomain{
                                 else {
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9106,13 +9106,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -9133,7 +9133,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                 currsigs.addElement(lidEjectExtend);
                                 active[3]=1;
                                 ends[3]=1;
@@ -9148,7 +9148,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                          unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                           currsigs.addElement(unscrewTurnRetract);
                           active[3]=1;
                           ends[3]=1;
@@ -9156,26 +9156,26 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                        if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                           S105653=6;
-                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                             S105653=7;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                               S105653=8;
-                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                 S105653=9;
-                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9183,13 +9183,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -9217,8 +9217,8 @@ public class LidRemovalController extends ClockDomain{
                                 else {
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9226,13 +9226,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -9253,7 +9253,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                 currsigs.addElement(lidEjectExtend);
                                 active[3]=1;
                                 ends[3]=1;
@@ -9261,22 +9261,22 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -9284,13 +9284,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -9318,8 +9318,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9327,13 +9327,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -9354,7 +9354,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -9369,7 +9369,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                             currsigs.addElement(unscrewTurnRetract);
                             active[3]=1;
                             ends[3]=1;
@@ -9385,24 +9385,24 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 6 : 
-                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                         S105653=7;
-                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                           S105653=8;
-                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                             S105653=9;
-                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                 S105648=2;
                                 S111055=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111055=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9410,13 +9410,13 @@ public class LidRemovalController extends ClockDomain{
                                 }
                                 else {
                                   S111050=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111050=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S114020=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9444,8 +9444,8 @@ public class LidRemovalController extends ClockDomain{
                             else {
                               S105648=2;
                               S111055=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111055=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -9453,13 +9453,13 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S111050=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111050=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S114020=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9480,7 +9480,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                             currsigs.addElement(lidEjectExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -9488,22 +9488,22 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                             S105653=8;
-                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                               S105653=9;
-                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9511,13 +9511,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -9545,8 +9545,8 @@ public class LidRemovalController extends ClockDomain{
                               else {
                                 S105648=2;
                                 S111055=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111055=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9554,13 +9554,13 @@ public class LidRemovalController extends ClockDomain{
                                 }
                                 else {
                                   S111050=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111050=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S114020=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9581,7 +9581,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                               currsigs.addElement(lidEjectExtend);
                               active[3]=1;
                               ends[3]=1;
@@ -9596,7 +9596,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                         currsigs.addElement(unscrewTurnRetract);
                         active[3]=1;
                         ends[3]=1;
@@ -9605,22 +9605,22 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 7 : 
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                         S105653=8;
-                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                           S105653=9;
-                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                               S105648=2;
                               S111055=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111055=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -9628,13 +9628,13 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S111050=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111050=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S114020=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9662,8 +9662,8 @@ public class LidRemovalController extends ClockDomain{
                           else {
                             S105648=2;
                             S111055=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               S111055=1;
                               active[3]=1;
                               ends[3]=1;
@@ -9671,13 +9671,13 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S111050=0;
-                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111050=1;
-                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S114020=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9698,7 +9698,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                           currsigs.addElement(lidEjectExtend);
                           active[3]=1;
                           ends[3]=1;
@@ -9706,22 +9706,22 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                           S105653=8;
-                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                             S105653=9;
-                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                 S105648=2;
                                 S111055=0;
-                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111055=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9729,13 +9729,13 @@ public class LidRemovalController extends ClockDomain{
                                 }
                                 else {
                                   S111050=0;
-                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111050=1;
-                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       ends[3]=2;
-                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S114020=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -9763,8 +9763,8 @@ public class LidRemovalController extends ClockDomain{
                             else {
                               S105648=2;
                               S111055=0;
-                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111055=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -9772,13 +9772,13 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S111050=0;
-                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S111050=1;
-                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     ends[3]=2;
-                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S114020=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -9799,7 +9799,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                             currsigs.addElement(lidEjectExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -9815,20 +9815,20 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 8 : 
-                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                         S105653=9;
-                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                             S105648=2;
                             S111055=0;
-                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               S111055=1;
                               active[3]=1;
                               ends[3]=1;
@@ -9836,13 +9836,13 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S111050=0;
-                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S111050=1;
-                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                   ends[3]=2;
-                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                   S114020=1;
                                   active[3]=1;
                                   ends[3]=1;
@@ -9870,8 +9870,8 @@ public class LidRemovalController extends ClockDomain{
                         else {
                           S105648=2;
                           S111055=0;
-                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                             S111055=1;
                             active[3]=1;
                             ends[3]=1;
@@ -9879,13 +9879,13 @@ public class LidRemovalController extends ClockDomain{
                           }
                           else {
                             S111050=0;
-                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                               S111050=1;
-                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S114020=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -9906,7 +9906,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                         currsigs.addElement(lidEjectExtend);
                         active[3]=1;
                         ends[3]=1;
@@ -9915,12 +9915,12 @@ public class LidRemovalController extends ClockDomain{
                       break;
                     
                     case 9 : 
-                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                         S105648=2;
                         S111055=0;
-                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                           S111055=1;
                           active[3]=1;
                           ends[3]=1;
@@ -9928,13 +9928,13 @@ public class LidRemovalController extends ClockDomain{
                         }
                         else {
                           S111050=0;
-                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                             S111050=1;
-                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                               S114020=1;
                               active[3]=1;
                               ends[3]=1;
@@ -9966,8 +9966,8 @@ public class LidRemovalController extends ClockDomain{
                 case 2 : 
                   switch(S111055){
                     case 0 : 
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                         S111055=1;
                         active[3]=1;
                         ends[3]=1;
@@ -9976,13 +9976,13 @@ public class LidRemovalController extends ClockDomain{
                       else {
                         switch(S111050){
                           case 0 : 
-                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                               S111050=1;
-                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                 ends[3]=2;
-                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                 S114020=1;
                                 active[3]=1;
                                 ends[3]=1;
@@ -10002,10 +10002,10 @@ public class LidRemovalController extends ClockDomain{
                             break;
                           
                           case 1 : 
-                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                               ends[3]=2;
-                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                               S114020=1;
                               active[3]=1;
                               ends[3]=1;
@@ -10025,8 +10025,8 @@ public class LidRemovalController extends ClockDomain{
                     case 1 : 
                       S111055=1;
                       S111055=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                         S111055=1;
                         active[3]=1;
                         ends[3]=1;
@@ -10034,13 +10034,13 @@ public class LidRemovalController extends ClockDomain{
                       }
                       else {
                         S111050=0;
-                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                           S111050=1;
-                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                             ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                             S114020=1;
                             active[3]=1;
                             ends[3]=1;
@@ -10070,7 +10070,7 @@ public class LidRemovalController extends ClockDomain{
           case 1 : 
             S114020=1;
             S114020=0;
-            if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 80, column: 20
+            if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 69, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
               S114020=1;
@@ -10081,8 +10081,8 @@ public class LidRemovalController extends ClockDomain{
             else {
               S105648=0;
               S105632=0;
-              if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+              if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                 S105632=1;
                 active[3]=1;
                 ends[3]=1;
@@ -10090,50 +10090,50 @@ public class LidRemovalController extends ClockDomain{
               }
               else {
                 S105627=0;
-                if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                  enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 81, column: 5
+                if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                  enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 70, column: 5
                   S105627=1;
-                  if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-                    enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+                  if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+                    enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
                     ends[3]=2;
-                    ;//sysj\lidRemovalController.sysj line: 81, column: 5
-                    w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 82, column: 5
-                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 90, column: 5
+                    ;//sysj\lidRemovalController.sysj line: 70, column: 5
+                    w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 71, column: 5
+                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 79, column: 5
                     S105648=1;
-                    if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 92, column: 8
-                      System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 93, column: 6
+                    if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 81, column: 8
+                      System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 82, column: 6
                       S105653=0;
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                         S105653=1;
-                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                        if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                           S105653=2;
-                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                          if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                            System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                             S105653=3;
-                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                            if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                               S105653=4;
-                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                              if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                 S105653=5;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                   S105653=6;
-                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                  if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                     S105653=7;
-                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                       S105653=8;
-                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                      if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                        w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                        System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                         S105653=9;
-                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                        if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                          System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                          if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -10141,13 +10141,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10175,8 +10175,8 @@ public class LidRemovalController extends ClockDomain{
                                         else {
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -10184,13 +10184,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10211,7 +10211,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                         currsigs.addElement(lidEjectExtend);
                                         active[3]=1;
                                         ends[3]=1;
@@ -10219,22 +10219,22 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                      if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10242,13 +10242,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10276,8 +10276,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -10285,13 +10285,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10312,7 +10312,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -10327,7 +10327,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                    unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                     currsigs.addElement(unscrewTurnRetract);
                                     active[3]=1;
                                     ends[3]=1;
@@ -10335,26 +10335,26 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                  if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10362,13 +10362,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10396,8 +10396,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -10405,13 +10405,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10432,7 +10432,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -10440,22 +10440,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10463,13 +10463,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -10497,8 +10497,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10506,13 +10506,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10533,7 +10533,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -10548,7 +10548,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -10570,7 +10570,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S106050=0;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                 S106050=1;
                                 thread156167(tdone,ends);
                                 thread156168(tdone,ends);
@@ -10588,7 +10588,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                   S106050=1;
                                   thread156170(tdone,ends);
                                   thread156171(tdone,ends);
@@ -10615,7 +10615,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                           else {
                             S105726=0;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                               S105726=1;
                               thread156173(tdone,ends);
                               thread156174(tdone,ends);
@@ -10633,7 +10633,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                              if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                 S105726=1;
                                 thread156176(tdone,ends);
                                 thread156177(tdone,ends);
@@ -10659,7 +10659,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                          cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                           currsigs.addElement(cylZaxisExtend);
                           active[3]=1;
                           ends[3]=1;
@@ -10667,37 +10667,37 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                        if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                           S105653=1;
-                          if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                          if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                             S105653=2;
-                            if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                            if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                              System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                               S105653=3;
-                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                              if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                                 S105653=4;
-                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                                if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                                   S105653=5;
-                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                                  if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                                     S105653=6;
-                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                    if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                       S105653=7;
-                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                         S105653=8;
-                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                        if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                          w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                          System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                           S105653=9;
-                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                          if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                            System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                            if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10705,13 +10705,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10739,8 +10739,8 @@ public class LidRemovalController extends ClockDomain{
                                           else {
                                             S105648=2;
                                             S111055=0;
-                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111055=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -10748,13 +10748,13 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                             else {
                                               S111050=0;
-                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111050=1;
-                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   ends[3]=2;
-                                                  ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S114020=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10775,7 +10775,7 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                          lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                           currsigs.addElement(lidEjectExtend);
                                           active[3]=1;
                                           ends[3]=1;
@@ -10783,22 +10783,22 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                        if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10806,13 +10806,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -10840,8 +10840,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10849,13 +10849,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10876,7 +10876,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -10891,7 +10891,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                      unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                       currsigs.addElement(unscrewTurnRetract);
                                       active[3]=1;
                                       ends[3]=1;
@@ -10899,26 +10899,26 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                                    if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                                       S105653=6;
-                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                                      if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                         S105653=7;
-                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                           S105653=8;
-                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                          if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                            w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                            System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                             S105653=9;
-                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                            if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                              System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                              if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -10926,13 +10926,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -10960,8 +10960,8 @@ public class LidRemovalController extends ClockDomain{
                                             else {
                                               S105648=2;
                                               S111055=0;
-                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S111055=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -10969,13 +10969,13 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                               else {
                                                 S111050=0;
-                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111050=1;
-                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     ends[3]=2;
-                                                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S114020=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -10996,7 +10996,7 @@ public class LidRemovalController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                            lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                             currsigs.addElement(lidEjectExtend);
                                             active[3]=1;
                                             ends[3]=1;
@@ -11004,22 +11004,22 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                          if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                             S105653=8;
-                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                            if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                              w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                              System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                              code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                               S105653=9;
-                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                              if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                                System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                                code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                                if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                                   S105648=2;
                                                   S111055=0;
-                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111055=1;
                                                     active[3]=1;
                                                     ends[3]=1;
@@ -11027,13 +11027,13 @@ public class LidRemovalController extends ClockDomain{
                                                   }
                                                   else {
                                                     S111050=0;
-                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S111050=1;
-                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         ends[3]=2;
-                                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                         S114020=1;
                                                         active[3]=1;
                                                         ends[3]=1;
@@ -11061,8 +11061,8 @@ public class LidRemovalController extends ClockDomain{
                                               else {
                                                 S105648=2;
                                                 S111055=0;
-                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                  status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                   S111055=1;
                                                   active[3]=1;
                                                   ends[3]=1;
@@ -11070,13 +11070,13 @@ public class LidRemovalController extends ClockDomain{
                                                 }
                                                 else {
                                                   S111050=0;
-                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                  if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                    status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                                     S111050=1;
-                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                    if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       ends[3]=2;
-                                                      ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                      ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                       S114020=1;
                                                       active[3]=1;
                                                       ends[3]=1;
@@ -11097,7 +11097,7 @@ public class LidRemovalController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                              lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                               currsigs.addElement(lidEjectExtend);
                                               active[3]=1;
                                               ends[3]=1;
@@ -11112,7 +11112,7 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                        unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                         currsigs.addElement(unscrewTurnRetract);
                                         active[3]=1;
                                         ends[3]=1;
@@ -11134,7 +11134,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                               else {
                                 S106050=0;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                                   S106050=1;
                                   thread156179(tdone,ends);
                                   thread156180(tdone,ends);
@@ -11152,7 +11152,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                                  if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                                     S106050=1;
                                     thread156182(tdone,ends);
                                     thread156183(tdone,ends);
@@ -11179,7 +11179,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                             else {
                               S105726=0;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                                 S105726=1;
                                 thread156185(tdone,ends);
                                 thread156186(tdone,ends);
@@ -11197,7 +11197,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                                if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                                   S105726=1;
                                   thread156188(tdone,ends);
                                   thread156189(tdone,ends);
@@ -11223,7 +11223,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                            cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                             currsigs.addElement(cylZaxisExtend);
                             active[3]=1;
                             ends[3]=1;
@@ -11240,8 +11240,8 @@ public class LidRemovalController extends ClockDomain{
                     else {
                       S105648=2;
                       S111055=0;
-                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                         S111055=1;
                         active[3]=1;
                         ends[3]=1;
@@ -11249,13 +11249,13 @@ public class LidRemovalController extends ClockDomain{
                       }
                       else {
                         S111050=0;
-                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                           S111050=1;
-                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                             ends[3]=2;
-                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                             S114020=1;
                             active[3]=1;
                             ends[3]=1;
@@ -11305,17 +11305,17 @@ public class LidRemovalController extends ClockDomain{
         break;
       
       case 1 : 
-        if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 62, column: 12
-          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 65, column: 8
-            auto_1.setPresent();//sysj\lidRemovalController.sysj line: 65, column: 30
+        if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 51, column: 12
+          if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 54, column: 8
+            auto_1.setPresent();//sysj\lidRemovalController.sysj line: 54, column: 30
             currsigs.addElement(auto_1);
             active[2]=1;
             ends[2]=1;
             tdone[2]=1;
           }
           else {
-            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidRemovalController.sysj line: 66, column: 13
-              manual_1.setPresent();//sysj\lidRemovalController.sysj line: 66, column: 35
+            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidRemovalController.sysj line: 55, column: 13
+              manual_1.setPresent();//sysj\lidRemovalController.sysj line: 55, column: 35
               currsigs.addElement(manual_1);
               active[2]=1;
               ends[2]=1;
@@ -11340,7 +11340,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156024(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -11349,7 +11349,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156023(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -11358,7 +11358,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156021(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -11367,7 +11367,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156020(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -11376,7 +11376,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156018(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -11385,7 +11385,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156017(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -11394,7 +11394,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156015(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -11403,7 +11403,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156014(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -11412,7 +11412,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156012(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -11421,7 +11421,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156011(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -11430,7 +11430,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156009(int [] tdone, int [] ends){
         S105685=1;
-    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 40
+    lidGripperExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 40
     currsigs.addElement(lidGripperExtend);
     active[5]=1;
     ends[5]=1;
@@ -11439,7 +11439,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156008(int [] tdone, int [] ends){
         S105680=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 104, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 93, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[4]=1;
     ends[4]=1;
@@ -11448,7 +11448,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156006(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -11457,7 +11457,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156005(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -11466,7 +11466,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156003(int [] tdone, int [] ends){
         S106009=1;
-    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 40
+    unscrewTurnExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 40
     currsigs.addElement(unscrewTurnExtend);
     active[7]=1;
     ends[7]=1;
@@ -11475,7 +11475,7 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156002(int [] tdone, int [] ends){
         S106004=1;
-    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 9
+    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 100, column: 9
     currsigs.addElement(cylZaxisExtend);
     active[6]=1;
     ends[6]=1;
@@ -11484,12 +11484,12 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156001(int [] tdone, int [] ends){
         S155996=1;
-    OK_thread_3 = 0;//sysj\lidRemovalController.sysj line: 73, column: 3
-    BLOCKED_thread_3 = 2;//sysj\lidRemovalController.sysj line: 74, column: 3
-    w_thread_3 = null;//sysj\lidRemovalController.sysj line: 76, column: 3
-    code_thread_3 = 0;//sysj\lidRemovalController.sysj line: 77, column: 3
+    OK_thread_3 = 0;//sysj\lidRemovalController.sysj line: 62, column: 3
+    BLOCKED_thread_3 = 2;//sysj\lidRemovalController.sysj line: 63, column: 3
+    w_thread_3 = null;//sysj\lidRemovalController.sysj line: 65, column: 3
+    code_thread_3 = 0;//sysj\lidRemovalController.sysj line: 66, column: 3
     S114020=0;
-    if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 80, column: 20
+    if(reset.getprestatus()){//sysj\lidRemovalController.sysj line: 69, column: 20
       enable_in.setPreempted();
       status_o.setPreempted();
       S114020=1;
@@ -11500,8 +11500,8 @@ public class LidRemovalController extends ClockDomain{
     else {
       S105648=0;
       S105632=0;
-      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 81, column: 5
-        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+      if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 70, column: 5
+        enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
         S105632=1;
         active[3]=1;
         ends[3]=1;
@@ -11509,50 +11509,50 @@ public class LidRemovalController extends ClockDomain{
       }
       else {
         S105627=0;
-        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 81, column: 5
+        if(!enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+          enable_in.setACK(true);//sysj\lidRemovalController.sysj line: 70, column: 5
           S105627=1;
-          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 81, column: 5
-            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 81, column: 5
+          if(enable_in.isREQ()){//sysj\lidRemovalController.sysj line: 70, column: 5
+            enable_in.setACK(false);//sysj\lidRemovalController.sysj line: 70, column: 5
             ends[3]=2;
-            ;//sysj\lidRemovalController.sysj line: 81, column: 5
-            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 82, column: 5
-            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 90, column: 5
+            ;//sysj\lidRemovalController.sysj line: 70, column: 5
+            w_thread_3 = (WorkpieceTwin)(enable_in.getVal() == null ? null : ((WorkpieceTwin)enable_in.getVal()));//sysj\lidRemovalController.sysj line: 71, column: 5
+            code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 79, column: 5
             S105648=1;
-            if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 92, column: 8
-              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 93, column: 6
+            if(w_thread_3 != null){//sysj\lidRemovalController.sysj line: 81, column: 8
+              System.out.println("[LR] Removing the lid from " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 82, column: 6
               S105653=0;
-              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 22
+              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 22
                 S105653=1;
-                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                   S105653=2;
-                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                  if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                    System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                     S105653=3;
-                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                    if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                       S105653=4;
-                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                      if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                         S105653=5;
-                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                           S105653=6;
-                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                          if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                             S105653=7;
-                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                            if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                               S105653=8;
-                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                              if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                 S105653=9;
-                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                  System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                  if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -11560,13 +11560,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -11594,8 +11594,8 @@ public class LidRemovalController extends ClockDomain{
                                 else {
                                   S105648=2;
                                   S111055=0;
-                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                  if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                     S111055=1;
                                     active[3]=1;
                                     ends[3]=1;
@@ -11603,13 +11603,13 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                   else {
                                     S111050=0;
-                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111050=1;
-                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         ends[3]=2;
-                                        ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S114020=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -11630,7 +11630,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                 currsigs.addElement(lidEjectExtend);
                                 active[3]=1;
                                 ends[3]=1;
@@ -11638,22 +11638,22 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                              if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -11661,13 +11661,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -11695,8 +11695,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -11704,13 +11704,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -11731,7 +11731,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -11746,7 +11746,7 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                            unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                             currsigs.addElement(unscrewTurnRetract);
                             active[3]=1;
                             ends[3]=1;
@@ -11754,26 +11754,26 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                          if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                             S105653=6;
-                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                               S105653=7;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -11781,13 +11781,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -11815,8 +11815,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -11824,13 +11824,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -11851,7 +11851,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -11859,22 +11859,22 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -11882,13 +11882,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -11916,8 +11916,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -11925,13 +11925,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -11952,7 +11952,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -11967,7 +11967,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                               currsigs.addElement(unscrewTurnRetract);
                               active[3]=1;
                               ends[3]=1;
@@ -11989,7 +11989,7 @@ public class LidRemovalController extends ClockDomain{
                     }
                     else {
                       S106050=0;
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                         S106050=1;
                         thread156002(tdone,ends);
                         thread156003(tdone,ends);
@@ -12007,7 +12007,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                        if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                           S106050=1;
                           thread156005(tdone,ends);
                           thread156006(tdone,ends);
@@ -12034,7 +12034,7 @@ public class LidRemovalController extends ClockDomain{
                   }
                   else {
                     S105726=0;
-                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                    if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                       S105726=1;
                       thread156008(tdone,ends);
                       thread156009(tdone,ends);
@@ -12052,7 +12052,7 @@ public class LidRemovalController extends ClockDomain{
                       }
                     }
                     else {
-                      if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                      if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                         S105726=1;
                         thread156011(tdone,ends);
                         thread156012(tdone,ends);
@@ -12078,7 +12078,7 @@ public class LidRemovalController extends ClockDomain{
                   }
                 }
                 else {
-                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                  cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                   currsigs.addElement(cylZaxisExtend);
                   active[3]=1;
                   ends[3]=1;
@@ -12086,37 +12086,37 @@ public class LidRemovalController extends ClockDomain{
                 }
               }
               else {
-                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 96, column: 45
+                if(cylZaxisExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 85, column: 45
                   S105653=1;
-                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 97, column: 22
+                  if(zAxisLowered.getprestatus()){//sysj\lidRemovalController.sysj line: 86, column: 22
                     S105653=2;
-                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 102, column: 22
-                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 106, column: 6
+                    if(lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 91, column: 22
+                      System.out.println("[LR] Cap gripped on " + w_thread_3 + ".");//sysj\lidRemovalController.sysj line: 95, column: 6
                       S105653=3;
-                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
+                      if(turnAtFinalPos.getprestatus()){//sysj\lidRemovalController.sysj line: 98, column: 22
                         S105653=4;
-                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 117, column: 22
+                        if(zAxisLifted.getprestatus()){//sysj\lidRemovalController.sysj line: 106, column: 22
                           S105653=5;
-                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 22
+                          if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 22
                             S105653=6;
-                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                            if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                               S105653=7;
-                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                              if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                 S105653=8;
-                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                  w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                  System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                  code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                   S105653=9;
-                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                  if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                    System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                    if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -12124,13 +12124,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -12158,8 +12158,8 @@ public class LidRemovalController extends ClockDomain{
                                   else {
                                     S105648=2;
                                     S111055=0;
-                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                    if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                      status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                       S111055=1;
                                       active[3]=1;
                                       ends[3]=1;
@@ -12167,13 +12167,13 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                     else {
                                       S111050=0;
-                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111050=1;
-                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           ends[3]=2;
-                                          ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S114020=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -12194,7 +12194,7 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                  lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                   currsigs.addElement(lidEjectExtend);
                                   active[3]=1;
                                   ends[3]=1;
@@ -12202,22 +12202,22 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -12225,13 +12225,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -12259,8 +12259,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -12268,13 +12268,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -12295,7 +12295,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -12310,7 +12310,7 @@ public class LidRemovalController extends ClockDomain{
                               }
                             }
                             else {
-                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                              unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                               currsigs.addElement(unscrewTurnRetract);
                               active[3]=1;
                               ends[3]=1;
@@ -12318,26 +12318,26 @@ public class LidRemovalController extends ClockDomain{
                             }
                           }
                           else {
-                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 120, column: 45
+                            if(unscrewTurnRetractM.getprestatus()){//sysj\lidRemovalController.sysj line: 109, column: 45
                               S105653=6;
-                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 121, column: 22
+                              if(turnAtHomePos.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 22
                                 S105653=7;
-                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 22
+                                if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 22
                                   S105653=8;
-                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                  if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                    w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                    System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                    code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                     S105653=9;
-                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                    if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                      System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                      if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                        code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -12345,13 +12345,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -12379,8 +12379,8 @@ public class LidRemovalController extends ClockDomain{
                                     else {
                                       S105648=2;
                                       S111055=0;
-                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                      if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                        status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                         S111055=1;
                                         active[3]=1;
                                         ends[3]=1;
@@ -12388,13 +12388,13 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                       else {
                                         S111050=0;
-                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111050=1;
-                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             ends[3]=2;
-                                            ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S114020=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -12415,7 +12415,7 @@ public class LidRemovalController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                    lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                     currsigs.addElement(lidEjectExtend);
                                     active[3]=1;
                                     ends[3]=1;
@@ -12423,22 +12423,22 @@ public class LidRemovalController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 126, column: 45
+                                  if(lidEjectExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 115, column: 45
                                     S105653=8;
-                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 22
-                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 133, column: 6
-                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 134, column: 6
-                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 137, column: 6
+                                    if(!lidGripped.getprestatus()){//sysj\lidRemovalController.sysj line: 116, column: 22
+                                      w_thread_3.removeLid();//sysj\lidRemovalController.sysj line: 122, column: 6
+                                      System.out.println("[LR] Lid off " + w_thread_3 + ", sealed=" + w_thread_3.isSealed() + ".");//sysj\lidRemovalController.sysj line: 123, column: 6
+                                      code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 126, column: 6
                                       S105653=9;
-                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 138, column: 14
-                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 139, column: 7
-                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 140, column: 7
-                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 142, column: 38
-                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 143, column: 22
+                                      if(lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 127, column: 14
+                                        System.out.println("[LR] Lid waste bin is full; no further bottles until it is serviced.");//sysj\lidRemovalController.sysj line: 128, column: 7
+                                        code_thread_3 = BLOCKED_thread_3;//sysj\lidRemovalController.sysj line: 129, column: 7
+                                        if(!lidBinFull.getprestatus()){//sysj\lidRemovalController.sysj line: 131, column: 38
+                                          code_thread_3 = OK_thread_3;//sysj\lidRemovalController.sysj line: 132, column: 22
                                           S105648=2;
                                           S111055=0;
-                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111055=1;
                                             active[3]=1;
                                             ends[3]=1;
@@ -12446,13 +12446,13 @@ public class LidRemovalController extends ClockDomain{
                                           }
                                           else {
                                             S111050=0;
-                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S111050=1;
-                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 ends[3]=2;
-                                                ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                                ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                                 S114020=1;
                                                 active[3]=1;
                                                 ends[3]=1;
@@ -12480,8 +12480,8 @@ public class LidRemovalController extends ClockDomain{
                                       else {
                                         S105648=2;
                                         S111055=0;
-                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                        if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                          status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                           S111055=1;
                                           active[3]=1;
                                           ends[3]=1;
@@ -12489,13 +12489,13 @@ public class LidRemovalController extends ClockDomain{
                                         }
                                         else {
                                           S111050=0;
-                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                                          if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                            status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                                             S111050=1;
-                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                                            if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                                              status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                                               ends[3]=2;
-                                              ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                                              ;//sysj\lidRemovalController.sysj line: 136, column: 5
                                               S114020=1;
                                               active[3]=1;
                                               ends[3]=1;
@@ -12516,7 +12516,7 @@ public class LidRemovalController extends ClockDomain{
                                       }
                                     }
                                     else {
-                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 128, column: 7
+                                      lidEjectExtend.setPresent();//sysj\lidRemovalController.sysj line: 117, column: 7
                                       currsigs.addElement(lidEjectExtend);
                                       active[3]=1;
                                       ends[3]=1;
@@ -12531,7 +12531,7 @@ public class LidRemovalController extends ClockDomain{
                                 }
                               }
                               else {
-                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 122, column: 7
+                                unscrewTurnRetract.setPresent();//sysj\lidRemovalController.sysj line: 111, column: 7
                                 currsigs.addElement(unscrewTurnRetract);
                                 active[3]=1;
                                 ends[3]=1;
@@ -12553,7 +12553,7 @@ public class LidRemovalController extends ClockDomain{
                       }
                       else {
                         S106050=0;
-                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 23
+                        if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 23
                           S106050=1;
                           thread156014(tdone,ends);
                           thread156015(tdone,ends);
@@ -12571,7 +12571,7 @@ public class LidRemovalController extends ClockDomain{
                           }
                         }
                         else {
-                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 110, column: 46
+                          if(unscrewTurnExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 99, column: 46
                             S106050=1;
                             thread156017(tdone,ends);
                             thread156018(tdone,ends);
@@ -12598,7 +12598,7 @@ public class LidRemovalController extends ClockDomain{
                     }
                     else {
                       S105726=0;
-                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 23
+                      if(auto_1.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 23
                         S105726=1;
                         thread156020(tdone,ends);
                         thread156021(tdone,ends);
@@ -12616,7 +12616,7 @@ public class LidRemovalController extends ClockDomain{
                         }
                       }
                       else {
-                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 103, column: 46
+                        if(lidGripperExtendM.getprestatus()){//sysj\lidRemovalController.sysj line: 92, column: 46
                           S105726=1;
                           thread156023(tdone,ends);
                           thread156024(tdone,ends);
@@ -12642,7 +12642,7 @@ public class LidRemovalController extends ClockDomain{
                     }
                   }
                   else {
-                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 98, column: 7
+                    cylZaxisExtend.setPresent();//sysj\lidRemovalController.sysj line: 87, column: 7
                     currsigs.addElement(cylZaxisExtend);
                     active[3]=1;
                     ends[3]=1;
@@ -12659,8 +12659,8 @@ public class LidRemovalController extends ClockDomain{
             else {
               S105648=2;
               S111055=0;
-              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+              if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                 S111055=1;
                 active[3]=1;
                 ends[3]=1;
@@ -12668,13 +12668,13 @@ public class LidRemovalController extends ClockDomain{
               }
               else {
                 S111050=0;
-                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 147, column: 5
+                if(status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                  status_o.setVal(new Integer(code_thread_3));//sysj\lidRemovalController.sysj line: 136, column: 5
                   S111050=1;
-                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 147, column: 5
-                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 147, column: 5
+                  if(!status_o.isACK()){//sysj\lidRemovalController.sysj line: 136, column: 5
+                    status_o.setREQ(false);//sysj\lidRemovalController.sysj line: 136, column: 5
                     ends[3]=2;
-                    ;//sysj\lidRemovalController.sysj line: 147, column: 5
+                    ;//sysj\lidRemovalController.sysj line: 136, column: 5
                     S114020=1;
                     active[3]=1;
                     ends[3]=1;
@@ -12711,17 +12711,17 @@ public class LidRemovalController extends ClockDomain{
 
   public void thread156000(int [] tdone, int [] ends){
         S105624=1;
-    if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 62, column: 12
-      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 65, column: 8
-        auto_1.setPresent();//sysj\lidRemovalController.sysj line: 65, column: 30
+    if(mode.getprestatus()){//sysj\lidRemovalController.sysj line: 51, column: 12
+      if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\lidRemovalController.sysj line: 54, column: 8
+        auto_1.setPresent();//sysj\lidRemovalController.sysj line: 54, column: 30
         currsigs.addElement(auto_1);
         active[2]=1;
         ends[2]=1;
         tdone[2]=1;
       }
       else {
-        if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidRemovalController.sysj line: 66, column: 13
-          manual_1.setPresent();//sysj\lidRemovalController.sysj line: 66, column: 35
+        if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\lidRemovalController.sysj line: 55, column: 13
+          manual_1.setPresent();//sysj\lidRemovalController.sysj line: 55, column: 35
           currsigs.addElement(manual_1);
           active[2]=1;
           ends[2]=1;
@@ -12756,8 +12756,8 @@ public class LidRemovalController extends ClockDomain{
         case 1 : 
           S155998=2;
           S155998=2;
-          auto_1.setClear();//sysj\lidRemovalController.sysj line: 58, column: 2
-          manual_1.setClear();//sysj\lidRemovalController.sysj line: 58, column: 2
+          auto_1.setClear();//sysj\lidRemovalController.sysj line: 47, column: 2
+          manual_1.setClear();//sysj\lidRemovalController.sysj line: 47, column: 2
           thread156000(tdone,ends);
           thread156001(tdone,ends);
           int biggest156026 = 0;
@@ -12774,8 +12774,8 @@ public class LidRemovalController extends ClockDomain{
           }
         
         case 2 : 
-          auto_1.setClear();//sysj\lidRemovalController.sysj line: 58, column: 2
-          manual_1.setClear();//sysj\lidRemovalController.sysj line: 58, column: 2
+          auto_1.setClear();//sysj\lidRemovalController.sysj line: 47, column: 2
+          manual_1.setClear();//sysj\lidRemovalController.sysj line: 47, column: 2
           thread156027(tdone,ends);
           thread156028(tdone,ends);
           int biggest156191 = 0;

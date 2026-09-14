@@ -60,11 +60,10 @@ LidLoaderController(
 				w = (WorkpieceTwin)#start;
 
 
-				// Normally the first filler has already found this and
-				// flagged it, in which case the bottle simply reports that it
-				// is lidded and no second rejection is recorded here. The
-				// catch is kept as the backstop for a bottle that reaches the
-				// loader without having passed a filler.
+				// Normally the first filler has already flagged this, in which
+				// case the bottle just reports that it is lidded and no second
+				// rejection is recorded. The catch is the backstop for a
+				// bottle that reaches the loader without passing a filler.
 				lidded = false;
 				if(w != null){
 					if(w.catchFault("lid-fitted")){

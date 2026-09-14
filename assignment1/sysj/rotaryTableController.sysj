@@ -187,14 +187,10 @@ RotaryTableController(
 			m.index();
 			m.report();
 
-			// Cross-check the model against the plant.
-			//
-			// Appendix 4 gives presence sensors at positions 1, 2, 4 and 5,
-			// and until now the controller read none of them - occupancy was
-			// whatever TableModel believed. They are the only independent
-			// evidence that the carousel holds what the model thinks it
-			// holds, so a disagreement is worth a line in the log rather than
-			// three declared inputs nothing ever reads.
+			// Cross-check the model against the plant. The presence sensors at
+			// positions 2, 4 and 5 are the only independent evidence that the
+			// carousel holds what TableModel believes, so a disagreement is
+			// worth a line in the log.
 			seen2 = false; seen4 = false; seen5 = false;
 			present(bottleAtPos2){ seen2 = true; }
 			present(bottleAtPos4){ seen4 = true; }

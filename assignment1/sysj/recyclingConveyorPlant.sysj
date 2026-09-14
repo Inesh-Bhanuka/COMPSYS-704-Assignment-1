@@ -1,36 +1,14 @@
 /*
  * Recycling Conveyor Plant.
  *
- * A single actuator, recyclingConveyorMotor, drives the belt; a bottle
- * advances one station per index command. Station indices:
+ * One actuator, recyclingConveyorMotor, drives the belt; a bottle advances
+ * one station per index command. Station indices:
  *
  *   0  splitter exit (where a diverted bottle lands)
  *   1  lid removal
  *   2  liquid dumper
  *   3  bottle return
  *
- * ---- Why an index command rather than a running belt ----
- *
- * This is an indexing conveyor with a stop at each station, modelled the same
- * way the rotary table models rotaryTrigger: one rising edge of the motor
- * command moves the bottle to the next station and no further, and it then
- * stands there until the controller commands the next index.
- *
- * Modelling it as a free-running belt that advances on every tick the motor
- * signal is present is wrong, and not as a matter of taste. The motor command
- * and the station photo-eyes cross a clock-domain boundary, so they are
- * asynchronous: between the plant raising bottleAtLidRemoval and the
- * controller's release of the motor arriving back, the plant keeps counting.
- * With a free-running belt those few ticks were enough to carry the bottle a
- * whole station further, and it reached the liquid dumper before the lid
- * removal cycle had even started. One command meaning one station removes the
- * race outright rather than trying to tune the latency away, and a stop at
- * each station is what the real machine has anyway.
- *
- * injectAtEntry and collectAtReturn are the two transfer commands, edge
- * triggered for the same reason and in the same way the ABS ConveyorPlant
- * treats injectInfeed and collectFromEnd: the controller holds each command
- * until the plant's sensor answers, and exactly one transfer must happen.
  */
 RecyclingConveyorPlant(
 		// from the System Controller

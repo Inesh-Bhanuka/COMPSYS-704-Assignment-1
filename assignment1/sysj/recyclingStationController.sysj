@@ -1,78 +1,32 @@
 /*
  * Recycling Station Controller (RSC).
  *
- * The RSC is the only machine in the Recycling Station that the ABS System
- * Controller talks to, and it is a subordinate coordinator rather than a peer
- * machine: the System Controller delegates the recovery of a rejected bottle
- * to it and waits for a completion notification. Like the System Controller
- * and the rotary table, it coordinates rather than drives a plant, so it has
- * no operating mode of its own - the machines beneath it each carry theirs.
+ * The only machine in the station the ABS System Controller talks to, and a
+ * subordinate coordinator rather than a peer: the coordinator delegates the
+ * recovery of a rejected bottle and waits for a completion notification. Like
+ * the System Controller and the rotary table it drives no plant, so it has no
+ * operating mode of its own - the machines beneath it each carry theirs.
  *
- * ---- Interface upward ----
+ * Interface 
  *
- *   bottleRejected    channel, SC -> RSC. Carries the twin of a bottle the
- *                     splitter has physically diverted onto the recycling
- *                     belt. A channel rather than a signal because it must
- *                     transport the bottle and its history, not merely the
- *                     fact that a rejection happened.
+ *   bottleRejected    channel, SC -> RSC. The twin of a bottle the splitter
+ *                     has diverted onto the belt. A channel, not a signal,
+ *                     because it carries the bottle and its history rather
+ *                     than the bare fact of a rejection.
  *   bottleRecycled    channel, RSC -> SC. One per recovered container.
  *   recyclingStatus   valued signal, RSC -> SC. A level the coordinator may
- *                     sample at any point in its own reaction: 0 idle,
- *                     1 busy, 2 suspended or faulted, 3 running with a bin or
- *                     tank warning.
+ *                     sample at any point: 0 idle, 1 busy, 2 suspended or
+ *                     faulted, 3 running with a bin or tank warning.
+ * 
+ * Every sensor and actuator stays local to its own controller-plant pair.
  *
- * The splitter is no longer one of this station's subsystems. It sits on the
- * outfeed, ahead of the decision, and is coordinated by the System Controller;
- * by the time a twin arrives here the bottle is already on the belt.
+ * Sequencing 
  *
- * ---- Interface downward, one enable / status pair per subsystem ----
+ * Recycling is strictly sequential, so the sequencer is a single straight
+ * line: enable a stage, await its status, enable the next. Nothing inside the
+ * station runs concurrently, and the conveyor is enabled between processing
+ * stages because position sensing is centralised there.
  *
- * The interim report draws these as two signals per subsystem. Here they are
- * two channels, for the same reason the rest of the ABS moved its
- * machine-to-machine links to channels: the two clock domains are
- * asynchronous, a rendezvous cannot be missed and needs no acknowledgement
- * padding, and enable can carry the workpiece itself - or, for the conveyor,
- * the station to index to - instead of the subsystem having to be told
- * separately. Every sensor and actuator stays local to its own
- * controller-plant pair.
- *
- * ---- Sequencing, and why there is a queue in front of it ----
- *
- * Recycling is a strictly sequential process, so the sequencer is a single
- * straight line: one stage is enabled, its status is awaited, and only then is
- * the next enabled. Nothing inside the station runs concurrently, and the
- * conveyor is enabled between every processing stage because position sensing
- * is centralised there rather than distributed to the workstations.
- *
- * What did not work was letting the sequencer also be the reaction that waits
- * for the next rejected bottle. bottleRejected is a rendezvous, so the System
- * Controller's send only completed when the sequencer came back round to its
- * receive - which is to say, after a whole recovery cycle. One defective
- * bottle therefore stalled the entire production line for the length of a
- * recycling cycle, even though the recycling station is a side branch of it.
- *
- * So intake is split off into its own reaction with a five-deep queue behind
- * it. The station accepts a rejected bottle the moment it has room, which
- * releases the coordinator immediately, and the sequencer draws from the queue
- * in arrival order and recovers bottles one at a time exactly as before. The
- * process is unchanged; only the point at which the coordinator is released
- * has moved. When the queue is full the intake reaction stops receiving and
- * the back-pressure propagates upward on its own, which is the honest
- * behaviour for a station that really is slower than the line.
- *
- * The queue itself lives in RecyclingQueue rather than in the reaction, for
- * the same reason the table's occupancy lives in TableModel: SystemJ generates
- * a separate control path for every branch that encloses a rendezvous, so
- * bookkeeping kept in the reaction multiplies the generated state machine and
- * pushes runClockDomain past the JVM's 64 KB method limit.
- *
- * The pause that closes each stage is there for a related reason. The compiler
- * inlines everything that follows a rendezvous into that rendezvous's "the
- * partner is ready now" branch, so a dozen of them in a row nest a dozen deep
- * and the generated method grows exponentially. A pause is a state boundary:
- * the reaction returns to its top-level switch and the next stage starts from
- * a fresh case. The cost is one tick between stages, which is nothing next to
- * the travel and cycle times of the machines being sequenced.
  */
 RecyclingStationController(
 

@@ -1,17 +1,10 @@
 /*
  * Controller for the Bottle Loader.
  *
- * Coordination is by channel: an order arrives from the coordinator carrying
- * the workpiece identity, the bottle is handed to the conveyor by rendezvous,
- * and an acknowledgement goes back. The old conveyorReady level is gone -
- * readiness is now expressed by the conveyor being at its receive, so the
- * loader simply blocks at the send until the belt can take the bottle.
+ * Coordination is by channel: an order arrives from the coordinator, 
+ * the bottle is handed to the conveyor by rendezvous,
+ * and an acknowledgement goes back. 
  *
- * One behavioural change comes with that. The loader used to check the
- * conveyor before starting a cycle and again at the release point. A channel
- * cannot be tested without committing to it, so the arm now picks the bottle,
- * carries it over, and waits there holding it. That is the more faithful
- * behaviour anyway - the bottle leaves the magazine once, not twice.
  */
 BottleLoaderController(
 		// from / to the System Controller

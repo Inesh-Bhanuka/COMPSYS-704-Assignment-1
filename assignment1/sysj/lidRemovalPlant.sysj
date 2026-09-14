@@ -5,22 +5,11 @@
  * two end stops, so neither end-of-travel sensor is present mid-stroke and
  * the controller cannot mistake a moving cylinder for an arrived one.
  *
- * The grip is latched rather than levelled: once the cap is held it stays
- * held until it is ejected, which is what lets the controller release
- * lidGripperExtend while it unscrews and lifts.
- *
  * The four mechanisms are four parallel reactions rather than one sequential
- * block, and that is a compilation constraint as much as a modelling choice.
- * Written as one reaction the five present/else tests combine: SystemJ
- * enumerates their control paths and generates a single runClockDomain method
- * that exceeds the JVM's 64 KB limit. Split, each mechanism is its own small
- * state machine and the sizes add instead of multiplying. It is also the more
- * faithful model - the cylinders really do move independently - and it
+ * block. Each mechanism is its own small state machine and the sizes add instead of multiplying. 
+ * It is also the more faithful model - the cylinders really do move independently - and it
  * follows the same shape as ConveyorPlant.
  *
- * Reactions communicate through the plant's own output signals: the gripper
- * tests zAxisLowered rather than keeping a second copy of the z position, and
- * the bin counts the local lidDropped signal.
  */
 LidRemovalPlant(
 		// from the System Controller

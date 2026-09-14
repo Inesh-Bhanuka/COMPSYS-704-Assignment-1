@@ -1,23 +1,16 @@
 /**
  * Finite simulated recycling receptacle, serviced only at a safe machine boundary.
  *
- * ---- On the sizes below ----
- *
- * The three receptacles - the lid waste bin, the bottle collector and the
- * waste tank - are modelled because the design has to say what happens when
- * one fills: the machine finishes the container it is holding, reports
- * BLOCKED, and stops accepting work until servicing clears it, so the
+ * The mechanism is the point: a full bin means the machine finishes the
+ * container it is holding, reports BLOCKED, and stops accepting work, so the
  * back-pressure reaches the Recycling Station Controller at a clean boundary
- * rather than mid-cycle. That mechanism is the part worth having.
+ * rather than mid-cycle.
  *
- * Their capacities are not. Emptying a bin is a manual, out-of-scope activity
- * that the simulation stands in for with an automatic service after a few
- * ticks, so small capacities buy nothing: they just interrupt a demonstration
- * every third bottle with a full-then-immediately-serviced pair of messages
- * that says more about the stub than about the plant. They are therefore set
- * large enough that a demonstration run never reaches one, while the
- * full-and-blocked path stays in the code and stays reachable - set
- * -Dabs.lidBinCapacity=3 and it behaves exactly as it used to.
+ * The capacities are not. Emptying a bin is out of scope and stood in for by
+ * an automatic service, so a small capacity only interrupts a demonstration
+ * with a full-then-serviced pair of messages that says more about the stub
+ * than the plant. They are set large enough never to be reached, and the
+ * full-and-blocked path stays reachable: -Dabs.lidBinCapacity=3 exercises it.
  */
 public final class RecyclingCapacity {
 

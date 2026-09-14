@@ -24,29 +24,17 @@ import javax.swing.WindowConstants;
 /**
  * The Recycling Station, on its own.
  *
- * ---- Why a second window ----
+ * On the overview the whole station is one box and every bottle in it lands
+ * on the same pixel, so its sequence is invisible exactly where it matters.
+ * This is that box opened up: a stop per station, with the plant's own
+ * photo-eyes and limit switches under each.
  *
- * On the system overview the whole station is one box, and every bottle inside
- * it is drawn at the same point: at lid removal, at the dumper and at the
- * return all land on the same pixel. The station's own sequence - the part the
- * IP is about - is therefore invisible exactly where it matters. This window
- * is that one box opened up, with a stop per station and the plant's own
- * photo-eyes and limit switches under each one.
+ * It reads nothing of its own. The overview hands it the same GuiSnapshot on
+ * the same refresh, and every lamp is a signal the sensor sweep already
+ * collects. No second sampler, no timer, and no path back into the plant.
  *
- * ---- What it reads ----
- *
- * Nothing of its own. It is handed the same GuiSnapshot the overview is
- * working from, on the same refresh, and every lamp on it is a signal the
- * sensor sweep already collects from the running clock domains. There is no
- * second sampler, no timer, and no path from this window back into the plant:
- * it cannot drive anything and cannot fall out of step with the overview.
- *
- * ---- Closing it ----
- *
- * DISPOSE_ON_CLOSE, and the overview holds no state that depends on this
- * window existing - it checks isDisplayable() before each update and builds a
- * fresh one the next time the box is clicked. Closing this window stops the
- * updates to it and nothing else; the line keeps running.
+ * DISPOSE_ON_CLOSE, and nothing outside depends on it existing, so closing it
+ * stops the updates to it and nothing else.
  */
 public final class RecyclingWindow extends JFrame {
 
@@ -68,12 +56,7 @@ public final class RecyclingWindow extends JFrame {
 		view.update(s);
 	}
 
-/**
- * Everything the window draws.
- *
- * A panel rather than the frame itself so it can be built, given a snapshot
- * and painted with no display attached, which is how its layout is checked.
- */
+/** Everything the window draws. A panel, so it can be painted with no display attached. */
 public static final class View extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -110,9 +93,9 @@ public static final class View extends JPanel {
 	}
 
 	private JPanel header() {
-		// Clamped, because the in-station line changes length every time a
-		// different bottle arrives and a frame that resizes itself while the
-		// operator is watching it is worse than a truncated serial.
+		// Clamped: the in-station line changes length with every bottle, and a
+		// frame that resizes while the operator watches is worse than a
+		// truncated serial.
 		JPanel bar = new JPanel(new GridLayout(2, 2, 16, 2)) {
 			private static final long serialVersionUID = 1L;
 			@Override public Dimension getPreferredSize() {
@@ -152,11 +135,7 @@ public static final class View extends JPanel {
 		return p;
 	}
 
-	/**
-	 * Take the overview's current snapshot. Called on the Swing thread from the
-	 * overview's own refresh, so there is one sampler and one repaint clock for
-	 * both windows.
-	 */
+	/** Called on the Swing thread from the overview's refresh: one clock for both windows. */
 	void update(GuiSnapshot s) {
 		if (s == null) {
 			return;
@@ -357,11 +336,9 @@ public static final class View extends JPanel {
 		}
 
 		/**
-		 * The bottle standing at a stop, drawn from its own record: how much
-		 * is in it and whether the lid is still on. Those are the two things
-		 * this station changes, so they are the two things worth drawing -
-		 * the liquid falls away as the dumper works and the cap disappears
-		 * when lid removal is done.
+		 * The bottle at a stop, drawn from its own record: contents and lid.
+		 * Those are the two things this station changes, so the liquid falls
+		 * away as the dumper works and the cap goes when the lid comes off.
 		 */
 		private void bottle(Graphics2D g, int cx, int cy) {
 			int w = 18, h = 30;

@@ -110,11 +110,9 @@ public class A1_GUI extends JFrame {
     private GuiSnapshot snapshot;
 
     /**
-     * The Recycling Station's own window, while it is open.
-     *
-     * Held weakly in spirit: nothing here depends on it existing. Every use
-     * checks isDisplayable() first, so closing it simply stops the updates and
-     * the next click on the station builds a fresh one.
+     * The Recycling Station's own window, while it is open. Nothing here
+     * depends on it existing: every use checks isDisplayable() first, so
+     * closing it stops the updates and the next click builds a fresh one.
      */
     private RecyclingWindow recyclingWindow;
     private boolean updating;
@@ -210,8 +208,7 @@ public class A1_GUI extends JFrame {
 
     @Override public void dispose() {
         refreshTimer.stop();
-        // Take the station window with it, rather than leaving an orphan
-        // panel updating from a snapshot nothing is refreshing any more.
+        // Take the station window with it rather than leaving an orphan.
         if (recyclingWindow != null) { recyclingWindow.dispose(); recyclingWindow = null; }
         super.dispose();
     }
@@ -1288,9 +1285,9 @@ public class A1_GUI extends JFrame {
         private void selectBottleAt(int screenX, int screenY) {
             double x = (screenX - viewOffsetX) / viewScale, y = (screenY - viewOffsetY) / viewScale;
 
-            // The station box, drawn at 91,656 165x118 in drawDownstream. On
-            // the overview the whole station is one box and every bottle in it
-            // lands on the same pixel, so this is the way in to its stages.
+            // The station box, drawn at 91,656 165x118 in drawDownstream. The
+            // whole station is one box here and every bottle in it lands on the
+            // same pixel, so this is the way in to its stages.
             if (x >= 91 && x <= 91 + 165 && y >= 656 && y <= 656 + 118) {
                 openRecyclingWindow();
                 return;

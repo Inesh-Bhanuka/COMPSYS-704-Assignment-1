@@ -54,25 +54,21 @@ public final class GuiTelemetry {
         latest=s; return s;
     }
     /**
-     * The Recycling Station's own figures.
+     * The Recycling Station's own figures: what its photo-eyes cannot show.
      *
-     * The station's stops are read from its photo-eyes in the sensor sweep, so
-     * all that is left is what the eyes cannot see: how many bottles are
-     * waiting to be admitted, and which one is on the belt now. The bottle in
-     * the station is the one the station owns that is not in the queue - the
-     * sequencer takes it out before it commands the conveyor, so the two sets
-     * never overlap.
+     * The bottle on the belt is the one the station owns that is not in the
+     * queue - the sequencer takes it out before commanding the conveyor, so
+     * the two sets never overlap.
      */
     private static void recycling(GuiSnapshot s) {
         RecyclingQueue q=RecyclingQueue.shared();
         java.util.List<WorkpieceTwin> waiting=q.waiting();
         s.recyclingCapacity=RecyclingQueue.CAPACITY;
         s.recyclingQueued=waiting.size();
-        // The station's own level, straight off recyclingStatus: 0 idle,
-        // 1 busy, 2 suspended or faulted, 3 running with a bin or tank
-        // warning. Nothing publishes a MachineTwin for the recycling station,
-        // so without this the overview's lamp sat on IDLE all run and the
-        // window had nothing to report.
+        // The station's level, off recyclingStatus: 0 idle, 1 busy,
+        // 2 suspended or faulted, 3 running with a bin or tank warning.
+        // Nothing publishes a MachineTwin for the station, so this is the
+        // only thing that drives its lamp.
         String level=s.sensors.get("SystemControllerCD.recyclingStatus");
         if(level!=null && !"OFF".equals(level)) {
             s.stations.put("RECYCLING",

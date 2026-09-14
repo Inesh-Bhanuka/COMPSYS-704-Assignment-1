@@ -155,11 +155,10 @@ SystemController(
 			abort(immediate lineReset){
 		while(true){
 					w = null;
-		            // The belt's depth is part of the admission decision. Without
-		            // it the coordinator books bottles faster than the table can
-		            // draw them off, the infeed queue overflows, and the twins
-		            // that no longer fit are dropped - leaving the order short by
-		            // bottles that exist in the registry and nowhere else.
+		            // The belt's depth is part of the admission decision: book
+		            // faster than the table draws bottles off and the infeed
+		            // queue overflows, dropping twins that then exist in the
+		            // registry and nowhere else.
 		            if(GuiSupervisor.canLoad() && BeltQueue.shared().hasRoom()){ w = OrderBook.nextBottle(); }
 		            if(w != null){
 					System.out.println("[SC] Loading " + w + ".");
@@ -275,10 +274,9 @@ SystemController(
 		TwinPublisher out = TwinPublisher.shared();
         GuiSnapshot guiSnapshot = null;
 
-		// Hold every clock domain to a watchable rate. Done from here rather
-		// than from a launcher because the program can be started several
-		// ways - the GUI launcher, the runtime's own main, a test harness -
-		// and the System Controller is in all of them.
+		// Hold every clock domain to a watchable rate. From here rather than a
+		// launcher because the program can be started several ways and the
+		// System Controller is in all of them.
 		PlantPace.install();
 
 		while(true){

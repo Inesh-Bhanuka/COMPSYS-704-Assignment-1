@@ -1,30 +1,11 @@
 /*
  * Splitter Controller - the quality diverter at the end of the outfeed.
  *
- * The Splitter sits in the main production flow, and it is the point at which
- * the Recycling Station attaches to the core ABS. It is no longer one of the
- * station's subsystems: the coordinator hands it every bottle leaving the
- * outfeed, it reads the quality record off the twin it is holding, and it
- * drives the diverter it already senses. That is the order both the interim
- * report and the IP report describe - the belt carries a bottle to the
- * splitter, which routes it forward to the labeller or aside to recycling.
- *
- * It used to be armed by the Recycling Station Controller, which meant the
- * diverter fired after the bottle had already been sent to the labeller,
- * refused, and handed to the station - diverting a bottle off a belt it had
- * long since left. The decision and the mechanism are now in the same place.
- *
- * The key design feature is unchanged: the diverter position is sensed, not
- * assumed. The controller drives the mechanism to whichever path the record
- * calls for and waits for that end-of-travel sensor. If the stroke does not
- * confirm inside the timeout the mechanism has jammed, and the controller
- * says so rather than reporting a route it has not actually selected.
- *
- * A jam is not silent and it is not fatal. The bottle carries on down the
- * normal path with the jam recorded on its twin, and the labeller - which
- * refuses anything its own history does not justify - catches it. A sensed
- * diverter as the gate and an independent record check behind it is two
- * mechanisms rather than one, which is the point of putting the splitter here.
+ * The Splitter sits in the main production flow and is where the Recycling
+ * Station attaches to the core ABS. It belongs to the System Controller, not
+ * to the station: the coordinator hands it every bottle leaving the outfeed,
+ * it reads the quality record off the twin it is holding, and it drives the
+ * diverter it already senses. 
  *
  * admitBottle is the outfeed releasing the claimed workpiece towards the
  * decision point.
@@ -120,19 +101,7 @@ SplitterController(
 				System.out.println("[SP] " + w + " at the decision point - "
 						+ (reject ? "reject path (" + w.defect() + ")" : "normal path") + ".");
 
-				// Drive the diverter to the commanded path and verify it
-				// against that path's end stop. A plain abort would wait
-				// forever on a jam, so the wait is bounded and the outcome is
-				// latched.
-				// The diverter is one stroke to the operator, whichever way it
-				// goes: the gate asks for the signal that matches the path the
-				// record commands, and the loops below then hold it there until
-				// the bottle has cleared.
-				// Load-bearing, not padding. The compiler splits the generated state
-				// machine at every pause, and with the gate folded in the sequencer
-				// no longer fits in one method under the JVM's 64 KB limit. It costs
-				// one tick between the bottle arriving at the decision point and the
-				// diverter being commanded.
+				// Load Bearing
 				pause;
 
 				abort(immediate auto){ await(immediate diverterM); }

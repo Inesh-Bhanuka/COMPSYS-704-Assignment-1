@@ -32,45 +32,32 @@ public class BeltQueue {
 	}
 
 	/**
-	 * Whether the infeed can take another bottle.
-	 *
-	 * The coordinator asks before it books one. It did not used to, and push()
-	 * below simply dropped the workpiece when the queue was full: the bottle
-	 * went onto the belt physically, its twin was never queued, and it stayed
-	 * in the registry as LOADED for the rest of the run. An order that lost
-	 * five bottles that way could never reach its target, and the line looked
-	 * like it had stalled when in fact it was waiting for bottles that no
-	 * longer existed anywhere but the registry.
+	 * Whether the infeed can take another bottle. The coordinator asks before
+	 * it books one, because push() below can only drop a workpiece it has no
+	 * room for - and a dropped twin stays in the registry as LOADED forever,
+	 * leaving the order short of bottles that exist nowhere else.
 	 *
 	 * The belt is the slowest thing between the loader and the table, so this
-	 * is also the right place for the line's back-pressure: the coordinator
-	 * stops booking, the loader stops picking, and admission resumes on its
-	 * own as the table draws bottles off.
+	 * is where the line's back-pressure belongs: admission stops and resumes
+	 * on its own as the table draws bottles off.
 	 */
 	public boolean hasRoom() {
 		return count + COMMITTED <= q.length;
 	}
 
 	/**
-	 * Slots held back for bottles the coordinator has committed to but which
-	 * are not on the belt yet.
-	 *
-	 * There are two: one in the loader's hands, and one the coordinator has
-	 * just booked and is handing over. Both will push before anything else
-	 * can, so the queue has to have been holding room for them all along.
-	 *
-	 * Checking count < length alone is not enough, and the log said so: the
-	 * coordinator booked a bottle while the queue stood at 15 of 16, the
-	 * bottle already in the loader took the last slot, and the one just
-	 * booked had nowhere to go.
+	 * Slots held back for bottles already committed to but not yet on the
+	 * belt: one in the loader's hands, one just booked and being handed over.
+	 * Both will push before anything else can, so the room has to be reserved
+	 * for them - count < length alone lets the loader take the last slot and
+	 * strands the bottle behind it.
 	 */
 	private static final int COMMITTED = 2;
 
 	public void push(WorkpieceTwin w) {
 		if (count == q.length) {
-			// Unreachable while the coordinator checks hasRoom() first. Kept
-			// loud rather than silent so a future caller that forgets is
-			// noisy instead of quietly losing a bottle.
+			// Unreachable while callers check hasRoom() first, and loud rather
+			// than silent so one that forgets is obvious.
 			System.out.println("[Q] Belt queue full, dropped " + w + ".");
 			return;
 		}

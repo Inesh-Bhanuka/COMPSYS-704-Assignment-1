@@ -46,8 +46,8 @@ public class RotaryTableController extends ClockDomain{
   private boolean seen2_thread_4;//sysj\rotaryTableController.sysj line: 95, column: 3
   private boolean seen4_thread_4;//sysj\rotaryTableController.sysj line: 96, column: 3
   private boolean seen5_thread_4;//sysj\rotaryTableController.sysj line: 97, column: 3
-  private TableModel m_thread_5;//sysj\rotaryTableController.sysj line: 214, column: 3
-  private WorkpieceTwin w_thread_5;//sysj\rotaryTableController.sysj line: 215, column: 3
+  private TableModel m_thread_5;//sysj\rotaryTableController.sysj line: 210, column: 3
+  private WorkpieceTwin w_thread_5;//sysj\rotaryTableController.sysj line: 211, column: 3
   private int S310926 = 1;
   private int S263366 = 1;
   private int S310924 = 1;
@@ -84,12 +84,12 @@ public class RotaryTableController extends ClockDomain{
   
   public void thread310940(int [] tdone, int [] ends){
         S279216=1;
-    m_thread_5 = TableModel.shared();//sysj\rotaryTableController.sysj line: 214, column: 3
-    w_thread_5 = null;//sysj\rotaryTableController.sysj line: 215, column: 3
+    m_thread_5 = TableModel.shared();//sysj\rotaryTableController.sysj line: 210, column: 3
+    w_thread_5 = null;//sysj\rotaryTableController.sysj line: 211, column: 3
     S279076=0;
     S279060=0;
-    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 217, column: 4
-      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 213, column: 4
+      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
       S279060=1;
       active[5]=1;
       ends[5]=1;
@@ -97,18 +97,18 @@ public class RotaryTableController extends ClockDomain{
     }
     else {
       S279055=0;
-      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 217, column: 4
+      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 213, column: 4
         S279055=1;
-        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
           ends[5]=2;
-          ;//sysj\rotaryTableController.sysj line: 217, column: 4
-          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+          ;//sysj\rotaryTableController.sysj line: 213, column: 4
+          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
           S279076=1;
-          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
             S279076=2;
             active[5]=1;
             ends[5]=1;
@@ -250,8 +250,8 @@ public class RotaryTableController extends ClockDomain{
           case 0 : 
             switch(S279060){
               case 0 : 
-                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                   S279060=1;
                   active[5]=1;
                   ends[5]=1;
@@ -260,18 +260,18 @@ public class RotaryTableController extends ClockDomain{
                 else {
                   switch(S279055){
                     case 0 : 
-                      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 217, column: 4
+                      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 213, column: 4
                         S279055=1;
-                        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                           ends[5]=2;
-                          ;//sysj\rotaryTableController.sysj line: 217, column: 4
-                          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-                          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-                          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+                          ;//sysj\rotaryTableController.sysj line: 213, column: 4
+                          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+                          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+                          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
                           S279076=1;
-                          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+                          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
                             S279076=2;
                             active[5]=1;
                             ends[5]=1;
@@ -297,15 +297,15 @@ public class RotaryTableController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                        tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                      if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                        tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                         ends[5]=2;
-                        ;//sysj\rotaryTableController.sysj line: 217, column: 4
-                        w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-                        m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-                        System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+                        ;//sysj\rotaryTableController.sysj line: 213, column: 4
+                        w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+                        m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+                        System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
                         S279076=1;
-                        if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+                        if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
                           S279076=2;
                           active[5]=1;
                           ends[5]=1;
@@ -331,8 +331,8 @@ public class RotaryTableController extends ClockDomain{
               case 1 : 
                 S279060=1;
                 S279060=0;
-                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                   S279060=1;
                   active[5]=1;
                   ends[5]=1;
@@ -340,18 +340,18 @@ public class RotaryTableController extends ClockDomain{
                 }
                 else {
                   S279055=0;
-                  if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                    tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 217, column: 4
+                  if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                    tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 213, column: 4
                     S279055=1;
-                    if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                    if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                       ends[5]=2;
-                      ;//sysj\rotaryTableController.sysj line: 217, column: 4
-                      w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-                      m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-                      System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+                      ;//sysj\rotaryTableController.sysj line: 213, column: 4
+                      w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+                      m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+                      System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
                       S279076=1;
-                      if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+                      if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
                         S279076=2;
                         active[5]=1;
                         ends[5]=1;
@@ -381,7 +381,7 @@ public class RotaryTableController extends ClockDomain{
             break;
           
           case 1 : 
-            if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+            if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
               S279076=2;
               active[5]=1;
               ends[5]=1;
@@ -398,8 +398,8 @@ public class RotaryTableController extends ClockDomain{
             S279076=2;
             S279076=0;
             S279060=0;
-            if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 217, column: 4
-              tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+            if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 213, column: 4
+              tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
               S279060=1;
               active[5]=1;
               ends[5]=1;
@@ -407,18 +407,18 @@ public class RotaryTableController extends ClockDomain{
             }
             else {
               S279055=0;
-              if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 217, column: 4
+              if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 213, column: 4
                 S279055=1;
-                if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+                if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+                  tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
                   ends[5]=2;
-                  ;//sysj\rotaryTableController.sysj line: 217, column: 4
-                  w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-                  m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-                  System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+                  ;//sysj\rotaryTableController.sysj line: 213, column: 4
+                  w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+                  m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+                  System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
                   S279076=1;
-                  if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+                  if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
                     S279076=2;
                     active[5]=1;
                     ends[5]=1;
@@ -5515,23 +5515,23 @@ public class RotaryTableController extends ClockDomain{
                 if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
                   m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
                   m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-                  seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-                  seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-                  seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-                  if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                    seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                  seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+                  seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+                  seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+                  if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                    seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5545,14 +5545,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5567,16 +5567,16 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5590,14 +5590,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5613,18 +5613,18 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5638,14 +5638,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5660,16 +5660,16 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5683,14 +5683,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5728,23 +5728,23 @@ public class RotaryTableController extends ClockDomain{
                   if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
                     m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
                     m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-                    seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-                    seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-                    seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-                    if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                      seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+                    seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+                    seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+                    if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                      seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5758,14 +5758,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5780,16 +5780,16 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5803,14 +5803,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5826,18 +5826,18 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5851,14 +5851,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5873,16 +5873,16 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5896,14 +5896,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -5949,23 +5949,23 @@ public class RotaryTableController extends ClockDomain{
                 if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
                   m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
                   m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-                  seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-                  seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-                  seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-                  if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                    seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                  seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+                  seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+                  seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+                  if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                    seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -5979,14 +5979,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6001,16 +6001,16 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6024,14 +6024,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6047,18 +6047,18 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                      seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6072,14 +6072,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6094,16 +6094,16 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                        seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6117,14 +6117,14 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                          twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                        step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                        t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                        t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                        if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                          twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                           currsigs.addElement(twin);
-                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                          twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                           S263639=17;
                           active[4]=1;
                           ends[4]=1;
@@ -6162,23 +6162,23 @@ public class RotaryTableController extends ClockDomain{
                   if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
                     m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
                     m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-                    seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-                    seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-                    seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-                    if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                      seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+                    seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+                    seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+                    if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                      seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6192,14 +6192,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6214,16 +6214,16 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6237,14 +6237,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6260,18 +6260,18 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                        seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6285,14 +6285,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6307,16 +6307,16 @@ public class RotaryTableController extends ClockDomain{
                         }
                       }
                       else {
-                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                        if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                          seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6330,14 +6330,14 @@ public class RotaryTableController extends ClockDomain{
                           }
                         }
                         else {
-                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                            twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                          m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                          step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                          t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                          t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                          if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                            twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                             currsigs.addElement(twin);
-                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                            twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                             S263639=17;
                             active[4]=1;
                             ends[4]=1;
@@ -6381,23 +6381,23 @@ public class RotaryTableController extends ClockDomain{
               if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
                 m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
                 m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-                seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-                seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-                seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-                if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                  seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                  if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                    seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+                seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+                seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+                if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                  seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                  if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                    seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6411,14 +6411,14 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6433,16 +6433,16 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6456,14 +6456,14 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6479,18 +6479,18 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                    seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                  if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                    seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6504,14 +6504,14 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6526,16 +6526,16 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                      seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6549,14 +6549,14 @@ public class RotaryTableController extends ClockDomain{
                       }
                     }
                     else {
-                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                        twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                      m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                      step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                      t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                      t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                      if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                        twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                         currsigs.addElement(twin);
-                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                        twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                         S263639=17;
                         active[4]=1;
                         ends[4]=1;
@@ -6591,23 +6591,23 @@ public class RotaryTableController extends ClockDomain{
             if(tableAligned.getprestatus()){//sysj\rotaryTableController.sysj line: 185, column: 20
               m_thread_4.index();//sysj\rotaryTableController.sysj line: 187, column: 4
               m_thread_4.report();//sysj\rotaryTableController.sysj line: 188, column: 4
-              seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 4
-              seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 19
-              seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 198, column: 34
-              if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 199, column: 12
-                seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 199, column: 27
-                if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                  seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+              seen2_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 4
+              seen4_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 19
+              seen5_thread_4 = false;//sysj\rotaryTableController.sysj line: 194, column: 34
+              if(bottleAtPos2.getprestatus()){//sysj\rotaryTableController.sysj line: 195, column: 12
+                seen2_thread_4 = true;//sysj\rotaryTableController.sysj line: 195, column: 27
+                if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                  seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6621,14 +6621,14 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6643,16 +6643,16 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6666,14 +6666,14 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6689,18 +6689,18 @@ public class RotaryTableController extends ClockDomain{
                 }
               }
               else {
-                if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 200, column: 12
-                  seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 200, column: 27
-                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                if(bottleAtPos4.getprestatus()){//sysj\rotaryTableController.sysj line: 196, column: 12
+                  seen4_thread_4 = true;//sysj\rotaryTableController.sysj line: 196, column: 27
+                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6714,14 +6714,14 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6736,16 +6736,16 @@ public class RotaryTableController extends ClockDomain{
                   }
                 }
                 else {
-                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 201, column: 12
-                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 201, column: 27
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                  if(bottleAtPos5.getprestatus()){//sysj\rotaryTableController.sysj line: 197, column: 12
+                    seen5_thread_4 = true;//sysj\rotaryTableController.sysj line: 197, column: 27
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -6759,14 +6759,14 @@ public class RotaryTableController extends ClockDomain{
                     }
                   }
                   else {
-                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 202, column: 4
-                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 203, column: 4
-                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 204, column: 4
-                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 205, column: 4
-                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 206, column: 4
-                      twin.setPresent();//sysj\rotaryTableController.sysj line: 207, column: 5
+                    m_thread_4.checkAgainstSensors(seen2_thread_4, seen4_thread_4, seen5_thread_4);//sysj\rotaryTableController.sysj line: 198, column: 4
+                    step_thread_4 = (step_thread_4 % 6) + 1;//sysj\rotaryTableController.sysj line: 199, column: 4
+                    t_thread_4.setPosition(step_thread_4);//sysj\rotaryTableController.sysj line: 200, column: 4
+                    t_thread_4.setRotating(false);//sysj\rotaryTableController.sysj line: 201, column: 4
+                    if(t_thread_4.update(PlantClock.now(), MachineStatus.WORKING, "index", "aligned at " + step_thread_4)){//sysj\rotaryTableController.sysj line: 202, column: 4
+                      twin.setPresent();//sysj\rotaryTableController.sysj line: 203, column: 5
                       currsigs.addElement(twin);
-                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 207, column: 5
+                      twin.setValue(t_thread_4);//sysj\rotaryTableController.sysj line: 203, column: 5
                       S263639=17;
                       active[4]=1;
                       ends[4]=1;
@@ -7030,12 +7030,12 @@ public class RotaryTableController extends ClockDomain{
 
   public void thread310931(int [] tdone, int [] ends){
         S279216=1;
-    m_thread_5 = TableModel.shared();//sysj\rotaryTableController.sysj line: 214, column: 3
-    w_thread_5 = null;//sysj\rotaryTableController.sysj line: 215, column: 3
+    m_thread_5 = TableModel.shared();//sysj\rotaryTableController.sysj line: 210, column: 3
+    w_thread_5 = null;//sysj\rotaryTableController.sysj line: 211, column: 3
     S279076=0;
     S279060=0;
-    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 217, column: 4
-      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+    if(!tableInfeed_in.isPartnerPresent() || tableInfeed_in.isPartnerPreempted()){//sysj\rotaryTableController.sysj line: 213, column: 4
+      tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
       S279060=1;
       active[5]=1;
       ends[5]=1;
@@ -7043,18 +7043,18 @@ public class RotaryTableController extends ClockDomain{
     }
     else {
       S279055=0;
-      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 217, column: 4
+      if(!tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+        tableInfeed_in.setACK(true);//sysj\rotaryTableController.sysj line: 213, column: 4
         S279055=1;
-        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 217, column: 4
-          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 217, column: 4
+        if(tableInfeed_in.isREQ()){//sysj\rotaryTableController.sysj line: 213, column: 4
+          tableInfeed_in.setACK(false);//sysj\rotaryTableController.sysj line: 213, column: 4
           ends[5]=2;
-          ;//sysj\rotaryTableController.sysj line: 217, column: 4
-          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 218, column: 4
-          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 219, column: 4
-          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 220, column: 4
+          ;//sysj\rotaryTableController.sysj line: 213, column: 4
+          w_thread_5 = (WorkpieceTwin)(tableInfeed_in.getVal() == null ? null : ((WorkpieceTwin)tableInfeed_in.getVal()));//sysj\rotaryTableController.sysj line: 214, column: 4
+          m_thread_5.setPending(w_thread_5);//sysj\rotaryTableController.sysj line: 215, column: 4
+          System.out.println("[RT] Accepted " + w_thread_5 + " from the conveyor.");//sysj\rotaryTableController.sysj line: 216, column: 4
           S279076=1;
-          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 221, column: 20
+          if(placed_1.getprestatus()){//sysj\rotaryTableController.sysj line: 217, column: 20
             S279076=2;
             active[5]=1;
             ends[5]=1;

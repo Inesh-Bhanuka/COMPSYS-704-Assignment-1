@@ -10,10 +10,6 @@
  *   2. swing the arm to the loader transferArmExtend  -> armAtLoader
  *   3. bring the arm home          transferArmRetract -> armAtHome
  *
- * collectorBinFull supplies back-pressure to the RSC in the same way the lid
- * waste bin and the waste tank do, and on the same terms: it is read once the
- * container is in the bin, so the bottle in progress always completes and it
- * is the next bottle that is refused.
  */
 BottleReturnController(
 		// from / to the Recycling Station Controller

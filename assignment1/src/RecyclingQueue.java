@@ -2,30 +2,20 @@
  * Bottles waiting inside the Recycling Station.
  *
  * The station recovers one bottle at a time - lid removal, then draining,
- * then return - because that is what the interim report specifies and what
- * the single-bottle indexing conveyor physically allows. The problem with
- * doing only that is upstream: bottleRejected is a rendezvous, so while a
- * recovery was in progress the System Controller's send simply did not
- * complete, and the whole production line stalled behind one defective
- * bottle for the length of a full recycling cycle.
+ * then return. bottleRejected is a rendezvous, so without a buffer the
+ * System Controller's send only completes once a whole recovery cycle has
+ * finished, and one defective bottle stalls the production line for its
+ * duration. Intake parks the bottle here and releases the coordinator
+ * immediately; the sequencer draws from the queue in arrival order.
  *
- * This queue is the buffer that removes the stall without changing the
- * process. The intake reaction accepts a rejected bottle as soon as there is
- * room and parks it here; the System Controller is released at that moment
- * and carries on. The sequencer then takes bottles out one at a time, in
- * arrival order, and recovers them exactly as before.
+ * Capacity is finite on purpose. Full means intake stops receiving and the
+ * back-pressure propagates upward on its own, which is the honest behaviour
+ * for a station slower than the line. The buffer absorbs bursts, nothing more.
  *
- * Capacity is finite on purpose. When five bottles are already waiting the
- * intake reaction stops receiving, the coordinator's send stops completing,
- * and the back-pressure propagates upward on its own - which is the correct
- * behaviour for a station whose recovery rate really is lower than the
- * line's reject rate. The buffer absorbs bursts; it does not pretend the
- * station is infinitely fast.
- *
- * It lives in Java rather than in the reactions for the same reason
- * TableModel and BeltQueue do: SystemJ generates a separate control path for
- * every branch that encloses a rendezvous, so bookkeeping kept in the
- * reaction multiplies the generated state machine instead of adding to it.
+ * In Java rather than in the reactions, like TableModel and BeltQueue:
+ * SystemJ generates a separate control path for every branch enclosing a
+ * rendezvous, so bookkeeping kept in a reaction multiplies the generated
+ * state machine instead of adding to it.
  */
 public class RecyclingQueue {
 
@@ -74,10 +64,9 @@ public class RecyclingQueue {
 	/**
 	 * The bottles waiting, in the order they will be recovered.
 	 *
-	 * A copy, for the operator display. The coordinator samples this from its
-	 * own clock domain - a different thread from the station's - so every
-	 * method here is synchronised and the display never sees the array
-	 * half-way through a take().
+	 * A copy, for the operator display, which samples from the coordinator's
+	 * clock domain - a different thread from the station's. Hence every
+	 * method here is synchronised.
 	 */
 	public synchronized java.util.List<WorkpieceTwin> waiting() {
 		java.util.List<WorkpieceTwin> out = new java.util.ArrayList<WorkpieceTwin>(count);
@@ -89,9 +78,8 @@ public class RecyclingQueue {
 
 	public synchronized void push(WorkpieceTwin w) {
 		if (count == CAPACITY) {
-			// Unreachable while the intake reaction checks hasRoom() first;
-			// kept so a future caller that forgets is noisy rather than
-			// silently losing a bottle.
+			// Unreachable while callers check hasRoom() first, and loud rather
+			// than silent so one that forgets is obvious.
 			System.out.println("[RQ] Recycling queue full, dropped " + w + ".");
 			return;
 		}

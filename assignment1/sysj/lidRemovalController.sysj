@@ -11,22 +11,11 @@
  *   5. reset the rotary cylinder         unscrewTurnRetract -> turnAtHomePos
  *   6. drop the cap in the waste bin     lidEjectExtend     -> !lidGripped
  *
- * Every phase is closed by the plant sensor that corresponds to it, so the
- * sequence is driven by acknowledgement rather than by fixed delays. Phases
- * that must not let an earlier cylinder fall back sustain that cylinder in
- * parallel - a pneumatic command is a level, so releasing it retracts.
- *
  * The workpiece is stripped as well as the plant driven: removeLid() clears
  * the lidded and capped flags the lid loader and capper set, so a recovered
  * bottle really is an unsealed container rather than a sealed one with a flag
  * on it.
  *
- * lidBinFull is the subsystem's back-pressure, and it is tested after the
- * cycle rather than before it. The design suspends the admission of further
- * bottles when a bin fills; it does not abandon the bottle already in the
- * machine, which would leave a capped bottle standing on the conveyor. So the
- * cap is always removed, and a bin that has reached capacity is reported to
- * the RSC as a blocked status - "done, but do not send me another".
  */
 LidRemovalController(
 		// from / to the Recycling Station Controller

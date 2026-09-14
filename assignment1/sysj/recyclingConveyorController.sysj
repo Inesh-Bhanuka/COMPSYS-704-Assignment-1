@@ -2,24 +2,22 @@
  * Recycling Conveyor Controller - transport between the three processing
  * stations.
  *
- * Position sensing for the whole station is centralised here rather than
- * distributed to the individual workstations: one photo-eye per station,
- * following the same convention as the ABS index table. Because the conveyor
- * owns the sensors, each processing controller only has to act when it is
- * told to, which is exactly what its enable asks, and the RSC decides which
- * station to index to next.
+ * Position sensing for the station is centralised here rather than spread
+ * across the workstations: one photo-eye per stop, the same convention as the
+ * ABS index table. Each processing controller therefore only has to act when
+ * its enable says so, and the RSC decides which stop to index to next.
  *
- * This is the one subsystem whose enable carries a destination rather than a
- * workpiece - the conveyor does not care which bottle it is moving, only
- * where the bottle has to end up:
+ * The one subsystem whose enable carries a destination rather than a
+ * workpiece - the conveyor does not care which bottle it moves, only where it
+ * has to end up:
  *
  *   1  admit the diverted bottle and index it to lid removal
  *   2  index to the liquid dumper
  *   3  index to the bottle return
  *   4  discharge - hand the bottle to the Bottle Return subsystem
  *
- * Each command completes with a status rendezvous, so the RSC always knows
- * the bottle has arrived before it enables the station waiting for it.
+ * Each command completes with a status rendezvous, so the RSC knows the
+ * bottle has arrived before it enables the station waiting for it.
  */
 RecyclingConveyorController(
 		// from / to the Recycling Station Controller
