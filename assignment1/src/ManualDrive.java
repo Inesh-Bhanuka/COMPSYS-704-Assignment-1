@@ -23,8 +23,8 @@ import com.systemj.netapi.TCPReceiver;
  * ---- Why it is not read from a socket inside a tick ----
  *
  * TCPReceiver delivers on its own thread and this class only ever hands the
- * clock domain a field it has already been given. No clock domain ever waits
- * on a socket, which is the rule the twin publisher had to learn the hard way.
+ * clock domain a field it has already been given. No clock domain may wait on
+ * a socket: a tick blocked on the network stalls every reaction in the domain.
  */
 public final class ManualDrive {
 

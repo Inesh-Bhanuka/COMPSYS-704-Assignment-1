@@ -17,13 +17,12 @@
  * the dump takes the same time whatever the recipe - the station cannot know
  * how full the bottle was, so it always waits for the worst case.
  *
- * The distinguishing input of this subsystem is wasteTankLevel, which is
- * valued rather than pure. That lets the controller report a graded status
- * once the bottle is done - normal, near capacity, or full - so the RSC can
- * carry on recycling while warning the operator, and only halts the station
- * once the tank can no longer accept a full bottle's contents. As with the
- * lid bin, the level is judged after the cycle, so a bottle already in the
- * machine is never left inverted and undrained.
+ * wasteTankLevel is a valued input rather than a pure one, so the controller
+ * can report a graded status once the bottle is done - normal, near capacity,
+ * or full. The RSC carries on recycling while the operator is warned, and the
+ * station only halts once the tank can no longer accept a full bottle's
+ * contents. As with the lid bin, the level is judged after the cycle, so a
+ * bottle already in the machine is never left inverted and undrained.
  */
 LiquidDumperController(
 		// from / to the Recycling Station Controller
@@ -83,12 +82,10 @@ LiquidDumperController(
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
-				// The belt indexes whether or not this stop holds a bottle, so an
-				// empty stop is normal rather than an error. A station handed null
-				// has nothing to do and reports ready immediately, which is what
-				// lets the coordinator start all three unconditionally - three
-				// optional sends and three optional receives is the branch
-				// explosion the rotary table's barrier was built to avoid.
+				// The station is handed whatever workpiece the RSC is recovering.
+				// A null carries no work, so the cycle below is skipped and the
+				// status goes back straight away: the sequencer's receive always
+				// completes and it is never left waiting on an empty stop.
 				code = OK;
 
 				if(w != null){
@@ -139,8 +136,9 @@ LiquidDumperController(
 					if(level >= TANK_CAPACITY){
 						System.out.println("[LD] Waste tank is full; no further bottles until it is emptied.");
 						code = BLOCKED;
-	                    // Retain the transaction until the upright, released machine's
-	                    // simulated waste-tank service has restored actual capacity.
+	                    // Hold the status back until the simulated servicing has
+	                    // emptied the tank. It only runs with the machine upright
+	                    // and the clamp released, which is the case by now.
 	                    while(level >= TANK_CAPACITY){
 	                        pause;
 	                        present(wasteTankLevel){ level = ((Integer)#wasteTankLevel).intValue(); }

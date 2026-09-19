@@ -64,7 +64,7 @@ ConveyorPlant(
 						admitted = false;
 					}
 
-					// "WorkpieceTwin admitted" - held for as long as the controller
+					// Bottle admitted - held for as long as the controller
 					// holds the command, so the controller has something to
 					// acknowledge against. infeedClear cannot serve: the belt
 					// runs every tick, so the bottle leaves the load point in the
@@ -112,7 +112,7 @@ ConveyorPlant(
 						taking = false;
 					}
 
-					// "clear" now means the load point is free, not the whole belt
+					// "clear" means the load point is free, not the whole belt
 					if(!slot[0]){
 						emit infeedClear;
 					}

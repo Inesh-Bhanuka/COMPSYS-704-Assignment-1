@@ -29,8 +29,8 @@ public class SplitterPlant extends ClockDomain{
   private int release_thread_1;//sysj\splitterPlant.sysj line: 39, column: 3
   private int stroke_thread_1;//sysj\splitterPlant.sysj line: 40, column: 3
   private boolean admitting_thread_1;//sysj\splitterPlant.sysj line: 41, column: 3
-  private int S591818 = 1;
-  private int S589782 = 1;
+  private int S591815 = 1;
+  private int S589779 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -42,17 +42,17 @@ public class SplitterPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S591818){
+      switch(S591815){
         case 0 : 
-          S591818=0;
+          S591815=0;
           break RUN;
         
         case 1 : 
-          S591818=2;
-          S591818=2;
-          S589782=0;
+          S591815=2;
+          S591815=2;
+          S589779=0;
           if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
-            S589782=1;
+            S589779=1;
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -1796,10 +1796,10 @@ public class SplitterPlant extends ClockDomain{
           }
         
         case 2 : 
-          switch(S589782){
+          switch(S589779){
             case 0 : 
               if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
-                S589782=1;
+                S589779=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -3534,10 +3534,10 @@ public class SplitterPlant extends ClockDomain{
               }
             
             case 1 : 
-              S589782=1;
-              S589782=0;
+              S589779=1;
+              S589779=0;
               if(reset.getprestatus()){//sysj\splitterPlant.sysj line: 31, column: 19
-                S589782=1;
+                S589779=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;

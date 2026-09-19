@@ -6,9 +6,8 @@
  * the controller cannot mistake a moving cylinder for an arrived one.
  *
  * The four mechanisms are four parallel reactions rather than one sequential
- * block. Each mechanism is its own small state machine and the sizes add instead of multiplying. 
- * It is also the more faithful model - the cylinders really do move independently - and it
- * follows the same shape as ConveyorPlant.
+ * block. Each is its own small state machine, so the sizes add instead of
+ * multiplying, and the cylinders really do move independently.
  *
  */
 LidRemovalPlant(

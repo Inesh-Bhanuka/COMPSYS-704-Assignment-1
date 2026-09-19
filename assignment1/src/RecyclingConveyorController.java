@@ -34,25 +34,25 @@ public class RecyclingConveyorController extends ClockDomain{
   private int TO_RETURN_thread_3;//sysj\recyclingConveyorController.sysj line: 67, column: 3
   private int DISCHARGE_thread_3;//sysj\recyclingConveyorController.sysj line: 68, column: 3
   private int cmd_thread_3;//sysj\recyclingConveyorController.sysj line: 70, column: 3
-  private int S237692 = 1;
+  private int S237689 = 1;
+  private int S227623 = 1;
+  private int S237687 = 1;
+  private int S229301 = 1;
+  private int S227647 = 1;
+  private int S227631 = 1;
   private int S227626 = 1;
-  private int S237690 = 1;
-  private int S229304 = 1;
-  private int S227650 = 1;
-  private int S227634 = 1;
-  private int S227629 = 1;
-  private int S227673 = 1;
-  private int S228025 = 1;
-  private int S228625 = 1;
-  private int S228673 = 1;
-  private int S228825 = 1;
-  private int S228820 = 1;
+  private int S227670 = 1;
+  private int S228022 = 1;
+  private int S228622 = 1;
+  private int S228670 = 1;
+  private int S228822 = 1;
+  private int S228817 = 1;
   
   private int[] ends = new int[4];
   private int[] tdone = new int[4];
   
-  public void thread237698(int [] tdone, int [] ends){
-        switch(S237690){
+  public void thread237695(int [] tdone, int [] ends){
+        switch(S237687){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -60,59 +60,59 @@ public class RecyclingConveyorController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S229304){
+        switch(S229301){
           case 0 : 
             if(reset.getprestatus()){//sysj\recyclingConveyorController.sysj line: 73, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
-              S229304=1;
+              S229301=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              switch(S227650){
+              switch(S227647){
                 case 0 : 
-                  switch(S227634){
+                  switch(S227631){
                     case 0 : 
                       if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                         enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                        S227634=1;
+                        S227631=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S227629){
+                        switch(S227626){
                           case 0 : 
                             if(!enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                               enable_in.setACK(true);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                              S227629=1;
+                              S227626=1;
                               if(enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                                 enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 74, column: 5
                                 cmd_thread_3 = ((Integer)(enable_in.getVal() == null ? null : ((Integer)enable_in.getVal()))).intValue();//sysj\recyclingConveyorController.sysj line: 75, column: 5
-                                S227650=1;
+                                S227647=1;
                                 if(cmd_thread_3 == TO_LID_thread_3){//sysj\recyclingConveyorController.sysj line: 77, column: 8
-                                  S227673=0;
+                                  S227670=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                                    S227673=1;
+                                    S227670=1;
                                     if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                       System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                      S227673=2;
+                                      S227670=2;
                                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                        S227673=3;
+                                        S227670=3;
                                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                          S227650=2;
+                                          S227647=2;
                                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                            S228025=0;
+                                            S228022=0;
                                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -127,10 +127,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                             else {
                                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -151,7 +151,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            S227650=3;
+                                            S227647=3;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -167,17 +167,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                       }
                                       else {
                                         if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                          S227673=3;
+                                          S227670=3;
                                           if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                             System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                            S227650=2;
+                                            S227647=2;
                                             if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                              S228025=0;
+                                              S228022=0;
                                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -192,10 +192,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                               else {
                                                 if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                  S228025=1;
+                                                  S228022=1;
                                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                    S227650=3;
+                                                    S227647=3;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -216,7 +216,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -247,22 +247,22 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                                      S227673=1;
+                                      S227670=1;
                                       if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                         System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                        S227673=2;
+                                        S227670=2;
                                         if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                          S227673=3;
+                                          S227670=3;
                                           if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                             System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                            S227650=2;
+                                            S227647=2;
                                             if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                              S228025=0;
+                                              S228022=0;
                                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -277,10 +277,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                               else {
                                                 if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                  S228025=1;
+                                                  S228022=1;
                                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                    S227650=3;
+                                                    S227647=3;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -301,7 +301,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -317,17 +317,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                         }
                                         else {
                                           if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                            S227673=3;
+                                            S227670=3;
                                             if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                               System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                              S227650=2;
+                                              S227647=2;
                                               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                                S228025=0;
+                                                S228022=0;
                                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                                  S228025=1;
+                                                  S228022=1;
                                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                    S227650=3;
+                                                    S227647=3;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -342,10 +342,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                                 }
                                                 else {
                                                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                    S228025=1;
+                                                    S228022=1;
                                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                      S227650=3;
+                                                      S227647=3;
                                                       active[3]=1;
                                                       ends[3]=1;
                                                       tdone[3]=1;
@@ -366,7 +366,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                                 }
                                               }
                                               else {
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -403,14 +403,14 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=2;
+                                  S227647=2;
                                   if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                    S228025=0;
+                                    S228022=0;
                                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -425,10 +425,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                     else {
                                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                        S228025=1;
+                                        S228022=1;
                                         if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                           System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -449,7 +449,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -475,26 +475,26 @@ public class RecyclingConveyorController extends ClockDomain{
                               ends[3]=2;
                               ;//sysj\recyclingConveyorController.sysj line: 74, column: 5
                               cmd_thread_3 = ((Integer)(enable_in.getVal() == null ? null : ((Integer)enable_in.getVal()))).intValue();//sysj\recyclingConveyorController.sysj line: 75, column: 5
-                              S227650=1;
+                              S227647=1;
                               if(cmd_thread_3 == TO_LID_thread_3){//sysj\recyclingConveyorController.sysj line: 77, column: 8
-                                S227673=0;
+                                S227670=0;
                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                                  S227673=1;
+                                  S227670=1;
                                   if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                     System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                    S227673=2;
+                                    S227670=2;
                                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                      S227673=3;
+                                      S227670=3;
                                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                        S227650=2;
+                                        S227647=2;
                                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                          S228025=0;
+                                          S228022=0;
                                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                            S228025=1;
+                                            S228022=1;
                                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -509,10 +509,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                           else {
                                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -533,7 +533,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -549,17 +549,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                     else {
                                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                        S227673=3;
+                                        S227670=3;
                                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                          S227650=2;
+                                          S227647=2;
                                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                            S228025=0;
+                                            S228022=0;
                                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -574,10 +574,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                             else {
                                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -598,7 +598,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            S227650=3;
+                                            S227647=3;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -629,22 +629,22 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                                 else {
                                   if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                                    S227673=1;
+                                    S227670=1;
                                     if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                       System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                      S227673=2;
+                                      S227670=2;
                                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                        S227673=3;
+                                        S227670=3;
                                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                          S227650=2;
+                                          S227647=2;
                                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                            S228025=0;
+                                            S228022=0;
                                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -659,10 +659,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                             else {
                                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -683,7 +683,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            S227650=3;
+                                            S227647=3;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -699,17 +699,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                       }
                                       else {
                                         if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                          S227673=3;
+                                          S227670=3;
                                           if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                             System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                            S227650=2;
+                                            S227647=2;
                                             if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                              S228025=0;
+                                              S228022=0;
                                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -724,10 +724,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                               else {
                                                 if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                  S228025=1;
+                                                  S228022=1;
                                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                    S227650=3;
+                                                    S227647=3;
                                                     active[3]=1;
                                                     ends[3]=1;
                                                     tdone[3]=1;
@@ -748,7 +748,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                               }
                                             }
                                             else {
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -785,14 +785,14 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                               }
                               else {
-                                S227650=2;
+                                S227647=2;
                                 if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                  S228025=0;
+                                  S228022=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -807,10 +807,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -831,7 +831,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -850,45 +850,45 @@ public class RecyclingConveyorController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S227634=1;
-                      S227634=0;
+                      S227631=1;
+                      S227631=0;
                       if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                         enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                        S227634=1;
+                        S227631=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S227629=0;
+                        S227626=0;
                         if(!enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                           enable_in.setACK(true);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                          S227629=1;
+                          S227626=1;
                           if(enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                             enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
                             ends[3]=2;
                             ;//sysj\recyclingConveyorController.sysj line: 74, column: 5
                             cmd_thread_3 = ((Integer)(enable_in.getVal() == null ? null : ((Integer)enable_in.getVal()))).intValue();//sysj\recyclingConveyorController.sysj line: 75, column: 5
-                            S227650=1;
+                            S227647=1;
                             if(cmd_thread_3 == TO_LID_thread_3){//sysj\recyclingConveyorController.sysj line: 77, column: 8
-                              S227673=0;
+                              S227670=0;
                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                                S227673=1;
+                                S227670=1;
                                 if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                   System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                  S227673=2;
+                                  S227670=2;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                    S227673=3;
+                                    S227670=3;
                                     if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                       System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                      S227650=2;
+                                      S227647=2;
                                       if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                        S228025=0;
+                                        S228022=0;
                                         if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                          S228025=1;
+                                          S228022=1;
                                           if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                             System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                            S227650=3;
+                                            S227647=3;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -903,10 +903,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                         }
                                         else {
                                           if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                            S228025=1;
+                                            S228022=1;
                                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -927,7 +927,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                         }
                                       }
                                       else {
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -943,17 +943,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                      S227673=3;
+                                      S227670=3;
                                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                        S227650=2;
+                                        S227647=2;
                                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                          S228025=0;
+                                          S228022=0;
                                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                            S228025=1;
+                                            S228022=1;
                                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -968,10 +968,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                           else {
                                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -992,7 +992,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1023,22 +1023,22 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                               else {
                                 if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                                  S227673=1;
+                                  S227670=1;
                                   if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                                     System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                                    S227673=2;
+                                    S227670=2;
                                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                                      S227673=3;
+                                      S227670=3;
                                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                        S227650=2;
+                                        S227647=2;
                                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                          S228025=0;
+                                          S228022=0;
                                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                            S228025=1;
+                                            S228022=1;
                                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                              S227650=3;
+                                              S227647=3;
                                               active[3]=1;
                                               ends[3]=1;
                                               tdone[3]=1;
@@ -1053,10 +1053,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                           else {
                                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1077,7 +1077,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                           }
                                         }
                                         else {
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1093,17 +1093,17 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                     else {
                                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                        S227673=3;
+                                        S227670=3;
                                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                          S227650=2;
+                                          S227647=2;
                                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                            S228025=0;
+                                            S228022=0;
                                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                              S228025=1;
+                                              S228022=1;
                                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                S227650=3;
+                                                S227647=3;
                                                 active[3]=1;
                                                 ends[3]=1;
                                                 tdone[3]=1;
@@ -1118,10 +1118,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                             else {
                                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                                S228025=1;
+                                                S228022=1;
                                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                                  S227650=3;
+                                                  S227647=3;
                                                   active[3]=1;
                                                   ends[3]=1;
                                                   tdone[3]=1;
@@ -1142,7 +1142,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                             }
                                           }
                                           else {
-                                            S227650=3;
+                                            S227647=3;
                                             active[3]=1;
                                             ends[3]=1;
                                             tdone[3]=1;
@@ -1179,14 +1179,14 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                             }
                             else {
-                              S227650=2;
+                              S227647=2;
                               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                S228025=0;
+                                S228022=0;
                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1201,10 +1201,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                                 else {
                                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1225,7 +1225,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                               }
                               else {
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1250,25 +1250,25 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S227673){
+                  switch(S227670){
                     case 0 : 
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                        S227673=1;
+                        S227670=1;
                         if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                           System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                          S227673=2;
+                          S227670=2;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                            S227673=3;
+                            S227670=3;
                             if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                               System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                              S227650=2;
+                              S227647=2;
                               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                S228025=0;
+                                S228022=0;
                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1283,10 +1283,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                                 else {
                                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1307,7 +1307,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                               }
                               else {
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1323,17 +1323,17 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                              S227673=3;
+                              S227670=3;
                               if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                 System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                S227650=2;
+                                S227647=2;
                                 if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                  S228025=0;
+                                  S228022=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1348,10 +1348,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1372,7 +1372,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1403,22 +1403,22 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                          S227673=1;
+                          S227670=1;
                           if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                             System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                            S227673=2;
+                            S227670=2;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                              S227673=3;
+                              S227670=3;
                               if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                 System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                S227650=2;
+                                S227647=2;
                                 if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                  S228025=0;
+                                  S228022=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1433,10 +1433,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1457,7 +1457,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1473,17 +1473,17 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                S227673=3;
+                                S227670=3;
                                 if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                   System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                  S227650=2;
+                                  S227647=2;
                                   if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                    S228025=0;
+                                    S228022=0;
                                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -1498,10 +1498,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                     else {
                                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                        S228025=1;
+                                        S228022=1;
                                         if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                           System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -1522,7 +1522,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1562,19 +1562,19 @@ public class RecyclingConveyorController extends ClockDomain{
                     case 1 : 
                       if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                         System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                        S227673=2;
+                        S227670=2;
                         if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                          S227673=3;
+                          S227670=3;
                           if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                             System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                            S227650=2;
+                            S227647=2;
                             if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                              S228025=0;
+                              S228022=0;
                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                S228025=1;
+                                S228022=1;
                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1589,10 +1589,10 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                               else {
                                 if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1613,7 +1613,7 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                             }
                             else {
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1629,17 +1629,17 @@ public class RecyclingConveyorController extends ClockDomain{
                         }
                         else {
                           if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                            S227673=3;
+                            S227670=3;
                             if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                               System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                              S227650=2;
+                              S227647=2;
                               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                S228025=0;
+                                S228022=0;
                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1654,10 +1654,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                                 else {
                                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -1678,7 +1678,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                               }
                               else {
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1710,17 +1710,17 @@ public class RecyclingConveyorController extends ClockDomain{
                     
                     case 2 : 
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                        S227673=3;
+                        S227670=3;
                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                          S227650=2;
+                          S227647=2;
                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                            S228025=0;
+                            S228022=0;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                              S228025=1;
+                              S228022=1;
                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1735,10 +1735,10 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                S228025=1;
+                                S228022=1;
                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1759,7 +1759,7 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                           }
                           else {
-                            S227650=3;
+                            S227647=3;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1775,17 +1775,17 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                          S227673=3;
+                          S227670=3;
                           if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                             System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                            S227650=2;
+                            S227647=2;
                             if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                              S228025=0;
+                              S228022=0;
                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                S228025=1;
+                                S228022=1;
                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -1800,10 +1800,10 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                               else {
                                 if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -1824,7 +1824,7 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                             }
                             else {
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1849,14 +1849,14 @@ public class RecyclingConveyorController extends ClockDomain{
                     case 3 : 
                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                        S227650=2;
+                        S227647=2;
                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                          S228025=0;
+                          S228022=0;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                            S228025=1;
+                            S228022=1;
                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -1871,10 +1871,10 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                              S228025=1;
+                              S228022=1;
                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -1895,7 +1895,7 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                         }
                         else {
-                          S227650=3;
+                          S227647=3;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -1914,13 +1914,13 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  switch(S228025){
+                  switch(S228022){
                     case 0 : 
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                        S228025=1;
+                        S228022=1;
                         if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                           System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                          S227650=3;
+                          S227647=3;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -1935,10 +1935,10 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                          S228025=1;
+                          S228022=1;
                           if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                             System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                            S227650=3;
+                            S227647=3;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -1962,7 +1962,7 @@ public class RecyclingConveyorController extends ClockDomain{
                     case 1 : 
                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                        S227650=3;
+                        S227647=3;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -1980,40 +1980,40 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 3 : 
-                  S227650=3;
-                  S227650=4;
+                  S227647=3;
+                  S227647=4;
                   if(cmd_thread_3 == TO_RETURN_thread_3){//sysj\recyclingConveyorController.sysj line: 107, column: 8
-                    S228625=0;
+                    S228622=0;
                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 108, column: 22
-                      S228625=1;
+                      S228622=1;
                       if(bottleAtReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 109, column: 22
                         System.out.println("[RC] Bottle at the bottle return.");//sysj\recyclingConveyorController.sysj line: 112, column: 6
-                        S227650=5;
+                        S227647=5;
                         if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                          S228673=0;
+                          S228670=0;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                            S228673=1;
+                            S228670=1;
                             if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                               System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                              S227650=6;
-                              S228825=0;
+                              S227647=6;
+                              S228822=0;
                               if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228825=1;
+                                S228822=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S228820=0;
+                                S228817=0;
                                 if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228820=1;
+                                  S228817=1;
                                   if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     ends[3]=2;
                                     ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S229304=1;
+                                    S229301=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2041,28 +2041,28 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                              S228673=1;
+                              S228670=1;
                               if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                 System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                S227650=6;
-                                S228825=0;
+                                S227647=6;
+                                S228822=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228825=1;
+                                  S228822=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S228820=0;
+                                  S228817=0;
                                   if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228820=1;
+                                    S228817=1;
                                     if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       ends[3]=2;
                                       ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S229304=1;
+                                      S229301=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2096,25 +2096,25 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                         }
                         else {
-                          S227650=6;
-                          S228825=0;
+                          S227647=6;
+                          S228822=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S228825=1;
+                            S228822=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S228820=0;
+                            S228817=0;
                             if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228820=1;
+                              S228817=1;
                               if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S229304=1;
+                                S229301=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2143,35 +2143,35 @@ public class RecyclingConveyorController extends ClockDomain{
                     }
                     else {
                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 108, column: 45
-                        S228625=1;
+                        S228622=1;
                         if(bottleAtReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 109, column: 22
                           System.out.println("[RC] Bottle at the bottle return.");//sysj\recyclingConveyorController.sysj line: 112, column: 6
-                          S227650=5;
+                          S227647=5;
                           if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                            S228673=0;
+                            S228670=0;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                              S228673=1;
+                              S228670=1;
                               if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                 System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                S227650=6;
-                                S228825=0;
+                                S227647=6;
+                                S228822=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228825=1;
+                                  S228822=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S228820=0;
+                                  S228817=0;
                                   if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228820=1;
+                                    S228817=1;
                                     if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       ends[3]=2;
                                       ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S229304=1;
+                                      S229301=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2199,28 +2199,28 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                                S228673=1;
+                                S228670=1;
                                 if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                   System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                  S227650=6;
-                                  S228825=0;
+                                  S227647=6;
+                                  S228822=0;
                                   if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228825=1;
+                                    S228822=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S228820=0;
+                                    S228817=0;
                                     if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S228820=1;
+                                      S228817=1;
                                       if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         ends[3]=2;
                                         ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                        S229304=1;
+                                        S229301=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2254,25 +2254,25 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                           }
                           else {
-                            S227650=6;
-                            S228825=0;
+                            S227647=6;
+                            S228822=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228825=1;
+                              S228822=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S228820=0;
+                              S228817=0;
                               if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228820=1;
+                                S228817=1;
                                 if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   ends[3]=2;
                                   ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S229304=1;
+                                  S229301=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2307,32 +2307,32 @@ public class RecyclingConveyorController extends ClockDomain{
                     }
                   }
                   else {
-                    S227650=5;
+                    S227647=5;
                     if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                      S228673=0;
+                      S228670=0;
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                        S228673=1;
+                        S228670=1;
                         if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                           System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                          S227650=6;
-                          S228825=0;
+                          S227647=6;
+                          S228822=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S228825=1;
+                            S228822=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S228820=0;
+                            S228817=0;
                             if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228820=1;
+                              S228817=1;
                               if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S229304=1;
+                                S229301=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2360,28 +2360,28 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                          S228673=1;
+                          S228670=1;
                           if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                             System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                            S227650=6;
-                            S228825=0;
+                            S227647=6;
+                            S228822=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228825=1;
+                              S228822=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S228820=0;
+                              S228817=0;
                               if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228820=1;
+                                S228817=1;
                                 if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   ends[3]=2;
                                   ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S229304=1;
+                                  S229301=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2415,25 +2415,25 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                     }
                     else {
-                      S227650=6;
-                      S228825=0;
+                      S227647=6;
+                      S228822=0;
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                        S228825=1;
+                        S228822=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S228820=0;
+                        S228817=0;
                         if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                           status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                          S228820=1;
+                          S228817=1;
                           if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             ends[3]=2;
                             ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S229304=1;
+                            S229301=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -2455,38 +2455,38 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 4 : 
-                  switch(S228625){
+                  switch(S228622){
                     case 0 : 
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 108, column: 22
-                        S228625=1;
+                        S228622=1;
                         if(bottleAtReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 109, column: 22
                           System.out.println("[RC] Bottle at the bottle return.");//sysj\recyclingConveyorController.sysj line: 112, column: 6
-                          S227650=5;
+                          S227647=5;
                           if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                            S228673=0;
+                            S228670=0;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                              S228673=1;
+                              S228670=1;
                               if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                 System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                S227650=6;
-                                S228825=0;
+                                S227647=6;
+                                S228822=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228825=1;
+                                  S228822=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S228820=0;
+                                  S228817=0;
                                   if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228820=1;
+                                    S228817=1;
                                     if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       ends[3]=2;
                                       ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S229304=1;
+                                      S229301=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2514,28 +2514,28 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                                S228673=1;
+                                S228670=1;
                                 if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                   System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                  S227650=6;
-                                  S228825=0;
+                                  S227647=6;
+                                  S228822=0;
                                   if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228825=1;
+                                    S228822=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S228820=0;
+                                    S228817=0;
                                     if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S228820=1;
+                                      S228817=1;
                                       if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         ends[3]=2;
                                         ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                        S229304=1;
+                                        S229301=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2569,25 +2569,25 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                           }
                           else {
-                            S227650=6;
-                            S228825=0;
+                            S227647=6;
+                            S228822=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228825=1;
+                              S228822=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S228820=0;
+                              S228817=0;
                               if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228820=1;
+                                S228817=1;
                                 if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   ends[3]=2;
                                   ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S229304=1;
+                                  S229301=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -2616,35 +2616,35 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 108, column: 45
-                          S228625=1;
+                          S228622=1;
                           if(bottleAtReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 109, column: 22
                             System.out.println("[RC] Bottle at the bottle return.");//sysj\recyclingConveyorController.sysj line: 112, column: 6
-                            S227650=5;
+                            S227647=5;
                             if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                              S228673=0;
+                              S228670=0;
                               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                                S228673=1;
+                                S228670=1;
                                 if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                   System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                  S227650=6;
-                                  S228825=0;
+                                  S227647=6;
+                                  S228822=0;
                                   if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228825=1;
+                                    S228822=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
                                   }
                                   else {
-                                    S228820=0;
+                                    S228817=0;
                                     if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S228820=1;
+                                      S228817=1;
                                       if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         ends[3]=2;
                                         ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                        S229304=1;
+                                        S229301=1;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -2672,28 +2672,28 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                               else {
                                 if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                                  S228673=1;
+                                  S228670=1;
                                   if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                     System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                    S227650=6;
-                                    S228825=0;
+                                    S227647=6;
+                                    S228822=0;
                                     if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S228825=1;
+                                      S228822=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
                                     }
                                     else {
-                                      S228820=0;
+                                      S228817=0;
                                       if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                         status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                        S228820=1;
+                                        S228817=1;
                                         if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                           status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                           ends[3]=2;
                                           ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                          S229304=1;
+                                          S229301=1;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -2727,25 +2727,25 @@ public class RecyclingConveyorController extends ClockDomain{
                               }
                             }
                             else {
-                              S227650=6;
-                              S228825=0;
+                              S227647=6;
+                              S228822=0;
                               if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228825=1;
+                                S228822=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S228820=0;
+                                S228817=0;
                                 if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228820=1;
+                                  S228817=1;
                                   if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     ends[3]=2;
                                     ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S229304=1;
+                                    S229301=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2783,32 +2783,32 @@ public class RecyclingConveyorController extends ClockDomain{
                     case 1 : 
                       if(bottleAtReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 109, column: 22
                         System.out.println("[RC] Bottle at the bottle return.");//sysj\recyclingConveyorController.sysj line: 112, column: 6
-                        S227650=5;
+                        S227647=5;
                         if(cmd_thread_3 == DISCHARGE_thread_3){//sysj\recyclingConveyorController.sysj line: 115, column: 8
-                          S228673=0;
+                          S228670=0;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                            S228673=1;
+                            S228670=1;
                             if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                               System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                              S227650=6;
-                              S228825=0;
+                              S227647=6;
+                              S228822=0;
                               if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228825=1;
+                                S228822=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
                               }
                               else {
-                                S228820=0;
+                                S228817=0;
                                 if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228820=1;
+                                  S228817=1;
                                   if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     ends[3]=2;
                                     ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S229304=1;
+                                    S229301=1;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -2836,28 +2836,28 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                              S228673=1;
+                              S228670=1;
                               if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                                 System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                                S227650=6;
-                                S228825=0;
+                                S227647=6;
+                                S228822=0;
                                 if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S228825=1;
+                                  S228822=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
                                 }
                                 else {
-                                  S228820=0;
+                                  S228817=0;
                                   if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                     status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                    S228820=1;
+                                    S228817=1;
                                     if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                       ends[3]=2;
                                       ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                      S229304=1;
+                                      S229301=1;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -2891,25 +2891,25 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                         }
                         else {
-                          S227650=6;
-                          S228825=0;
+                          S227647=6;
+                          S228822=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S228825=1;
+                            S228822=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S228820=0;
+                            S228817=0;
                             if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228820=1;
+                              S228817=1;
                               if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S229304=1;
+                                S229301=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2941,31 +2941,31 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 5 : 
-                  switch(S228673){
+                  switch(S228670){
                     case 0 : 
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 22
-                        S228673=1;
+                        S228670=1;
                         if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                           System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                          S227650=6;
-                          S228825=0;
+                          S227647=6;
+                          S228822=0;
                           if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S228825=1;
+                            S228822=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
                           }
                           else {
-                            S228820=0;
+                            S228817=0;
                             if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228820=1;
+                              S228817=1;
                               if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S229304=1;
+                                S229301=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -2993,28 +2993,28 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(collectAtReturnM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 116, column: 45
-                          S228673=1;
+                          S228670=1;
                           if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                             System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                            S227650=6;
-                            S228825=0;
+                            S227647=6;
+                            S228822=0;
                             if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228825=1;
+                              S228822=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
                             }
                             else {
-                              S228820=0;
+                              S228817=0;
                               if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S228820=1;
+                                S228817=1;
                                 if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                   ends[3]=2;
                                   ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                  S229304=1;
+                                  S229301=1;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3051,25 +3051,25 @@ public class RecyclingConveyorController extends ClockDomain{
                     case 1 : 
                       if(bottleLeftReturn.getprestatus()){//sysj\recyclingConveyorController.sysj line: 117, column: 22
                         System.out.println("[RC] Bottle handed over, recycling conveyor clear.");//sysj\recyclingConveyorController.sysj line: 120, column: 6
-                        S227650=6;
-                        S228825=0;
+                        S227647=6;
+                        S228822=0;
                         if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                           status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                          S228825=1;
+                          S228822=1;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
                         }
                         else {
-                          S228820=0;
+                          S228817=0;
                           if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S228820=1;
+                            S228817=1;
                             if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               ends[3]=2;
                               ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S229304=1;
+                              S229301=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3100,26 +3100,26 @@ public class RecyclingConveyorController extends ClockDomain{
                   break;
                 
                 case 6 : 
-                  switch(S228825){
+                  switch(S228822){
                     case 0 : 
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                        S228825=1;
+                        S228822=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        switch(S228820){
+                        switch(S228817){
                           case 0 : 
                             if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S228820=1;
+                              S228817=1;
                               if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                                 ends[3]=2;
                                 ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                                S229304=1;
+                                S229301=1;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3142,7 +3142,7 @@ public class RecyclingConveyorController extends ClockDomain{
                               status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                               ends[3]=2;
                               ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                              S229304=1;
+                              S229301=1;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3159,25 +3159,25 @@ public class RecyclingConveyorController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S228825=1;
-                      S228825=0;
+                      S228822=1;
+                      S228822=0;
                       if(!status_o.isPartnerPresent() || status_o.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                         status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                        S228825=1;
+                        S228822=1;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
                       }
                       else {
-                        S228820=0;
+                        S228817=0;
                         if(status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                           status_o.setVal(new Integer(OK_thread_3));//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                          S228820=1;
+                          S228817=1;
                           if(!status_o.isACK()){//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             status_o.setREQ(false);//sysj\recyclingConveyorController.sysj line: 123, column: 5
                             ends[3]=2;
                             ;//sysj\recyclingConveyorController.sysj line: 123, column: 5
-                            S229304=1;
+                            S229301=1;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3204,56 +3204,56 @@ public class RecyclingConveyorController extends ClockDomain{
             break;
           
           case 1 : 
-            S229304=1;
-            S229304=0;
+            S229301=1;
+            S229301=0;
             if(reset.getprestatus()){//sysj\recyclingConveyorController.sysj line: 73, column: 20
               enable_in.setPreempted();
               status_o.setPreempted();
-              S229304=1;
+              S229301=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S227650=0;
-              S227634=0;
+              S227647=0;
+              S227631=0;
               if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                 enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                S227634=1;
+                S227631=1;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                S227629=0;
+                S227626=0;
                 if(!enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                   enable_in.setACK(true);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-                  S227629=1;
+                  S227626=1;
                   if(enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
                     enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
                     ends[3]=2;
                     ;//sysj\recyclingConveyorController.sysj line: 74, column: 5
                     cmd_thread_3 = ((Integer)(enable_in.getVal() == null ? null : ((Integer)enable_in.getVal()))).intValue();//sysj\recyclingConveyorController.sysj line: 75, column: 5
-                    S227650=1;
+                    S227647=1;
                     if(cmd_thread_3 == TO_LID_thread_3){//sysj\recyclingConveyorController.sysj line: 77, column: 8
-                      S227673=0;
+                      S227670=0;
                       if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                        S227673=1;
+                        S227670=1;
                         if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                           System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                          S227673=2;
+                          S227670=2;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                            S227673=3;
+                            S227670=3;
                             if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                               System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                              S227650=2;
+                              S227647=2;
                               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                S228025=0;
+                                S228022=0;
                                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                  S228025=1;
+                                  S228022=1;
                                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -3268,10 +3268,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                                 else {
                                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -3292,7 +3292,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                 }
                               }
                               else {
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3308,17 +3308,17 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                              S227673=3;
+                              S227670=3;
                               if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                 System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                S227650=2;
+                                S227647=2;
                                 if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                  S228025=0;
+                                  S228022=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -3333,10 +3333,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -3357,7 +3357,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3388,22 +3388,22 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                       else {
                         if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                          S227673=1;
+                          S227670=1;
                           if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                             System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                            S227673=2;
+                            S227670=2;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                              S227673=3;
+                              S227670=3;
                               if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                 System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                S227650=2;
+                                S227647=2;
                                 if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                  S228025=0;
+                                  S228022=0;
                                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                    S228025=1;
+                                    S228022=1;
                                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                      S227650=3;
+                                      S227647=3;
                                       active[3]=1;
                                       ends[3]=1;
                                       tdone[3]=1;
@@ -3418,10 +3418,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                   else {
                                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -3442,7 +3442,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3458,17 +3458,17 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                                S227673=3;
+                                S227670=3;
                                 if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                                   System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                                  S227650=2;
+                                  S227647=2;
                                   if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                                    S228025=0;
+                                    S228022=0;
                                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                                      S228025=1;
+                                      S228022=1;
                                       if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                         System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                        S227650=3;
+                                        S227647=3;
                                         active[3]=1;
                                         ends[3]=1;
                                         tdone[3]=1;
@@ -3483,10 +3483,10 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                     else {
                                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                        S228025=1;
+                                        S228022=1;
                                         if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                           System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                          S227650=3;
+                                          S227647=3;
                                           active[3]=1;
                                           ends[3]=1;
                                           tdone[3]=1;
@@ -3507,7 +3507,7 @@ public class RecyclingConveyorController extends ClockDomain{
                                     }
                                   }
                                   else {
-                                    S227650=3;
+                                    S227647=3;
                                     active[3]=1;
                                     ends[3]=1;
                                     tdone[3]=1;
@@ -3544,14 +3544,14 @@ public class RecyclingConveyorController extends ClockDomain{
                       }
                     }
                     else {
-                      S227650=2;
+                      S227647=2;
                       if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                        S228025=0;
+                        S228022=0;
                         if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                          S228025=1;
+                          S228022=1;
                           if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                             System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                            S227650=3;
+                            S227647=3;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3566,10 +3566,10 @@ public class RecyclingConveyorController extends ClockDomain{
                         }
                         else {
                           if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                            S228025=1;
+                            S228022=1;
                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3590,7 +3590,7 @@ public class RecyclingConveyorController extends ClockDomain{
                         }
                       }
                       else {
-                        S227650=3;
+                        S227647=3;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3618,8 +3618,8 @@ public class RecyclingConveyorController extends ClockDomain{
     }
   }
 
-  public void thread237697(int [] tdone, int [] ends){
-        switch(S227626){
+  public void thread237694(int [] tdone, int [] ends){
+        switch(S227623){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -3660,63 +3660,63 @@ public class RecyclingConveyorController extends ClockDomain{
     }
   }
 
-  public void thread237695(int [] tdone, int [] ends){
-        S237690=1;
+  public void thread237692(int [] tdone, int [] ends){
+        S237687=1;
     OK_thread_3 = 0;//sysj\recyclingConveyorController.sysj line: 63, column: 3
     TO_LID_thread_3 = 1;//sysj\recyclingConveyorController.sysj line: 65, column: 3
     TO_DUMP_thread_3 = 2;//sysj\recyclingConveyorController.sysj line: 66, column: 3
     TO_RETURN_thread_3 = 3;//sysj\recyclingConveyorController.sysj line: 67, column: 3
     DISCHARGE_thread_3 = 4;//sysj\recyclingConveyorController.sysj line: 68, column: 3
     cmd_thread_3 = 0;//sysj\recyclingConveyorController.sysj line: 70, column: 3
-    S229304=0;
+    S229301=0;
     if(reset.getprestatus()){//sysj\recyclingConveyorController.sysj line: 73, column: 20
       enable_in.setPreempted();
       status_o.setPreempted();
-      S229304=1;
+      S229301=1;
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      S227650=0;
-      S227634=0;
+      S227647=0;
+      S227631=0;
       if(!enable_in.isPartnerPresent() || enable_in.isPartnerPreempted()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
         enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-        S227634=1;
+        S227631=1;
         active[3]=1;
         ends[3]=1;
         tdone[3]=1;
       }
       else {
-        S227629=0;
+        S227626=0;
         if(!enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
           enable_in.setACK(true);//sysj\recyclingConveyorController.sysj line: 74, column: 5
-          S227629=1;
+          S227626=1;
           if(enable_in.isREQ()){//sysj\recyclingConveyorController.sysj line: 74, column: 5
             enable_in.setACK(false);//sysj\recyclingConveyorController.sysj line: 74, column: 5
             ends[3]=2;
             ;//sysj\recyclingConveyorController.sysj line: 74, column: 5
             cmd_thread_3 = ((Integer)(enable_in.getVal() == null ? null : ((Integer)enable_in.getVal()))).intValue();//sysj\recyclingConveyorController.sysj line: 75, column: 5
-            S227650=1;
+            S227647=1;
             if(cmd_thread_3 == TO_LID_thread_3){//sysj\recyclingConveyorController.sysj line: 77, column: 8
-              S227673=0;
+              S227670=0;
               if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 22
-                S227673=1;
+                S227670=1;
                 if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                   System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                  S227673=2;
+                  S227670=2;
                   if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                    S227673=3;
+                    S227670=3;
                     if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                       System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                      S227650=2;
+                      S227647=2;
                       if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                        S228025=0;
+                        S228022=0;
                         if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                          S228025=1;
+                          S228022=1;
                           if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                             System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                            S227650=3;
+                            S227647=3;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -3731,10 +3731,10 @@ public class RecyclingConveyorController extends ClockDomain{
                         }
                         else {
                           if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                            S228025=1;
+                            S228022=1;
                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3755,7 +3755,7 @@ public class RecyclingConveyorController extends ClockDomain{
                         }
                       }
                       else {
-                        S227650=3;
+                        S227647=3;
                         active[3]=1;
                         ends[3]=1;
                         tdone[3]=1;
@@ -3771,17 +3771,17 @@ public class RecyclingConveyorController extends ClockDomain{
                   }
                   else {
                     if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                      S227673=3;
+                      S227670=3;
                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                        S227650=2;
+                        S227647=2;
                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                          S228025=0;
+                          S228022=0;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                            S228025=1;
+                            S228022=1;
                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3796,10 +3796,10 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                              S228025=1;
+                              S228022=1;
                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3820,7 +3820,7 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                         }
                         else {
-                          S227650=3;
+                          S227647=3;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -3851,22 +3851,22 @@ public class RecyclingConveyorController extends ClockDomain{
               }
               else {
                 if(injectAtEntryM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 80, column: 45
-                  S227673=1;
+                  S227670=1;
                   if(bottleAtSplitterExit.getprestatus()){//sysj\recyclingConveyorController.sysj line: 81, column: 22
                     System.out.println("[RC] Bottle on the recycling conveyor, indexing to lid removal.");//sysj\recyclingConveyorController.sysj line: 84, column: 6
-                    S227673=2;
+                    S227670=2;
                     if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 22
-                      S227673=3;
+                      S227670=3;
                       if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                         System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                        S227650=2;
+                        S227647=2;
                         if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                          S228025=0;
+                          S228022=0;
                           if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                            S228025=1;
+                            S228022=1;
                             if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                               System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                              S227650=3;
+                              S227647=3;
                               active[3]=1;
                               ends[3]=1;
                               tdone[3]=1;
@@ -3881,10 +3881,10 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                           else {
                             if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                              S228025=1;
+                              S228022=1;
                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3905,7 +3905,7 @@ public class RecyclingConveyorController extends ClockDomain{
                           }
                         }
                         else {
-                          S227650=3;
+                          S227647=3;
                           active[3]=1;
                           ends[3]=1;
                           tdone[3]=1;
@@ -3921,17 +3921,17 @@ public class RecyclingConveyorController extends ClockDomain{
                     }
                     else {
                       if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 85, column: 45
-                        S227673=3;
+                        S227670=3;
                         if(bottleAtLidRemoval.getprestatus()){//sysj\recyclingConveyorController.sysj line: 86, column: 22
                           System.out.println("[RC] Bottle at lid removal.");//sysj\recyclingConveyorController.sysj line: 89, column: 6
-                          S227650=2;
+                          S227647=2;
                           if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                            S228025=0;
+                            S228022=0;
                             if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                              S228025=1;
+                              S228022=1;
                               if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                 System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                S227650=3;
+                                S227647=3;
                                 active[3]=1;
                                 ends[3]=1;
                                 tdone[3]=1;
@@ -3946,10 +3946,10 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                             else {
                               if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                                S228025=1;
+                                S228022=1;
                                 if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                                   System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                                  S227650=3;
+                                  S227647=3;
                                   active[3]=1;
                                   ends[3]=1;
                                   tdone[3]=1;
@@ -3970,7 +3970,7 @@ public class RecyclingConveyorController extends ClockDomain{
                             }
                           }
                           else {
-                            S227650=3;
+                            S227647=3;
                             active[3]=1;
                             ends[3]=1;
                             tdone[3]=1;
@@ -4007,14 +4007,14 @@ public class RecyclingConveyorController extends ClockDomain{
               }
             }
             else {
-              S227650=2;
+              S227647=2;
               if(cmd_thread_3 == TO_DUMP_thread_3){//sysj\recyclingConveyorController.sysj line: 92, column: 8
-                S228025=0;
+                S228022=0;
                 if(auto_1.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 22
-                  S228025=1;
+                  S228022=1;
                   if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                     System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                    S227650=3;
+                    S227647=3;
                     active[3]=1;
                     ends[3]=1;
                     tdone[3]=1;
@@ -4029,10 +4029,10 @@ public class RecyclingConveyorController extends ClockDomain{
                 }
                 else {
                   if(recyclingConveyorMotorM.getprestatus()){//sysj\recyclingConveyorController.sysj line: 93, column: 45
-                    S228025=1;
+                    S228022=1;
                     if(bottleAtDumper.getprestatus()){//sysj\recyclingConveyorController.sysj line: 94, column: 22
                       System.out.println("[RC] Bottle at the liquid dumper.");//sysj\recyclingConveyorController.sysj line: 97, column: 6
-                      S227650=3;
+                      S227647=3;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
@@ -4053,7 +4053,7 @@ public class RecyclingConveyorController extends ClockDomain{
                 }
               }
               else {
-                S227650=3;
+                S227647=3;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
@@ -4075,8 +4075,8 @@ public class RecyclingConveyorController extends ClockDomain{
     }
   }
 
-  public void thread237694(int [] tdone, int [] ends){
-        S227626=1;
+  public void thread237691(int [] tdone, int [] ends){
+        S227623=1;
     if(mode.getprestatus()){//sysj\recyclingConveyorController.sysj line: 52, column: 12
       if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 0){//sysj\recyclingConveyorController.sysj line: 55, column: 8
         auto_1.setPresent();//sysj\recyclingConveyorController.sysj line: 55, column: 30
@@ -4114,14 +4114,32 @@ public class RecyclingConveyorController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S237692){
+      switch(S237689){
         case 0 : 
-          S237692=0;
+          S237689=0;
           break RUN;
         
         case 1 : 
-          S237692=2;
-          S237692=2;
+          S237689=2;
+          S237689=2;
+          auto_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
+          manual_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
+          thread237691(tdone,ends);
+          thread237692(tdone,ends);
+          int biggest237693 = 0;
+          if(ends[2]>=biggest237693){
+            biggest237693=ends[2];
+          }
+          if(ends[3]>=biggest237693){
+            biggest237693=ends[3];
+          }
+          if(biggest237693 == 1){
+            active[1]=1;
+            ends[1]=1;
+            break RUN;
+          }
+        
+        case 2 : 
           auto_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
           manual_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
           thread237694(tdone,ends);
@@ -4138,30 +4156,12 @@ public class RecyclingConveyorController extends ClockDomain{
             ends[1]=1;
             break RUN;
           }
-        
-        case 2 : 
-          auto_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
-          manual_1.setClear();//sysj\recyclingConveyorController.sysj line: 48, column: 2
-          thread237697(tdone,ends);
-          thread237698(tdone,ends);
-          int biggest237699 = 0;
-          if(ends[2]>=biggest237699){
-            biggest237699=ends[2];
-          }
-          if(ends[3]>=biggest237699){
-            biggest237699=ends[3];
-          }
-          if(biggest237699 == 1){
-            active[1]=1;
-            ends[1]=1;
-            break RUN;
-          }
           //FINXME code
-          if(biggest237699 == 0){
-            S237692=0;
+          if(biggest237696 == 0){
+            S237689=0;
             active[1]=0;
             ends[1]=0;
-            S237692=0;
+            S237689=0;
             break RUN;
           }
         

@@ -22,8 +22,7 @@
  * bottle to the splitter, the splitter reads the record off the twin and
  * drives the diverter it senses, and the route it reports is the route the
  * bottle physically took. The labeller still refuses anything its own history
- * does not justify, so a jammed diverter is caught rather than shipped: two
- * independent mechanisms, not one.
+ * does not justify, so a jammed diverter is caught rather than shipped.
  */
 SystemController(
 		// from / to the POS
@@ -90,7 +89,7 @@ SystemController(
 	// exists - the line would look clear and never move again.
 	signal lineReset;
 
-	{ // Operating mode: 0 = auto, 1 = manual
+	{ // Operating mode: 0 = auto, 1 = manual, 2 = paused
 		//
 		// Held every tick rather than pulsed on change, because a controller
 		// selects its mode by testing this level at a tick boundary. The

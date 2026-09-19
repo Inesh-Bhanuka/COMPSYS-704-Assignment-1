@@ -7,7 +7,7 @@
  * the System Controller and the rotary table it drives no plant, so it has no
  * operating mode of its own - the machines beneath it each carry theirs.
  *
- * Interface 
+ * Interface
  *
  *   bottleRejected    channel, SC -> RSC. The twin of a bottle the splitter
  *                     has diverted onto the belt. A channel, not a signal,
@@ -17,10 +17,10 @@
  *   recyclingStatus   valued signal, RSC -> SC. A level the coordinator may
  *                     sample at any point: 0 idle, 1 busy, 2 suspended or
  *                     faulted, 3 running with a bin or tank warning.
- * 
+ *
  * Every sensor and actuator stays local to its own controller-plant pair.
  *
- * Sequencing 
+ * Sequencing
  *
  * Recycling is strictly sequential, so the sequencer is a single straight
  * line: enable a stage, await its status, enable the next. Nothing inside the
@@ -73,8 +73,8 @@ RecyclingStationController(
 			// The station advertises no readiness level: being parked at this
 			// receive IS the readiness, and the coordinator's send completes only
 			// when the station has actually taken the workpiece. That is the
-			// back-pressure, and with the queue in front of the sequencer it now
-			// only bites when five bottles are already waiting.
+			// back-pressure, and with the queue in front of the sequencer it
+			// only bites once five bottles are already waiting.
 			RecyclingQueue q = RecyclingQueue.shared();
 			RecyclingRecord m = RecyclingRecord.shared();
 			WorkpieceTwin w = null;

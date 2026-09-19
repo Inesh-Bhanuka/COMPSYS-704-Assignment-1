@@ -136,10 +136,11 @@ def sysj():
  * so a press here asserts exactly one actuator signal and nothing else
  * decides what it means.
  *
- * Every controller ignores these while its mode input reads 0, so this domain
- * can emit freely and the plant only listens once the line is genuinely in
- * manual. That keeps the arbitration in one place - the mode signal - rather
- * than spread across thirteen machines.
+ * A controller only acts on these while its mode input reads 1. In automatic
+ * the gate in front of each stroke is preempted the instant it is reached, and
+ * paused holds it, so this domain can emit freely and the plant only moves
+ * once the line is genuinely in manual. That keeps the arbitration in one
+ * place - the mode signal - rather than spread across thirteen machines.
  *
  * ManualDrive is a mailbox filled by the GUI on its own thread, never read
  * from a socket inside a tick. It expires by itself if the panel stops

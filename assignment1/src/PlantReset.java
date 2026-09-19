@@ -1,27 +1,20 @@
 /**
  * A hard reset: the whole line empty in one tick.
  *
- * ---- Why it happens here and not in thirteen places ----
- *
- * Everything the display shows comes from a handful of shared models - what
- * is on the table, what is on the belts, what is waiting at the recycling
- * station, what is on the storage shelves, and which bottles are live. Empty
- * those together in one call and the picture goes clean in a single tick,
- * with no order of operations for a half-reset state to appear in.
+ * Everything the display shows comes from a handful of shared models - the
+ * table, the belts, the recycling station, the storage shelves, and the
+ * registry of live bottles. Emptying them together in one call leaves no
+ * order of operations for a half-reset state to appear in.
  *
  * The clock domains still need telling, because a plant keeps its own
  * occupancy and a controller can be parked mid-sequence holding a bottle that
- * no longer exists. They get the reset signal for exactly that; this class is
- * what makes the instant consistent.
+ * no longer exists. They get the reset signal for that; this class is what
+ * makes the instant consistent.
  *
- * ---- What is kept ----
- *
- * The histories. Every bottle cleared by a reset is discarded on its own
- * record first, so its story ends with the reason rather than trailing off,
- * and the registry keeps it in an archive the audit still reads. A reset
- * empties the plant, not the evidence: a run that ends with a reset can still
- * account for every bottle it ever admitted, which is the entire point of
- * keeping a record separate from the thing it describes.
+ * The histories are kept. Each cleared bottle is discarded on its own record
+ * first, so the record ends with a reason, and the registry moves it to an
+ * archive the audit still reads. A run that ends in a reset can still account
+ * for every bottle it admitted.
  */
 public final class PlantReset {
 

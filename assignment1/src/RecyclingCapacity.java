@@ -1,15 +1,12 @@
 /**
  * Finite simulated recycling receptacle, serviced only at a safe machine boundary.
  *
- * The mechanism is the point: a full bin means the machine finishes the
- * container it is holding, reports BLOCKED, and stops accepting work, so the
- * back-pressure reaches the Recycling Station Controller at a clean boundary
- * rather than mid-cycle.
+ * A full bin means the machine finishes the container it is holding, reports
+ * BLOCKED, and stops accepting work, so the back-pressure reaches the
+ * Recycling Station Controller at a clean boundary rather than mid-cycle.
  *
- * The capacities are not. Emptying a bin is out of scope and stood in for by
- * an automatic service, so a small capacity only interrupts a demonstration
- * with a full-then-serviced pair of messages that says more about the stub
- * than the plant. They are set large enough never to be reached, and the
+ * Emptying a bin is out of scope and stood in for by an automatic service, so
+ * the capacities default high enough not to be reached in a normal run. The
  * full-and-blocked path stays reachable: -Dabs.lidBinCapacity=3 exercises it.
  */
 public final class RecyclingCapacity {

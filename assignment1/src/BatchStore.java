@@ -6,10 +6,10 @@ import java.util.Map;
 /**
  * Where labelled bottles end up, kept batch by batch.
  *
- * The line ends here rather than at a machine - the outfeed conveyor pulls a
- * finished bottle off at position 6 and it is set down in the storage for its
- * batch. So this is the terminal the twin retires into: once a batch is full
- * its twins are archived together, and any one of them can be found again by
+ * The line ends here rather than at a machine - the outfeed conveyor takes a
+ * bottle off the table at position 6, the labeller prints and applies its
+ * label, and it is set down in the storage for its batch. So this is where
+ * the twin retires: shelved with the rest of its batch, and findable again by
  * the serial printed on its own label.
  */
 public class BatchStore {
@@ -66,7 +66,7 @@ public class BatchStore {
 		return n;
 	}
 
-	/** The point of printing a serial: it retrieves the whole record. */
+	/** Look a bottle up by the serial printed on its label. */
 	public WorkpieceTwin find(String serial) {
 		return bySerial.get(serial);
 	}

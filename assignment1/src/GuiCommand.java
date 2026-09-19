@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.util.*;
 
-/** Immutable operator intent. Selecting UI checkboxes does not construct/send a command. */
+/** Immutable operator intent: one press of a control button. Manual actuator
+ *  selections are not commands - they travel to the plant as a ManualTick. */
 public final class GuiCommand implements Serializable {
     private static final long serialVersionUID = 1L;
     public final String id = UUID.randomUUID().toString();

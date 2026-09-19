@@ -27,7 +27,7 @@ public class LiquidDumperPlant extends ClockDomain{
   private int clamp_thread_1;//sysj\liquidDumperPlant.sysj line: 32, column: 2
   private int angle_thread_1;//sysj\liquidDumperPlant.sysj line: 33, column: 2
   private DumperDrainCycle drain_thread_1;//sysj\liquidDumperPlant.sysj line: 34, column: 2
-  private int S226808 = 1;
+  private int S226805 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -39,14 +39,14 @@ public class LiquidDumperPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S226808){
+      switch(S226805){
         case 0 : 
-          S226808=0;
+          S226805=0;
           break RUN;
         
         case 1 : 
-          S226808=2;
-          S226808=2;
+          S226805=2;
+          S226805=2;
           CLAMP_thread_1 = PlantTiming.ticks(3);//sysj\liquidDumperPlant.sysj line: 28, column: 2
           ROTATE_thread_1 = PlantTiming.ticks(5);//sysj\liquidDumperPlant.sysj line: 29, column: 2
           DRAIN_thread_1 = PlantTiming.ticks(8);//sysj\liquidDumperPlant.sysj line: 30, column: 2

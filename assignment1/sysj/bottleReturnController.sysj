@@ -61,12 +61,10 @@ BottleReturnController(
 				receive enable;
 				w = (WorkpieceTwin)#enable;
 
-				// The belt indexes whether or not this stop holds a bottle, so an
-				// empty stop is normal rather than an error. A station handed null
-				// has nothing to do and reports ready immediately, which is what
-				// lets the coordinator start all three unconditionally - three
-				// optional sends and three optional receives is the branch
-				// explosion the rotary table's barrier was built to avoid.
+				// The station is handed whatever workpiece the RSC is recovering.
+				// A null carries no work, so the cycle below is skipped and the
+				// status goes back straight away: the sequencer's receive always
+				// completes and it is never left waiting on an empty stop.
 				code = OK;
 
 				if(w != null){
@@ -95,7 +93,8 @@ BottleReturnController(
 					present(collectorBinFull){
 						System.out.println("[BR] Collector bin is full; no further bottles until it is emptied.");
 						code = BLOCKED;
-	                    // The plant exchanges a full bin only with the arm home.
+	                    // The plant only services a full bin with the arm home,
+	                    // nothing carried and the return belt clear.
 	                    await(immediate !collectorBinFull);
 	                    code = OK;
 					}

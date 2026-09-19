@@ -96,52 +96,52 @@ public class SystemController extends ClockDomain{
   private int v_thread_11;//sysj\systemController.sysj line: 334, column: 3
   private int last_thread_12;//sysj\systemController.sysj line: 353, column: 3
   private int v_thread_12;//sysj\systemController.sysj line: 354, column: 3
-  private int S628807 = 1;
-  private int S591828 = 1;
-  private int S591839 = 1;
-  private int S591844 = 1;
-  private int S591906 = 1;
-  private int S593594 = 1;
-  private int S592187 = 1;
+  private int S628804 = 1;
+  private int S591825 = 1;
+  private int S591836 = 1;
+  private int S591841 = 1;
+  private int S591903 = 1;
+  private int S593591 = 1;
+  private int S592184 = 1;
+  private int S591904 = 1;
+  private int S591912 = 1;
   private int S591907 = 1;
-  private int S591915 = 1;
-  private int S591910 = 1;
+  private int S593806 = 1;
+  private int S593662 = 1;
+  private int S593614 = 1;
+  private int S593598 = 1;
+  private int S593593 = 1;
+  private int S625050 = 1;
+  private int S599014 = 1;
+  private int S593830 = 1;
+  private int S593814 = 1;
   private int S593809 = 1;
-  private int S593665 = 1;
-  private int S593617 = 1;
-  private int S593601 = 1;
-  private int S593596 = 1;
-  private int S625053 = 1;
-  private int S599017 = 1;
-  private int S593833 = 1;
-  private int S593817 = 1;
-  private int S593812 = 1;
-  private int S593944 = 1;
-  private int S593840 = 1;
-  private int S593835 = 1;
-  private int S593862 = 1;
-  private int S593857 = 1;
-  private int S594055 = 1;
-  private int S593951 = 1;
-  private int S593946 = 1;
-  private int S593973 = 1;
-  private int S593968 = 1;
-  private int S594175 = 1;
-  private int S594170 = 1;
+  private int S593941 = 1;
+  private int S593837 = 1;
+  private int S593832 = 1;
+  private int S593859 = 1;
+  private int S593854 = 1;
+  private int S594052 = 1;
+  private int S593948 = 1;
+  private int S593943 = 1;
+  private int S593970 = 1;
+  private int S593965 = 1;
+  private int S594172 = 1;
+  private int S594167 = 1;
+  private int S628334 = 1;
+  private int S628762 = 1;
+  private int S628406 = 1;
+  private int S628358 = 1;
+  private int S628342 = 1;
   private int S628337 = 1;
-  private int S628765 = 1;
-  private int S628409 = 1;
-  private int S628361 = 1;
-  private int S628345 = 1;
-  private int S628340 = 1;
-  private int S628785 = 1;
-  private int S628805 = 1;
+  private int S628782 = 1;
+  private int S628802 = 1;
   
   private int[] ends = new int[13];
   private int[] tdone = new int[13];
   
-  public void thread628831(int [] tdone, int [] ends){
-        switch(S628805){
+  public void thread628828(int [] tdone, int [] ends){
+        switch(S628802){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -180,8 +180,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628830(int [] tdone, int [] ends){
-        switch(S628785){
+  public void thread628827(int [] tdone, int [] ends){
+        switch(S628782){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -220,8 +220,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628829(int [] tdone, int [] ends){
-        switch(S628765){
+  public void thread628826(int [] tdone, int [] ends){
+        switch(S628762){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -229,33 +229,33 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S628409){
+        switch(S628406){
           case 0 : 
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 314, column: 20
               bottleRecycled_in.setPreempted();
-              S628409=1;
+              S628406=1;
               active[10]=1;
               ends[10]=1;
               tdone[10]=1;
             }
             else {
-              switch(S628361){
+              switch(S628358){
                 case 0 : 
-                  switch(S628345){
+                  switch(S628342){
                     case 0 : 
                       if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 316, column: 6
                         bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
-                        S628345=1;
+                        S628342=1;
                         active[10]=1;
                         ends[10]=1;
                         tdone[10]=1;
                       }
                       else {
-                        switch(S628340){
+                        switch(S628337){
                           case 0 : 
                             if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                               bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 316, column: 6
-                              S628340=1;
+                              S628337=1;
                               if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                                 bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
                                 ends[10]=2;
@@ -264,7 +264,7 @@ public class SystemController extends ClockDomain{
                                 recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
                                 System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
                                 OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-                                S628361=1;
+                                S628358=1;
                                 active[10]=1;
                                 ends[10]=1;
                                 tdone[10]=1;
@@ -291,7 +291,7 @@ public class SystemController extends ClockDomain{
                               recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
                               System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
                               OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-                              S628361=1;
+                              S628358=1;
                               active[10]=1;
                               ends[10]=1;
                               tdone[10]=1;
@@ -308,20 +308,20 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S628345=1;
-                      S628345=0;
+                      S628342=1;
+                      S628342=0;
                       if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 316, column: 6
                         bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
-                        S628345=1;
+                        S628342=1;
                         active[10]=1;
                         ends[10]=1;
                         tdone[10]=1;
                       }
                       else {
-                        S628340=0;
+                        S628337=0;
                         if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                           bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 316, column: 6
-                          S628340=1;
+                          S628337=1;
                           if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                             bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
                             ends[10]=2;
@@ -330,7 +330,7 @@ public class SystemController extends ClockDomain{
                             recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
                             System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
                             OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-                            S628361=1;
+                            S628358=1;
                             active[10]=1;
                             ends[10]=1;
                             tdone[10]=1;
@@ -353,21 +353,21 @@ public class SystemController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S628361=1;
-                  S628361=0;
-                  S628345=0;
+                  S628358=1;
+                  S628358=0;
+                  S628342=0;
                   if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 316, column: 6
                     bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
-                    S628345=1;
+                    S628342=1;
                     active[10]=1;
                     ends[10]=1;
                     tdone[10]=1;
                   }
                   else {
-                    S628340=0;
+                    S628337=0;
                     if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                       bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 316, column: 6
-                      S628340=1;
+                      S628337=1;
                       if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                         bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
                         ends[10]=2;
@@ -376,7 +376,7 @@ public class SystemController extends ClockDomain{
                         recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
                         System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
                         OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-                        S628361=1;
+                        S628358=1;
                         active[10]=1;
                         ends[10]=1;
                         tdone[10]=1;
@@ -400,30 +400,30 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            S628409=1;
-            S628409=0;
+            S628406=1;
+            S628406=0;
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 314, column: 20
               bottleRecycled_in.setPreempted();
-              S628409=1;
+              S628406=1;
               active[10]=1;
               ends[10]=1;
               tdone[10]=1;
             }
             else {
-              S628361=0;
-              S628345=0;
+              S628358=0;
+              S628342=0;
               if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 316, column: 6
                 bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
-                S628345=1;
+                S628342=1;
                 active[10]=1;
                 ends[10]=1;
                 tdone[10]=1;
               }
               else {
-                S628340=0;
+                S628337=0;
                 if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                   bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 316, column: 6
-                  S628340=1;
+                  S628337=1;
                   if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
                     bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
                     ends[10]=2;
@@ -432,7 +432,7 @@ public class SystemController extends ClockDomain{
                     recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
                     System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
                     OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-                    S628361=1;
+                    S628358=1;
                     active[10]=1;
                     ends[10]=1;
                     tdone[10]=1;
@@ -458,8 +458,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628828(int [] tdone, int [] ends){
-        switch(S628337){
+  public void thread628825(int [] tdone, int [] ends){
+        switch(S628334){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -6636,8 +6636,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628827(int [] tdone, int [] ends){
-        switch(S625053){
+  public void thread628824(int [] tdone, int [] ends){
+        switch(S625050){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -6645,7 +6645,7 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S599017){
+        switch(S599014){
           case 0 : 
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 203, column: 20
               bottleDone_in.setPreempted();
@@ -6654,29 +6654,29 @@ public class SystemController extends ClockDomain{
               toSplitter_o.setPreempted();
               labelBottle_o.setPreempted();
               bottleRejected_o.setPreempted();
-              S599017=1;
+              S599014=1;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
             else {
-              switch(S593833){
+              switch(S593830){
                 case 0 : 
-                  switch(S593817){
+                  switch(S593814){
                     case 0 : 
                       if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 205, column: 6
                         bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
-                        S593817=1;
+                        S593814=1;
                         active[8]=1;
                         ends[8]=1;
                         tdone[8]=1;
                       }
                       else {
-                        switch(S593812){
+                        switch(S593809){
                           case 0 : 
                             if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                               bottleDone_in.setACK(true);//sysj\systemController.sysj line: 205, column: 6
-                              S593812=1;
+                              S593809=1;
                               if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                                 bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
                                 ends[8]=2;
@@ -6685,47 +6685,47 @@ public class SystemController extends ClockDomain{
                                 if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
                                   System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
                                 }
-                                S593833=1;
+                                S593830=1;
                                 if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-                                  S593944=0;
-                                  S593840=0;
+                                  S593941=0;
+                                  S593837=0;
                                   if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                                     toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                                    S593840=1;
+                                    S593837=1;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
                                   }
                                   else {
-                                    S593835=0;
+                                    S593832=0;
                                     if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                       toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                                      S593835=1;
+                                      S593832=1;
                                       if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                         toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                         ends[8]=2;
                                         ;//sysj\systemController.sysj line: 220, column: 6
-                                        S593944=1;
-                                        S593862=0;
+                                        S593941=1;
+                                        S593859=0;
                                         if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                           splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                          S593862=1;
+                                          S593859=1;
                                           active[8]=1;
                                           ends[8]=1;
                                           tdone[8]=1;
                                         }
                                         else {
-                                          S593857=0;
+                                          S593854=0;
                                           if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                             splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                            S593857=1;
+                                            S593854=1;
                                             if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                               splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                               ends[8]=2;
                                               ;//sysj\systemController.sysj line: 221, column: 6
                                               route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                               divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                              S593944=2;
+                                              S593941=2;
                                               active[8]=1;
                                               ends[8]=1;
                                               tdone[8]=1;
@@ -6757,7 +6757,7 @@ public class SystemController extends ClockDomain{
                                   }
                                 }
                                 else {
-                                  S593833=2;
+                                  S593830=2;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
@@ -6785,47 +6785,47 @@ public class SystemController extends ClockDomain{
                               if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
                                 System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
                               }
-                              S593833=1;
+                              S593830=1;
                               if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-                                S593944=0;
-                                S593840=0;
+                                S593941=0;
+                                S593837=0;
                                 if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                                   toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                                  S593840=1;
+                                  S593837=1;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
                                 }
                                 else {
-                                  S593835=0;
+                                  S593832=0;
                                   if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                     toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                                    S593835=1;
+                                    S593832=1;
                                     if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                       toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                       ends[8]=2;
                                       ;//sysj\systemController.sysj line: 220, column: 6
-                                      S593944=1;
-                                      S593862=0;
+                                      S593941=1;
+                                      S593859=0;
                                       if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                         splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                        S593862=1;
+                                        S593859=1;
                                         active[8]=1;
                                         ends[8]=1;
                                         tdone[8]=1;
                                       }
                                       else {
-                                        S593857=0;
+                                        S593854=0;
                                         if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                           splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                          S593857=1;
+                                          S593854=1;
                                           if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                             splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                             ends[8]=2;
                                             ;//sysj\systemController.sysj line: 221, column: 6
                                             route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                             divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                            S593944=2;
+                                            S593941=2;
                                             active[8]=1;
                                             ends[8]=1;
                                             tdone[8]=1;
@@ -6857,7 +6857,7 @@ public class SystemController extends ClockDomain{
                                 }
                               }
                               else {
-                                S593833=2;
+                                S593830=2;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
@@ -6875,20 +6875,20 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S593817=1;
-                      S593817=0;
+                      S593814=1;
+                      S593814=0;
                       if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 205, column: 6
                         bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
-                        S593817=1;
+                        S593814=1;
                         active[8]=1;
                         ends[8]=1;
                         tdone[8]=1;
                       }
                       else {
-                        S593812=0;
+                        S593809=0;
                         if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                           bottleDone_in.setACK(true);//sysj\systemController.sysj line: 205, column: 6
-                          S593812=1;
+                          S593809=1;
                           if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                             bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
                             ends[8]=2;
@@ -6897,47 +6897,47 @@ public class SystemController extends ClockDomain{
                             if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
                               System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
                             }
-                            S593833=1;
+                            S593830=1;
                             if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-                              S593944=0;
-                              S593840=0;
+                              S593941=0;
+                              S593837=0;
                               if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                                 toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                                S593840=1;
+                                S593837=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                S593835=0;
+                                S593832=0;
                                 if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                   toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                                  S593835=1;
+                                  S593832=1;
                                   if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                     toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 220, column: 6
-                                    S593944=1;
-                                    S593862=0;
+                                    S593941=1;
+                                    S593859=0;
                                     if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                       splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                      S593862=1;
+                                      S593859=1;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
                                     }
                                     else {
-                                      S593857=0;
+                                      S593854=0;
                                       if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                         splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                        S593857=1;
+                                        S593854=1;
                                         if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                           splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                           ends[8]=2;
                                           ;//sysj\systemController.sysj line: 221, column: 6
                                           route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                           divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                          S593944=2;
+                                          S593941=2;
                                           active[8]=1;
                                           ends[8]=1;
                                           tdone[8]=1;
@@ -6969,7 +6969,7 @@ public class SystemController extends ClockDomain{
                               }
                             }
                             else {
-                              S593833=2;
+                              S593830=2;
                               active[8]=1;
                               ends[8]=1;
                               tdone[8]=1;
@@ -6993,48 +6993,48 @@ public class SystemController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  switch(S593944){
+                  switch(S593941){
                     case 0 : 
-                      switch(S593840){
+                      switch(S593837){
                         case 0 : 
                           if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                             toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                            S593840=1;
+                            S593837=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            switch(S593835){
+                            switch(S593832){
                               case 0 : 
                                 if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                   toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                                  S593835=1;
+                                  S593832=1;
                                   if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                     toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 220, column: 6
-                                    S593944=1;
-                                    S593862=0;
+                                    S593941=1;
+                                    S593859=0;
                                     if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                       splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                      S593862=1;
+                                      S593859=1;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
                                     }
                                     else {
-                                      S593857=0;
+                                      S593854=0;
                                       if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                         splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                        S593857=1;
+                                        S593854=1;
                                         if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                           splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                           ends[8]=2;
                                           ;//sysj\systemController.sysj line: 221, column: 6
                                           route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                           divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                          S593944=2;
+                                          S593941=2;
                                           active[8]=1;
                                           ends[8]=1;
                                           tdone[8]=1;
@@ -7070,27 +7070,27 @@ public class SystemController extends ClockDomain{
                                   toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                   ends[8]=2;
                                   ;//sysj\systemController.sysj line: 220, column: 6
-                                  S593944=1;
-                                  S593862=0;
+                                  S593941=1;
+                                  S593859=0;
                                   if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                     splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                    S593862=1;
+                                    S593859=1;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
                                   }
                                   else {
-                                    S593857=0;
+                                    S593854=0;
                                     if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                       splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                      S593857=1;
+                                      S593854=1;
                                       if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                         splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                         ends[8]=2;
                                         ;//sysj\systemController.sysj line: 221, column: 6
                                         route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                         divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                        S593944=2;
+                                        S593941=2;
                                         active[8]=1;
                                         ends[8]=1;
                                         tdone[8]=1;
@@ -7120,45 +7120,45 @@ public class SystemController extends ClockDomain{
                           break;
                         
                         case 1 : 
-                          S593840=1;
-                          S593840=0;
+                          S593837=1;
+                          S593837=0;
                           if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                             toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                            S593840=1;
+                            S593837=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            S593835=0;
+                            S593832=0;
                             if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                               toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                              S593835=1;
+                              S593832=1;
                               if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                 toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                 ends[8]=2;
                                 ;//sysj\systemController.sysj line: 220, column: 6
-                                S593944=1;
-                                S593862=0;
+                                S593941=1;
+                                S593859=0;
                                 if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                   splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                  S593862=1;
+                                  S593859=1;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
                                 }
                                 else {
-                                  S593857=0;
+                                  S593854=0;
                                   if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                     splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                    S593857=1;
+                                    S593854=1;
                                     if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                       splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                       ends[8]=2;
                                       ;//sysj\systemController.sysj line: 221, column: 6
                                       route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                       divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                      S593944=2;
+                                      S593941=2;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
@@ -7194,28 +7194,28 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      switch(S593862){
+                      switch(S593859){
                         case 0 : 
                           if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                             splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                            S593862=1;
+                            S593859=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            switch(S593857){
+                            switch(S593854){
                               case 0 : 
                                 if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                   splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                  S593857=1;
+                                  S593854=1;
                                   if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                     splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 221, column: 6
                                     route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                     divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                    S593944=2;
+                                    S593941=2;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
@@ -7240,7 +7240,7 @@ public class SystemController extends ClockDomain{
                                   ;//sysj\systemController.sysj line: 221, column: 6
                                   route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                   divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                  S593944=2;
+                                  S593941=2;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
@@ -7257,27 +7257,27 @@ public class SystemController extends ClockDomain{
                           break;
                         
                         case 1 : 
-                          S593862=1;
-                          S593862=0;
+                          S593859=1;
+                          S593859=0;
                           if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                             splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                            S593862=1;
+                            S593859=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            S593857=0;
+                            S593854=0;
                             if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                               splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                              S593857=1;
+                              S593854=1;
                               if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                 splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                 ends[8]=2;
                                 ;//sysj\systemController.sysj line: 221, column: 6
                                 route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                 divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                S593944=2;
+                                S593941=2;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
@@ -7300,48 +7300,48 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 2 : 
-                      S593944=2;
-                      S593944=3;
+                      S593941=2;
+                      S593941=3;
                       if(!divert_thread_8){//sysj\systemController.sysj line: 229, column: 9
-                        S594055=0;
-                        S593951=0;
+                        S594052=0;
+                        S593948=0;
                         if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj\systemController.sysj line: 230, column: 7
                           labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
-                          S593951=1;
+                          S593948=1;
                           active[8]=1;
                           ends[8]=1;
                           tdone[8]=1;
                         }
                         else {
-                          S593946=0;
+                          S593943=0;
                           if(labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                             labelBottle_o.setVal(w_thread_8);//sysj\systemController.sysj line: 230, column: 7
-                            S593946=1;
+                            S593943=1;
                             if(!labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                               labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
                               ends[8]=2;
                               ;//sysj\systemController.sysj line: 230, column: 7
-                              S594055=1;
-                              S593973=0;
+                              S594052=1;
+                              S593970=0;
                               if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                 labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                S593973=1;
+                                S593970=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                S593968=0;
+                                S593965=0;
                                 if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                   labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                  S593968=1;
+                                  S593965=1;
                                   if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                     labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 231, column: 7
                                     w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                     divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                    S593944=4;
+                                    S593941=4;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
@@ -7373,7 +7373,7 @@ public class SystemController extends ClockDomain{
                         }
                       }
                       else {
-                        S593944=4;
+                        S593941=4;
                         active[8]=1;
                         ends[8]=1;
                         tdone[8]=1;
@@ -7381,48 +7381,48 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 3 : 
-                      switch(S594055){
+                      switch(S594052){
                         case 0 : 
-                          switch(S593951){
+                          switch(S593948){
                             case 0 : 
                               if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj\systemController.sysj line: 230, column: 7
                                 labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
-                                S593951=1;
+                                S593948=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                switch(S593946){
+                                switch(S593943){
                                   case 0 : 
                                     if(labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                                       labelBottle_o.setVal(w_thread_8);//sysj\systemController.sysj line: 230, column: 7
-                                      S593946=1;
+                                      S593943=1;
                                       if(!labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                                         labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
                                         ends[8]=2;
                                         ;//sysj\systemController.sysj line: 230, column: 7
-                                        S594055=1;
-                                        S593973=0;
+                                        S594052=1;
+                                        S593970=0;
                                         if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                           labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                          S593973=1;
+                                          S593970=1;
                                           active[8]=1;
                                           ends[8]=1;
                                           tdone[8]=1;
                                         }
                                         else {
-                                          S593968=0;
+                                          S593965=0;
                                           if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                             labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                            S593968=1;
+                                            S593965=1;
                                             if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                               labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                               ends[8]=2;
                                               ;//sysj\systemController.sysj line: 231, column: 7
                                               w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                               divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                              S593944=4;
+                                              S593941=4;
                                               active[8]=1;
                                               ends[8]=1;
                                               tdone[8]=1;
@@ -7458,27 +7458,27 @@ public class SystemController extends ClockDomain{
                                       labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
                                       ends[8]=2;
                                       ;//sysj\systemController.sysj line: 230, column: 7
-                                      S594055=1;
-                                      S593973=0;
+                                      S594052=1;
+                                      S593970=0;
                                       if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                         labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                        S593973=1;
+                                        S593970=1;
                                         active[8]=1;
                                         ends[8]=1;
                                         tdone[8]=1;
                                       }
                                       else {
-                                        S593968=0;
+                                        S593965=0;
                                         if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                           labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                          S593968=1;
+                                          S593965=1;
                                           if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                             labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                             ends[8]=2;
                                             ;//sysj\systemController.sysj line: 231, column: 7
                                             w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                             divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                            S593944=4;
+                                            S593941=4;
                                             active[8]=1;
                                             ends[8]=1;
                                             tdone[8]=1;
@@ -7508,45 +7508,45 @@ public class SystemController extends ClockDomain{
                               break;
                             
                             case 1 : 
-                              S593951=1;
-                              S593951=0;
+                              S593948=1;
+                              S593948=0;
                               if(!labelBottle_o.isPartnerPresent() || labelBottle_o.isPartnerPreempted()){//sysj\systemController.sysj line: 230, column: 7
                                 labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
-                                S593951=1;
+                                S593948=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                S593946=0;
+                                S593943=0;
                                 if(labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                                   labelBottle_o.setVal(w_thread_8);//sysj\systemController.sysj line: 230, column: 7
-                                  S593946=1;
+                                  S593943=1;
                                   if(!labelBottle_o.isACK()){//sysj\systemController.sysj line: 230, column: 7
                                     labelBottle_o.setREQ(false);//sysj\systemController.sysj line: 230, column: 7
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 230, column: 7
-                                    S594055=1;
-                                    S593973=0;
+                                    S594052=1;
+                                    S593970=0;
                                     if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                       labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                      S593973=1;
+                                      S593970=1;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
                                     }
                                     else {
-                                      S593968=0;
+                                      S593965=0;
                                       if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                         labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                        S593968=1;
+                                        S593965=1;
                                         if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                           labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                           ends[8]=2;
                                           ;//sysj\systemController.sysj line: 231, column: 7
                                           w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                           divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                          S593944=4;
+                                          S593941=4;
                                           active[8]=1;
                                           ends[8]=1;
                                           tdone[8]=1;
@@ -7582,28 +7582,28 @@ public class SystemController extends ClockDomain{
                           break;
                         
                         case 1 : 
-                          switch(S593973){
+                          switch(S593970){
                             case 0 : 
                               if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                 labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                S593973=1;
+                                S593970=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                switch(S593968){
+                                switch(S593965){
                                   case 0 : 
                                     if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                       labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                      S593968=1;
+                                      S593965=1;
                                       if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                         labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                         ends[8]=2;
                                         ;//sysj\systemController.sysj line: 231, column: 7
                                         w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                         divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                        S593944=4;
+                                        S593941=4;
                                         active[8]=1;
                                         ends[8]=1;
                                         tdone[8]=1;
@@ -7628,7 +7628,7 @@ public class SystemController extends ClockDomain{
                                       ;//sysj\systemController.sysj line: 231, column: 7
                                       w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                       divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                      S593944=4;
+                                      S593941=4;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
@@ -7645,27 +7645,27 @@ public class SystemController extends ClockDomain{
                               break;
                             
                             case 1 : 
-                              S593973=1;
-                              S593973=0;
+                              S593970=1;
+                              S593970=0;
                               if(!labelDone_in.isPartnerPresent() || labelDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 231, column: 7
                                 labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
-                                S593973=1;
+                                S593970=1;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
                               }
                               else {
-                                S593968=0;
+                                S593965=0;
                                 if(!labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                   labelDone_in.setACK(true);//sysj\systemController.sysj line: 231, column: 7
-                                  S593968=1;
+                                  S593965=1;
                                   if(labelDone_in.isREQ()){//sysj\systemController.sysj line: 231, column: 7
                                     labelDone_in.setACK(false);//sysj\systemController.sysj line: 231, column: 7
                                     ends[8]=2;
                                     ;//sysj\systemController.sysj line: 231, column: 7
                                     w_thread_8 = (WorkpieceTwin)(labelDone_in.getVal() == null ? null : ((WorkpieceTwin)labelDone_in.getVal()));//sysj\systemController.sysj line: 232, column: 7
                                     divert_thread_8 = w_thread_8.isRejected();//sysj\systemController.sysj line: 233, column: 7
-                                    S593944=4;
+                                    S593941=4;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
@@ -7691,23 +7691,23 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 4 : 
-                      S593944=4;
-                      S593944=5;
+                      S593941=4;
+                      S593941=5;
                       if(divert_thread_8){//sysj\systemController.sysj line: 237, column: 6
                         System.out.println("[SC] " + w_thread_8 + " goes to the Recycling Station (" + w_thread_8.defect() + ").");//sysj\systemController.sysj line: 238, column: 7
-                        S594175=0;
+                        S594172=0;
                         if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 239, column: 7
                           bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
-                          S594175=1;
+                          S594172=1;
                           active[8]=1;
                           ends[8]=1;
                           tdone[8]=1;
                         }
                         else {
-                          S594170=0;
+                          S594167=0;
                           if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                             bottleRejected_o.setVal(w_thread_8);//sysj\systemController.sysj line: 239, column: 7
-                            S594170=1;
+                            S594167=1;
                             if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                               bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
                               ends[8]=2;
@@ -7723,7 +7723,7 @@ public class SystemController extends ClockDomain{
                                 System.out.println("[SC] " + w_thread_8 + " labelled " + w_thread_8.serial + " and stored in batch " + w_thread_8.batchId + " (" + BatchStore.shared().held(w_thread_8.batchId) + " on the shelf). " + done_thread_8 + " complete.");//sysj\systemController.sysj line: 253, column: 7
                                 OrderBook.delivered(w_thread_8);//sysj\systemController.sysj line: 256, column: 7
                               }
-                              S593833=2;
+                              S593830=2;
                               active[8]=1;
                               ends[8]=1;
                               tdone[8]=1;
@@ -7753,7 +7753,7 @@ public class SystemController extends ClockDomain{
                           System.out.println("[SC] " + w_thread_8 + " labelled " + w_thread_8.serial + " and stored in batch " + w_thread_8.batchId + " (" + BatchStore.shared().held(w_thread_8.batchId) + " on the shelf). " + done_thread_8 + " complete.");//sysj\systemController.sysj line: 253, column: 7
                           OrderBook.delivered(w_thread_8);//sysj\systemController.sysj line: 256, column: 7
                         }
-                        S593833=2;
+                        S593830=2;
                         active[8]=1;
                         ends[8]=1;
                         tdone[8]=1;
@@ -7761,21 +7761,21 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 5 : 
-                      switch(S594175){
+                      switch(S594172){
                         case 0 : 
                           if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 239, column: 7
                             bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
-                            S594175=1;
+                            S594172=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            switch(S594170){
+                            switch(S594167){
                               case 0 : 
                                 if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                                   bottleRejected_o.setVal(w_thread_8);//sysj\systemController.sysj line: 239, column: 7
-                                  S594170=1;
+                                  S594167=1;
                                   if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                                     bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
                                     ends[8]=2;
@@ -7791,7 +7791,7 @@ public class SystemController extends ClockDomain{
                                       System.out.println("[SC] " + w_thread_8 + " labelled " + w_thread_8.serial + " and stored in batch " + w_thread_8.batchId + " (" + BatchStore.shared().held(w_thread_8.batchId) + " on the shelf). " + done_thread_8 + " complete.");//sysj\systemController.sysj line: 253, column: 7
                                       OrderBook.delivered(w_thread_8);//sysj\systemController.sysj line: 256, column: 7
                                     }
-                                    S593833=2;
+                                    S593830=2;
                                     active[8]=1;
                                     ends[8]=1;
                                     tdone[8]=1;
@@ -7825,7 +7825,7 @@ public class SystemController extends ClockDomain{
                                     System.out.println("[SC] " + w_thread_8 + " labelled " + w_thread_8.serial + " and stored in batch " + w_thread_8.batchId + " (" + BatchStore.shared().held(w_thread_8.batchId) + " on the shelf). " + done_thread_8 + " complete.");//sysj\systemController.sysj line: 253, column: 7
                                     OrderBook.delivered(w_thread_8);//sysj\systemController.sysj line: 256, column: 7
                                   }
-                                  S593833=2;
+                                  S593830=2;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
@@ -7842,20 +7842,20 @@ public class SystemController extends ClockDomain{
                           break;
                         
                         case 1 : 
-                          S594175=1;
-                          S594175=0;
+                          S594172=1;
+                          S594172=0;
                           if(!bottleRejected_o.isPartnerPresent() || bottleRejected_o.isPartnerPreempted()){//sysj\systemController.sysj line: 239, column: 7
                             bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
-                            S594175=1;
+                            S594172=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            S594170=0;
+                            S594167=0;
                             if(bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                               bottleRejected_o.setVal(w_thread_8);//sysj\systemController.sysj line: 239, column: 7
-                              S594170=1;
+                              S594167=1;
                               if(!bottleRejected_o.isACK()){//sysj\systemController.sysj line: 239, column: 7
                                 bottleRejected_o.setREQ(false);//sysj\systemController.sysj line: 239, column: 7
                                 ends[8]=2;
@@ -7871,7 +7871,7 @@ public class SystemController extends ClockDomain{
                                   System.out.println("[SC] " + w_thread_8 + " labelled " + w_thread_8.serial + " and stored in batch " + w_thread_8.batchId + " (" + BatchStore.shared().held(w_thread_8.batchId) + " on the shelf). " + done_thread_8 + " complete.");//sysj\systemController.sysj line: 253, column: 7
                                   OrderBook.delivered(w_thread_8);//sysj\systemController.sysj line: 256, column: 7
                                 }
-                                S593833=2;
+                                S593830=2;
                                 active[8]=1;
                                 ends[8]=1;
                                 tdone[8]=1;
@@ -7897,21 +7897,21 @@ public class SystemController extends ClockDomain{
                   break;
                 
                 case 2 : 
-                  S593833=2;
-                  S593833=0;
-                  S593817=0;
+                  S593830=2;
+                  S593830=0;
+                  S593814=0;
                   if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 205, column: 6
                     bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
-                    S593817=1;
+                    S593814=1;
                     active[8]=1;
                     ends[8]=1;
                     tdone[8]=1;
                   }
                   else {
-                    S593812=0;
+                    S593809=0;
                     if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                       bottleDone_in.setACK(true);//sysj\systemController.sysj line: 205, column: 6
-                      S593812=1;
+                      S593809=1;
                       if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                         bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
                         ends[8]=2;
@@ -7920,47 +7920,47 @@ public class SystemController extends ClockDomain{
                         if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
                           System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
                         }
-                        S593833=1;
+                        S593830=1;
                         if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-                          S593944=0;
-                          S593840=0;
+                          S593941=0;
+                          S593837=0;
                           if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                             toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                            S593840=1;
+                            S593837=1;
                             active[8]=1;
                             ends[8]=1;
                             tdone[8]=1;
                           }
                           else {
-                            S593835=0;
+                            S593832=0;
                             if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                               toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                              S593835=1;
+                              S593832=1;
                               if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                                 toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                                 ends[8]=2;
                                 ;//sysj\systemController.sysj line: 220, column: 6
-                                S593944=1;
-                                S593862=0;
+                                S593941=1;
+                                S593859=0;
                                 if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                                   splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                                  S593862=1;
+                                  S593859=1;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
                                 }
                                 else {
-                                  S593857=0;
+                                  S593854=0;
                                   if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                     splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                    S593857=1;
+                                    S593854=1;
                                     if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                       splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                       ends[8]=2;
                                       ;//sysj\systemController.sysj line: 221, column: 6
                                       route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                       divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                      S593944=2;
+                                      S593941=2;
                                       active[8]=1;
                                       ends[8]=1;
                                       tdone[8]=1;
@@ -7992,7 +7992,7 @@ public class SystemController extends ClockDomain{
                           }
                         }
                         else {
-                          S593833=2;
+                          S593830=2;
                           active[8]=1;
                           ends[8]=1;
                           tdone[8]=1;
@@ -8017,8 +8017,8 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            S599017=1;
-            S599017=0;
+            S599014=1;
+            S599014=0;
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 203, column: 20
               bottleDone_in.setPreempted();
               splitterRoute_in.setPreempted();
@@ -8026,26 +8026,26 @@ public class SystemController extends ClockDomain{
               toSplitter_o.setPreempted();
               labelBottle_o.setPreempted();
               bottleRejected_o.setPreempted();
-              S599017=1;
+              S599014=1;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
             }
             else {
-              S593833=0;
-              S593817=0;
+              S593830=0;
+              S593814=0;
               if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 205, column: 6
                 bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
-                S593817=1;
+                S593814=1;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
               }
               else {
-                S593812=0;
+                S593809=0;
                 if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                   bottleDone_in.setACK(true);//sysj\systemController.sysj line: 205, column: 6
-                  S593812=1;
+                  S593809=1;
                   if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
                     bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
                     ends[8]=2;
@@ -8054,47 +8054,47 @@ public class SystemController extends ClockDomain{
                     if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
                       System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
                     }
-                    S593833=1;
+                    S593830=1;
                     if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-                      S593944=0;
-                      S593840=0;
+                      S593941=0;
+                      S593837=0;
                       if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                         toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                        S593840=1;
+                        S593837=1;
                         active[8]=1;
                         ends[8]=1;
                         tdone[8]=1;
                       }
                       else {
-                        S593835=0;
+                        S593832=0;
                         if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                           toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                          S593835=1;
+                          S593832=1;
                           if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                             toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                             ends[8]=2;
                             ;//sysj\systemController.sysj line: 220, column: 6
-                            S593944=1;
-                            S593862=0;
+                            S593941=1;
+                            S593859=0;
                             if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                               splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                              S593862=1;
+                              S593859=1;
                               active[8]=1;
                               ends[8]=1;
                               tdone[8]=1;
                             }
                             else {
-                              S593857=0;
+                              S593854=0;
                               if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                 splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                                S593857=1;
+                                S593854=1;
                                 if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                                   splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                                   ends[8]=2;
                                   ;//sysj\systemController.sysj line: 221, column: 6
                                   route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                                   divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                                  S593944=2;
+                                  S593941=2;
                                   active[8]=1;
                                   ends[8]=1;
                                   tdone[8]=1;
@@ -8126,7 +8126,7 @@ public class SystemController extends ClockDomain{
                       }
                     }
                     else {
-                      S593833=2;
+                      S593830=2;
                       active[8]=1;
                       ends[8]=1;
                       tdone[8]=1;
@@ -8153,8 +8153,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628826(int [] tdone, int [] ends){
-        switch(S593809){
+  public void thread628823(int [] tdone, int [] ends){
+        switch(S593806){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -8162,39 +8162,39 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S593665){
+        switch(S593662){
           case 0 : 
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 177, column: 20
               loadAck_in.setPreempted();
-              S593665=1;
+              S593662=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              switch(S593617){
+              switch(S593614){
                 case 0 : 
-                  switch(S593601){
+                  switch(S593598){
                     case 0 : 
                       if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 179, column: 6
                         loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
-                        S593601=1;
+                        S593598=1;
                         active[7]=1;
                         ends[7]=1;
                         tdone[7]=1;
                       }
                       else {
-                        switch(S593596){
+                        switch(S593593){
                           case 0 : 
                             if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                               loadAck_in.setACK(true);//sysj\systemController.sysj line: 179, column: 6
-                              S593596=1;
+                              S593593=1;
                               if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                                 loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
                                 ends[7]=2;
                                 ;//sysj\systemController.sysj line: 179, column: 6
                                 System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-                                S593617=1;
+                                S593614=1;
                                 active[7]=1;
                                 ends[7]=1;
                                 tdone[7]=1;
@@ -8218,7 +8218,7 @@ public class SystemController extends ClockDomain{
                               ends[7]=2;
                               ;//sysj\systemController.sysj line: 179, column: 6
                               System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-                              S593617=1;
+                              S593614=1;
                               active[7]=1;
                               ends[7]=1;
                               tdone[7]=1;
@@ -8235,26 +8235,26 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S593601=1;
-                      S593601=0;
+                      S593598=1;
+                      S593598=0;
                       if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 179, column: 6
                         loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
-                        S593601=1;
+                        S593598=1;
                         active[7]=1;
                         ends[7]=1;
                         tdone[7]=1;
                       }
                       else {
-                        S593596=0;
+                        S593593=0;
                         if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                           loadAck_in.setACK(true);//sysj\systemController.sysj line: 179, column: 6
-                          S593596=1;
+                          S593593=1;
                           if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                             loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
                             ends[7]=2;
                             ;//sysj\systemController.sysj line: 179, column: 6
                             System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-                            S593617=1;
+                            S593614=1;
                             active[7]=1;
                             ends[7]=1;
                             tdone[7]=1;
@@ -8277,27 +8277,27 @@ public class SystemController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S593617=1;
-                  S593617=0;
-                  S593601=0;
+                  S593614=1;
+                  S593614=0;
+                  S593598=0;
                   if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 179, column: 6
                     loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
-                    S593601=1;
+                    S593598=1;
                     active[7]=1;
                     ends[7]=1;
                     tdone[7]=1;
                   }
                   else {
-                    S593596=0;
+                    S593593=0;
                     if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                       loadAck_in.setACK(true);//sysj\systemController.sysj line: 179, column: 6
-                      S593596=1;
+                      S593593=1;
                       if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                         loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
                         ends[7]=2;
                         ;//sysj\systemController.sysj line: 179, column: 6
                         System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-                        S593617=1;
+                        S593614=1;
                         active[7]=1;
                         ends[7]=1;
                         tdone[7]=1;
@@ -8321,36 +8321,36 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            S593665=1;
-            S593665=0;
+            S593662=1;
+            S593662=0;
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 177, column: 20
               loadAck_in.setPreempted();
-              S593665=1;
+              S593662=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              S593617=0;
-              S593601=0;
+              S593614=0;
+              S593598=0;
               if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 179, column: 6
                 loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
-                S593601=1;
+                S593598=1;
                 active[7]=1;
                 ends[7]=1;
                 tdone[7]=1;
               }
               else {
-                S593596=0;
+                S593593=0;
                 if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                   loadAck_in.setACK(true);//sysj\systemController.sysj line: 179, column: 6
-                  S593596=1;
+                  S593593=1;
                   if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
                     loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
                     ends[7]=2;
                     ;//sysj\systemController.sysj line: 179, column: 6
                     System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-                    S593617=1;
+                    S593614=1;
                     active[7]=1;
                     ends[7]=1;
                     tdone[7]=1;
@@ -8376,8 +8376,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628825(int [] tdone, int [] ends){
-        switch(S593594){
+  public void thread628822(int [] tdone, int [] ends){
+        switch(S593591){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -8385,38 +8385,38 @@ public class SystemController extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S592187){
+        switch(S592184){
           case 0 : 
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 155, column: 20
               loadOrder_o.setPreempted();
-              S592187=1;
+              S592184=1;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
             }
             else {
-              switch(S591907){
+              switch(S591904){
                 case 0 : 
-                  switch(S591915){
+                  switch(S591912){
                     case 0 : 
                       if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 166, column: 6
                         loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
-                        S591915=1;
+                        S591912=1;
                         active[6]=1;
                         ends[6]=1;
                         tdone[6]=1;
                       }
                       else {
-                        switch(S591910){
+                        switch(S591907){
                           case 0 : 
                             if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                               loadOrder_o.setVal(w_thread_6);//sysj\systemController.sysj line: 166, column: 6
-                              S591910=1;
+                              S591907=1;
                               if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                                 loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
                                 ends[6]=2;
                                 ;//sysj\systemController.sysj line: 166, column: 6
-                                S591907=1;
+                                S591904=1;
                                 active[6]=1;
                                 ends[6]=1;
                                 tdone[6]=1;
@@ -8439,7 +8439,7 @@ public class SystemController extends ClockDomain{
                               loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
                               ends[6]=2;
                               ;//sysj\systemController.sysj line: 166, column: 6
-                              S591907=1;
+                              S591904=1;
                               active[6]=1;
                               ends[6]=1;
                               tdone[6]=1;
@@ -8456,25 +8456,25 @@ public class SystemController extends ClockDomain{
                       break;
                     
                     case 1 : 
-                      S591915=1;
-                      S591915=0;
+                      S591912=1;
+                      S591912=0;
                       if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 166, column: 6
                         loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
-                        S591915=1;
+                        S591912=1;
                         active[6]=1;
                         ends[6]=1;
                         tdone[6]=1;
                       }
                       else {
-                        S591910=0;
+                        S591907=0;
                         if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                           loadOrder_o.setVal(w_thread_6);//sysj\systemController.sysj line: 166, column: 6
-                          S591910=1;
+                          S591907=1;
                           if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                             loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
                             ends[6]=2;
                             ;//sysj\systemController.sysj line: 166, column: 6
-                            S591907=1;
+                            S591904=1;
                             active[6]=1;
                             ends[6]=1;
                             tdone[6]=1;
@@ -8497,33 +8497,33 @@ public class SystemController extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S591907=1;
+                  S591904=1;
                   w_thread_6 = null;//sysj\systemController.sysj line: 157, column: 6
                   if(GuiSupervisor.canLoad() && BeltQueue.shared().hasRoom()) {//sysj\systemController.sysj line: 162, column: 74
                     w_thread_6 = OrderBook.nextBottle();//sysj\systemController.sysj line: 162, column: 76
                   }
-                  S591907=0;
+                  S591904=0;
                   if(w_thread_6 != null){//sysj\systemController.sysj line: 163, column: 18
                     System.out.println("[SC] Loading " + w_thread_6 + ".");//sysj\systemController.sysj line: 164, column: 6
                     TwinRegistry.shared().admit(w_thread_6);//sysj\systemController.sysj line: 165, column: 6
-                    S591915=0;
+                    S591912=0;
                     if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 166, column: 6
                       loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
-                      S591915=1;
+                      S591912=1;
                       active[6]=1;
                       ends[6]=1;
                       tdone[6]=1;
                     }
                     else {
-                      S591910=0;
+                      S591907=0;
                       if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                         loadOrder_o.setVal(w_thread_6);//sysj\systemController.sysj line: 166, column: 6
-                        S591910=1;
+                        S591907=1;
                         if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                           loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
                           ends[6]=2;
                           ;//sysj\systemController.sysj line: 166, column: 6
-                          S591907=1;
+                          S591904=1;
                           active[6]=1;
                           ends[6]=1;
                           tdone[6]=1;
@@ -8542,7 +8542,7 @@ public class SystemController extends ClockDomain{
                     }
                   }
                   else {
-                    S591907=1;
+                    S591904=1;
                     active[6]=1;
                     ends[6]=1;
                     tdone[6]=1;
@@ -8554,11 +8554,11 @@ public class SystemController extends ClockDomain{
             break;
           
           case 1 : 
-            S592187=1;
-            S592187=0;
+            S592184=1;
+            S592184=0;
             if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 155, column: 20
               loadOrder_o.setPreempted();
-              S592187=1;
+              S592184=1;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
@@ -8568,28 +8568,28 @@ public class SystemController extends ClockDomain{
               if(GuiSupervisor.canLoad() && BeltQueue.shared().hasRoom()) {//sysj\systemController.sysj line: 162, column: 74
                 w_thread_6 = OrderBook.nextBottle();//sysj\systemController.sysj line: 162, column: 76
               }
-              S591907=0;
+              S591904=0;
               if(w_thread_6 != null){//sysj\systemController.sysj line: 163, column: 18
                 System.out.println("[SC] Loading " + w_thread_6 + ".");//sysj\systemController.sysj line: 164, column: 6
                 TwinRegistry.shared().admit(w_thread_6);//sysj\systemController.sysj line: 165, column: 6
-                S591915=0;
+                S591912=0;
                 if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 166, column: 6
                   loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
-                  S591915=1;
+                  S591912=1;
                   active[6]=1;
                   ends[6]=1;
                   tdone[6]=1;
                 }
                 else {
-                  S591910=0;
+                  S591907=0;
                   if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                     loadOrder_o.setVal(w_thread_6);//sysj\systemController.sysj line: 166, column: 6
-                    S591910=1;
+                    S591907=1;
                     if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
                       loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
                       ends[6]=2;
                       ;//sysj\systemController.sysj line: 166, column: 6
-                      S591907=1;
+                      S591904=1;
                       active[6]=1;
                       ends[6]=1;
                       tdone[6]=1;
@@ -8608,7 +8608,7 @@ public class SystemController extends ClockDomain{
                 }
               }
               else {
-                S591907=1;
+                S591904=1;
                 active[6]=1;
                 ends[6]=1;
                 tdone[6]=1;
@@ -8622,8 +8622,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628824(int [] tdone, int [] ends){
-        switch(S591906){
+  public void thread628821(int [] tdone, int [] ends){
+        switch(S591903){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -8707,8 +8707,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628823(int [] tdone, int [] ends){
-        switch(S591844){
+  public void thread628820(int [] tdone, int [] ends){
+        switch(S591841){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -8750,8 +8750,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628822(int [] tdone, int [] ends){
-        switch(S591839){
+  public void thread628819(int [] tdone, int [] ends){
+        switch(S591836){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -8813,8 +8813,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628821(int [] tdone, int [] ends){
-        switch(S591828){
+  public void thread628818(int [] tdone, int [] ends){
+        switch(S591825){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -8870,8 +8870,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628819(int [] tdone, int [] ends){
-        S628805=1;
+  public void thread628816(int [] tdone, int [] ends){
+        S628802=1;
     last_thread_12 = -1;//sysj\systemController.sysj line: 353, column: 3
     v_thread_12 = 0;//sysj\systemController.sysj line: 354, column: 3
     if(recyclingStatus.getprestatus()){//sysj\systemController.sysj line: 356, column: 12
@@ -8902,8 +8902,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628818(int [] tdone, int [] ends){
-        S628785=1;
+  public void thread628815(int [] tdone, int [] ends){
+        S628782=1;
     last_thread_11 = -1;//sysj\systemController.sysj line: 333, column: 3
     v_thread_11 = 0;//sysj\systemController.sysj line: 334, column: 3
     if(labellerStatus.getprestatus()){//sysj\systemController.sysj line: 336, column: 12
@@ -8934,33 +8934,33 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628817(int [] tdone, int [] ends){
-        S628765=1;
+  public void thread628814(int [] tdone, int [] ends){
+        S628762=1;
     w_thread_10 = null;//sysj\systemController.sysj line: 311, column: 3
     recovered_thread_10 = 0;//sysj\systemController.sysj line: 312, column: 3
-    S628409=0;
+    S628406=0;
     if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 314, column: 20
       bottleRecycled_in.setPreempted();
-      S628409=1;
+      S628406=1;
       active[10]=1;
       ends[10]=1;
       tdone[10]=1;
     }
     else {
-      S628361=0;
-      S628345=0;
+      S628358=0;
+      S628342=0;
       if(!bottleRecycled_in.isPartnerPresent() || bottleRecycled_in.isPartnerPreempted()){//sysj\systemController.sysj line: 316, column: 6
         bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
-        S628345=1;
+        S628342=1;
         active[10]=1;
         ends[10]=1;
         tdone[10]=1;
       }
       else {
-        S628340=0;
+        S628337=0;
         if(!bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
           bottleRecycled_in.setACK(true);//sysj\systemController.sysj line: 316, column: 6
-          S628340=1;
+          S628337=1;
           if(bottleRecycled_in.isREQ()){//sysj\systemController.sysj line: 316, column: 6
             bottleRecycled_in.setACK(false);//sysj\systemController.sysj line: 316, column: 6
             ends[10]=2;
@@ -8969,7 +8969,7 @@ public class SystemController extends ClockDomain{
             recovered_thread_10 = recovered_thread_10 + 1;//sysj\systemController.sysj line: 318, column: 6
             System.out.println("[SC] " + w_thread_10 + " recovered by the Recycling Station at " + w_thread_10.filledMl() + "ml, sealed=" + w_thread_10.isSealed() + ". " + recovered_thread_10 + " recycled.");//sysj\systemController.sysj line: 319, column: 6
             OrderBook.recycled(w_thread_10);//sysj\systemController.sysj line: 321, column: 6
-            S628361=1;
+            S628358=1;
             active[10]=1;
             ends[10]=1;
             tdone[10]=1;
@@ -8989,8 +8989,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628816(int [] tdone, int [] ends){
-        S628337=1;
+  public void thread628813(int [] tdone, int [] ends){
+        S628334=1;
     plant_thread_9 = new ABSTwin();//sysj\systemController.sysj line: 273, column: 3
     out_thread_9 = TwinPublisher.shared();//sysj\systemController.sysj line: 274, column: 3
     guiSnapshot_thread_9 = null;//sysj\systemController.sysj line: 275, column: 9
@@ -15161,14 +15161,14 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628815(int [] tdone, int [] ends){
-        S625053=1;
+  public void thread628812(int [] tdone, int [] ends){
+        S625050=1;
     DIVERTED_thread_8 = 1;//sysj\systemController.sysj line: 195, column: 3
     w_thread_8 = null;//sysj\systemController.sysj line: 197, column: 3
     route_thread_8 = 0;//sysj\systemController.sysj line: 198, column: 3
     divert_thread_8 = false;//sysj\systemController.sysj line: 199, column: 3
     done_thread_8 = 0;//sysj\systemController.sysj line: 200, column: 3
-    S599017=0;
+    S599014=0;
     if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 203, column: 20
       bottleDone_in.setPreempted();
       splitterRoute_in.setPreempted();
@@ -15176,26 +15176,26 @@ public class SystemController extends ClockDomain{
       toSplitter_o.setPreempted();
       labelBottle_o.setPreempted();
       bottleRejected_o.setPreempted();
-      S599017=1;
+      S599014=1;
       active[8]=1;
       ends[8]=1;
       tdone[8]=1;
     }
     else {
-      S593833=0;
-      S593817=0;
+      S593830=0;
+      S593814=0;
       if(!bottleDone_in.isPartnerPresent() || bottleDone_in.isPartnerPreempted()){//sysj\systemController.sysj line: 205, column: 6
         bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
-        S593817=1;
+        S593814=1;
         active[8]=1;
         ends[8]=1;
         tdone[8]=1;
       }
       else {
-        S593812=0;
+        S593809=0;
         if(!bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
           bottleDone_in.setACK(true);//sysj\systemController.sysj line: 205, column: 6
-          S593812=1;
+          S593809=1;
           if(bottleDone_in.isREQ()){//sysj\systemController.sysj line: 205, column: 6
             bottleDone_in.setACK(false);//sysj\systemController.sysj line: 205, column: 6
             ends[8]=2;
@@ -15204,47 +15204,47 @@ public class SystemController extends ClockDomain{
             if(w_thread_8 != null && w_thread_8.isScrap()) {//sysj\systemController.sysj line: 211, column: 34
               System.out.println("[SC] " + w_thread_8 + " arrived after a reset; dropped.");//sysj\systemController.sysj line: 212, column: 7
             }
-            S593833=1;
+            S593830=1;
             if(w_thread_8 != null && !w_thread_8.isScrap()){//sysj\systemController.sysj line: 215, column: 9
-              S593944=0;
-              S593840=0;
+              S593941=0;
+              S593837=0;
               if(!toSplitter_o.isPartnerPresent() || toSplitter_o.isPartnerPreempted()){//sysj\systemController.sysj line: 220, column: 6
                 toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
-                S593840=1;
+                S593837=1;
                 active[8]=1;
                 ends[8]=1;
                 tdone[8]=1;
               }
               else {
-                S593835=0;
+                S593832=0;
                 if(toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                   toSplitter_o.setVal(w_thread_8);//sysj\systemController.sysj line: 220, column: 6
-                  S593835=1;
+                  S593832=1;
                   if(!toSplitter_o.isACK()){//sysj\systemController.sysj line: 220, column: 6
                     toSplitter_o.setREQ(false);//sysj\systemController.sysj line: 220, column: 6
                     ends[8]=2;
                     ;//sysj\systemController.sysj line: 220, column: 6
-                    S593944=1;
-                    S593862=0;
+                    S593941=1;
+                    S593859=0;
                     if(!splitterRoute_in.isPartnerPresent() || splitterRoute_in.isPartnerPreempted()){//sysj\systemController.sysj line: 221, column: 6
                       splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
-                      S593862=1;
+                      S593859=1;
                       active[8]=1;
                       ends[8]=1;
                       tdone[8]=1;
                     }
                     else {
-                      S593857=0;
+                      S593854=0;
                       if(!splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                         splitterRoute_in.setACK(true);//sysj\systemController.sysj line: 221, column: 6
-                        S593857=1;
+                        S593854=1;
                         if(splitterRoute_in.isREQ()){//sysj\systemController.sysj line: 221, column: 6
                           splitterRoute_in.setACK(false);//sysj\systemController.sysj line: 221, column: 6
                           ends[8]=2;
                           ;//sysj\systemController.sysj line: 221, column: 6
                           route_thread_8 = ((Integer)(splitterRoute_in.getVal() == null ? null : ((Integer)splitterRoute_in.getVal()))).intValue();//sysj\systemController.sysj line: 222, column: 6
                           divert_thread_8 = (route_thread_8 == DIVERTED_thread_8);//sysj\systemController.sysj line: 223, column: 6
-                          S593944=2;
+                          S593941=2;
                           active[8]=1;
                           ends[8]=1;
                           tdone[8]=1;
@@ -15276,7 +15276,7 @@ public class SystemController extends ClockDomain{
               }
             }
             else {
-              S593833=2;
+              S593830=2;
               active[8]=1;
               ends[8]=1;
               tdone[8]=1;
@@ -15297,37 +15297,37 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628814(int [] tdone, int [] ends){
-        S593809=1;
-    S593665=0;
+  public void thread628811(int [] tdone, int [] ends){
+        S593806=1;
+    S593662=0;
     if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 177, column: 20
       loadAck_in.setPreempted();
-      S593665=1;
+      S593662=1;
       active[7]=1;
       ends[7]=1;
       tdone[7]=1;
     }
     else {
-      S593617=0;
-      S593601=0;
+      S593614=0;
+      S593598=0;
       if(!loadAck_in.isPartnerPresent() || loadAck_in.isPartnerPreempted()){//sysj\systemController.sysj line: 179, column: 6
         loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
-        S593601=1;
+        S593598=1;
         active[7]=1;
         ends[7]=1;
         tdone[7]=1;
       }
       else {
-        S593596=0;
+        S593593=0;
         if(!loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
           loadAck_in.setACK(true);//sysj\systemController.sysj line: 179, column: 6
-          S593596=1;
+          S593593=1;
           if(loadAck_in.isREQ()){//sysj\systemController.sysj line: 179, column: 6
             loadAck_in.setACK(false);//sysj\systemController.sysj line: 179, column: 6
             ends[7]=2;
             ;//sysj\systemController.sysj line: 179, column: 6
             System.out.println("[SC] " + (WorkpieceTwin)(loadAck_in.getVal() == null ? null : ((WorkpieceTwin)loadAck_in.getVal())) + " is on the conveyor.");//sysj\systemController.sysj line: 180, column: 6
-            S593617=1;
+            S593614=1;
             active[7]=1;
             ends[7]=1;
             tdone[7]=1;
@@ -15347,13 +15347,13 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628813(int [] tdone, int [] ends){
-        S593594=1;
+  public void thread628810(int [] tdone, int [] ends){
+        S593591=1;
     w_thread_6 = null;//sysj\systemController.sysj line: 153, column: 3
-    S592187=0;
+    S592184=0;
     if(lineReset_1.getprestatus()){//sysj\systemController.sysj line: 155, column: 20
       loadOrder_o.setPreempted();
-      S592187=1;
+      S592184=1;
       active[6]=1;
       ends[6]=1;
       tdone[6]=1;
@@ -15363,28 +15363,28 @@ public class SystemController extends ClockDomain{
       if(GuiSupervisor.canLoad() && BeltQueue.shared().hasRoom()) {//sysj\systemController.sysj line: 162, column: 74
         w_thread_6 = OrderBook.nextBottle();//sysj\systemController.sysj line: 162, column: 76
       }
-      S591907=0;
+      S591904=0;
       if(w_thread_6 != null){//sysj\systemController.sysj line: 163, column: 18
         System.out.println("[SC] Loading " + w_thread_6 + ".");//sysj\systemController.sysj line: 164, column: 6
         TwinRegistry.shared().admit(w_thread_6);//sysj\systemController.sysj line: 165, column: 6
-        S591915=0;
+        S591912=0;
         if(!loadOrder_o.isPartnerPresent() || loadOrder_o.isPartnerPreempted()){//sysj\systemController.sysj line: 166, column: 6
           loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
-          S591915=1;
+          S591912=1;
           active[6]=1;
           ends[6]=1;
           tdone[6]=1;
         }
         else {
-          S591910=0;
+          S591907=0;
           if(loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
             loadOrder_o.setVal(w_thread_6);//sysj\systemController.sysj line: 166, column: 6
-            S591910=1;
+            S591907=1;
             if(!loadOrder_o.isACK()){//sysj\systemController.sysj line: 166, column: 6
               loadOrder_o.setREQ(false);//sysj\systemController.sysj line: 166, column: 6
               ends[6]=2;
               ;//sysj\systemController.sysj line: 166, column: 6
-              S591907=1;
+              S591904=1;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
@@ -15403,7 +15403,7 @@ public class SystemController extends ClockDomain{
         }
       }
       else {
-        S591907=1;
+        S591904=1;
         active[6]=1;
         ends[6]=1;
         tdone[6]=1;
@@ -15411,8 +15411,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628812(int [] tdone, int [] ends){
-        S591906=1;
+  public void thread628809(int [] tdone, int [] ends){
+        S591903=1;
     feedback_thread_5 = null;//sysj\systemController.sysj line: 142, column: 9
     if(guiCommand.getprestatus()){//sysj\systemController.sysj line: 144, column: 21
       GuiSupervisor.command((GuiCommand)(guiCommand.getpreval() == null ? null : ((GuiCommand)guiCommand.getpreval())));//sysj\systemController.sysj line: 144, column: 34
@@ -15487,8 +15487,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628811(int [] tdone, int [] ends){
-        S591844=1;
+  public void thread628808(int [] tdone, int [] ends){
+        S591841=1;
     enableBL.setPresent();//sysj\systemController.sysj line: 133, column: 4
     currsigs.addElement(enableBL);
     enableCV.setPresent();//sysj\systemController.sysj line: 133, column: 19
@@ -15520,8 +15520,8 @@ public class SystemController extends ClockDomain{
     tdone[4]=1;
   }
 
-  public void thread628810(int [] tdone, int [] ends){
-        S591839=1;
+  public void thread628807(int [] tdone, int [] ends){
+        S591836=1;
     if(GuiSupervisor.takeReset()){//sysj\systemController.sysj line: 118, column: 4
       PlantReset.now();//sysj\systemController.sysj line: 119, column: 5
       resetBL.setPresent();//sysj\systemController.sysj line: 120, column: 5
@@ -15573,8 +15573,8 @@ public class SystemController extends ClockDomain{
     }
   }
 
-  public void thread628809(int [] tdone, int [] ends){
-        S591828=1;
+  public void thread628806(int [] tdone, int [] ends){
+        S591825=1;
     m_thread_2 = null;//sysj\systemController.sysj line: 100, column: 3
     m_thread_2 = new Integer(GuiSupervisor.machineMode());//sysj\systemController.sysj line: 102, column: 4
     modeBL.setPresent();//sysj\systemController.sysj line: 103, column: 4
@@ -15628,15 +15628,18 @@ public class SystemController extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S628807){
+      switch(S628804){
         case 0 : 
-          S628807=0;
+          S628804=0;
           break RUN;
         
         case 1 : 
-          S628807=2;
-          S628807=2;
+          S628804=2;
+          S628804=2;
           lineReset_1.setClear();//sysj\systemController.sysj line: 91, column: 2
+          thread628806(tdone,ends);
+          thread628807(tdone,ends);
+          thread628808(tdone,ends);
           thread628809(tdone,ends);
           thread628810(tdone,ends);
           thread628811(tdone,ends);
@@ -15645,44 +15648,41 @@ public class SystemController extends ClockDomain{
           thread628814(tdone,ends);
           thread628815(tdone,ends);
           thread628816(tdone,ends);
-          thread628817(tdone,ends);
-          thread628818(tdone,ends);
-          thread628819(tdone,ends);
-          int biggest628820 = 0;
-          if(ends[2]>=biggest628820){
-            biggest628820=ends[2];
+          int biggest628817 = 0;
+          if(ends[2]>=biggest628817){
+            biggest628817=ends[2];
           }
-          if(ends[3]>=biggest628820){
-            biggest628820=ends[3];
+          if(ends[3]>=biggest628817){
+            biggest628817=ends[3];
           }
-          if(ends[4]>=biggest628820){
-            biggest628820=ends[4];
+          if(ends[4]>=biggest628817){
+            biggest628817=ends[4];
           }
-          if(ends[5]>=biggest628820){
-            biggest628820=ends[5];
+          if(ends[5]>=biggest628817){
+            biggest628817=ends[5];
           }
-          if(ends[6]>=biggest628820){
-            biggest628820=ends[6];
+          if(ends[6]>=biggest628817){
+            biggest628817=ends[6];
           }
-          if(ends[7]>=biggest628820){
-            biggest628820=ends[7];
+          if(ends[7]>=biggest628817){
+            biggest628817=ends[7];
           }
-          if(ends[8]>=biggest628820){
-            biggest628820=ends[8];
+          if(ends[8]>=biggest628817){
+            biggest628817=ends[8];
           }
-          if(ends[9]>=biggest628820){
-            biggest628820=ends[9];
+          if(ends[9]>=biggest628817){
+            biggest628817=ends[9];
           }
-          if(ends[10]>=biggest628820){
-            biggest628820=ends[10];
+          if(ends[10]>=biggest628817){
+            biggest628817=ends[10];
           }
-          if(ends[11]>=biggest628820){
-            biggest628820=ends[11];
+          if(ends[11]>=biggest628817){
+            biggest628817=ends[11];
           }
-          if(ends[12]>=biggest628820){
-            biggest628820=ends[12];
+          if(ends[12]>=biggest628817){
+            biggest628817=ends[12];
           }
-          if(biggest628820 == 1){
+          if(biggest628817 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -15690,6 +15690,9 @@ public class SystemController extends ClockDomain{
         
         case 2 : 
           lineReset_1.setClear();//sysj\systemController.sysj line: 91, column: 2
+          thread628818(tdone,ends);
+          thread628819(tdone,ends);
+          thread628820(tdone,ends);
           thread628821(tdone,ends);
           thread628822(tdone,ends);
           thread628823(tdone,ends);
@@ -15698,54 +15701,51 @@ public class SystemController extends ClockDomain{
           thread628826(tdone,ends);
           thread628827(tdone,ends);
           thread628828(tdone,ends);
-          thread628829(tdone,ends);
-          thread628830(tdone,ends);
-          thread628831(tdone,ends);
-          int biggest628832 = 0;
-          if(ends[2]>=biggest628832){
-            biggest628832=ends[2];
+          int biggest628829 = 0;
+          if(ends[2]>=biggest628829){
+            biggest628829=ends[2];
           }
-          if(ends[3]>=biggest628832){
-            biggest628832=ends[3];
+          if(ends[3]>=biggest628829){
+            biggest628829=ends[3];
           }
-          if(ends[4]>=biggest628832){
-            biggest628832=ends[4];
+          if(ends[4]>=biggest628829){
+            biggest628829=ends[4];
           }
-          if(ends[5]>=biggest628832){
-            biggest628832=ends[5];
+          if(ends[5]>=biggest628829){
+            biggest628829=ends[5];
           }
-          if(ends[6]>=biggest628832){
-            biggest628832=ends[6];
+          if(ends[6]>=biggest628829){
+            biggest628829=ends[6];
           }
-          if(ends[7]>=biggest628832){
-            biggest628832=ends[7];
+          if(ends[7]>=biggest628829){
+            biggest628829=ends[7];
           }
-          if(ends[8]>=biggest628832){
-            biggest628832=ends[8];
+          if(ends[8]>=biggest628829){
+            biggest628829=ends[8];
           }
-          if(ends[9]>=biggest628832){
-            biggest628832=ends[9];
+          if(ends[9]>=biggest628829){
+            biggest628829=ends[9];
           }
-          if(ends[10]>=biggest628832){
-            biggest628832=ends[10];
+          if(ends[10]>=biggest628829){
+            biggest628829=ends[10];
           }
-          if(ends[11]>=biggest628832){
-            biggest628832=ends[11];
+          if(ends[11]>=biggest628829){
+            biggest628829=ends[11];
           }
-          if(ends[12]>=biggest628832){
-            biggest628832=ends[12];
+          if(ends[12]>=biggest628829){
+            biggest628829=ends[12];
           }
-          if(biggest628832 == 1){
+          if(biggest628829 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest628832 == 0){
-            S628807=0;
+          if(biggest628829 == 0){
+            S628804=0;
             active[1]=0;
             ends[1]=0;
-            S628807=0;
+            S628804=0;
             break RUN;
           }
         

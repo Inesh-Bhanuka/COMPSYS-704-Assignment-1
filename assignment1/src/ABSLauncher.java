@@ -1,4 +1,5 @@
-/** Existing RunABS / RunSystemJ launches both customer POS and operator supervision. */
+/** Entry point for RunABS / RunSystemJ: enables the GUI, then runs abs.xml, which
+ *  brings up the customer POS and the operator supervision windows with the plant. */
 public final class ABSLauncher {
     public static void main(String[] args) {
         System.setProperty("gui.enabled","true");

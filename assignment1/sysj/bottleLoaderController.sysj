@@ -17,7 +17,7 @@ BottleLoaderController(
 		// the machine's own summary, out to the coordinator
 		output LoaderTwin signal twin;
 
-		// operating mode is a level, so it stays a signal
+		// operating mode is a level, so it is a signal rather than a channel
 		input Integer signal mode;
 
 		// Hard reset: drop whatever is held and go back to idle. One tick,
@@ -101,9 +101,9 @@ BottleLoaderController(
 				System.out.println("[BL] Offering " + w + " to the conveyor.");
 				send bottleHandoff(w);
 
-				// Release, holding the actuator until the plant confirms it
+				// Release, holding the actuator until the plant confirms the
+				// bottle has let go. No fixed pulse width.
 				abort(immediate auto){ await(immediate releaseM); }
-				// let go. No fixed pulse width.
 				abort(immediate !WPgripped){
 					sustain release;
 				}

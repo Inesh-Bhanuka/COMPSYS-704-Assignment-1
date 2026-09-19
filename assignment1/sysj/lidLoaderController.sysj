@@ -110,11 +110,11 @@ LidLoaderController(
 					await(immediate lidAtPickup);
 
 					// Load-bearing, not padding. The compiler splits the
-					// generated state machine at every pause, and with the
-					// manual gates folded into this reaction the fetch-and-place
-					// half no longer fits in one method under the JVM's 64 KB
-					// limit. It costs one tick between the lid arriving at the
-					// pick-up point and the arm going for it.
+					// generated state machine at every pause, and without one
+					// here the fetch-and-place half does not fit in a single
+					// method under the JVM's 64 KB limit. It costs one tick
+					// between the lid arriving at the pick-up point and the
+					// arm going for it.
 					pause;
 
 					// Fetch it

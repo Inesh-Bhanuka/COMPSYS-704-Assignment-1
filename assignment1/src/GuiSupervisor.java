@@ -12,7 +12,7 @@ public final class GuiSupervisor {
     private static final Set<Long> archived = new HashSet<Long>();
     private static long eventSequence;
 
-    /** Operator permission belongs to one order, never to the next customer order. */
+    /** A newly accepted order starts stopped, so the operator presses Start for each one. */
     public static synchronized void orderAccepted() {
         if (Boolean.getBoolean("gui.enabled")) {
             running=false;
@@ -69,7 +69,8 @@ public final class GuiSupervisor {
 
 
     /**
-     * The mode every machine controller is held in: 0 automatic, 1 manual.
+     * The mode every machine controller is held in: 0 automatic, 1 manual,
+     * 2 paused.
      *
      * Manual is only asserted once the line has finished draining, because a
      * controller that switches mode mid-sequence abandons whatever it was
@@ -77,8 +78,6 @@ public final class GuiSupervisor {
      * which point observe() settles the mode and this starts returning 1.
      */
     public static synchronized int machineMode() {
-        // Draining stays automatic on purpose: admitted bottles have to finish
-        // before a mode change settles.
         if (draining) return 0;
         if (mode.equals("Manual")) return 1;
         // Paused holds the machines at the same gates manual mode uses, so
@@ -97,8 +96,7 @@ public final class GuiSupervisor {
      *
      * Consumed rather than polled as a level, so the wipe and the reset
      * signal to the machines happen in the same instant and cannot be applied
-     * twice. The brief's requirement - that no opened bottle survives a
-     * suspension - is met by there being no bottle left at all.
+     * twice.
      */
     public static synchronized boolean takeReset() {
         if (!resetRequested) {
@@ -109,7 +107,7 @@ public final class GuiSupervisor {
     }
 
 
-    /** The same thing as the line mode the digital twin reports. */
+    /** The line mode published on the digital twin. A pause and a jam both read as SUSPENDED. */
     public static synchronized LineMode lineMode() {
         if (draining) return LineMode.DRAINING;
         if (mode.equals("Manual")) return LineMode.MANUAL;
@@ -133,10 +131,8 @@ public final class GuiSupervisor {
     /**
      * The faults the quality test injects, one per affected bottle, in turn.
      *
-     * Rotating rather than always arming the same one is the point: each is
-     * caught by a different station, so a run exercises four detection paths
-     * and the histories show where each fault was found rather than four
-     * copies of the same line.
+     * Each is caught by a different station, so rotating through them
+     * exercises all four detection paths rather than one repeatedly.
      */
     private static final String[] FAULTS = {"lid-fitted", "misfill", "cap-loose", "no-print"};
     private static int faultsArmed;

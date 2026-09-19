@@ -30,8 +30,8 @@ public class RecyclingConveyorPlant extends ClockDomain{
   private boolean cleared_thread_1;//sysj\recyclingConveyorPlant.sysj line: 40, column: 3
   private boolean running_thread_1;//sysj\recyclingConveyorPlant.sysj line: 41, column: 3
   private boolean indexing_thread_1;//sysj\recyclingConveyorPlant.sysj line: 42, column: 3
-  private int S243398 = 1;
-  private int S239598 = 1;
+  private int S243395 = 1;
+  private int S239595 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -43,17 +43,17 @@ public class RecyclingConveyorPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S243398){
+      switch(S243395){
         case 0 : 
-          S243398=0;
+          S243395=0;
           break RUN;
         
         case 1 : 
-          S243398=2;
-          S243398=2;
-          S239598=0;
+          S243395=2;
+          S243395=2;
+          S239595=0;
           if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 32, column: 19
-            S239598=1;
+            S239595=1;
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -3041,10 +3041,10 @@ public class RecyclingConveyorPlant extends ClockDomain{
           }
         
         case 2 : 
-          switch(S239598){
+          switch(S239595){
             case 0 : 
               if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 32, column: 19
-                S239598=1;
+                S239595=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -6023,10 +6023,10 @@ public class RecyclingConveyorPlant extends ClockDomain{
               }
             
             case 1 : 
-              S239598=1;
-              S239598=0;
+              S239595=1;
+              S239595=0;
               if(reset.getprestatus()){//sysj\recyclingConveyorPlant.sysj line: 32, column: 19
-                S239598=1;
+                S239595=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;

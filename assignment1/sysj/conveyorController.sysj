@@ -7,10 +7,9 @@
  *   3. hand off from index position 1 to the rotary table
  *   4. outfeed: take from the table, deliver to the labeller point, report
  *
- * Every machine-to-machine link is a channel. Readiness is no longer
- * advertised as a level: a reaction only reaches its receive when its belt
- * can actually take a bottle, so being at the receive IS the readiness.
- * That deleted conveyorReady, tableReady and bottleTaken outright.
+ * Every machine-to-machine link is a channel. Readiness is not advertised as
+ * a level: a reaction only reaches its receive when its belt can actually
+ * take a bottle, so being at the receive is the readiness.
  *
  * Actuator pulses to the plant are sustained until the plant's own sensor
  * confirms the effect, rather than emitted for a fixed number of ticks.
@@ -70,9 +69,9 @@ ConveyorController(
 	||
 	{ // Auto
 		//
-		// All four belt reactions run as one automatic block so that a switch
-		// to manual drops every one of them together. Leaving any of them
-		// running would fight the operator for the same motor.
+		// All four belt reactions sit inside one reset abort, so a reset drops
+		// every one of them together. Restarting one on its own would leave the
+		// others holding bottle identities the reset has already discarded.
 		while(true){
 			abort(immediate reset){
 	{ // ---- 1. Accept from the loader ----
@@ -89,10 +88,10 @@ ConveyorController(
 			System.out.println("[CV] Accepted " + w + " from the loader.");
 
 			// Hold the injection until the plant confirms the bottle is on
-			// the belt. Note this acknowledges against infeedAdmitted, not
-			// against infeedClear going away: the belt runs continuously, so
-			// the bottle is already moving by the time the load point would
-			// have read occupied.
+			// the belt. This acknowledges against infeedAdmitted, not against
+			// infeedClear going away: the belt runs continuously, so the
+			// bottle is already moving by the time the load point would have
+			// read occupied.
 			abort(immediate auto){ await(immediate injectInfeedM); }
 			abort(immediate infeedAdmitted){
 				sustain injectInfeed;

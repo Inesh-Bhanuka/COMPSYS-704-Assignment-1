@@ -5,7 +5,7 @@
  * Station attaches to the core ABS. It belongs to the System Controller, not
  * to the station: the coordinator hands it every bottle leaving the outfeed,
  * it reads the quality record off the twin it is holding, and it drives the
- * diverter it already senses. 
+ * diverter it already senses.
  *
  * admitBottle is the outfeed releasing the claimed workpiece towards the
  * decision point.
@@ -101,7 +101,11 @@ SplitterController(
 				System.out.println("[SP] " + w + " at the decision point - "
 						+ (reject ? "reject path (" + w.defect() + ")" : "normal path") + ".");
 
-				// Load Bearing
+				// Load-bearing, not padding. The compiler splits the generated
+				// state machine at every pause, and without the split here the
+				// arrival wait and the two timeout loops below fold into one
+				// method that exceeds the JVM's 64 KB limit. It costs one tick
+				// between the bottle arriving and the diverter being thrown.
 				pause;
 
 				abort(immediate auto){ await(immediate diverterM); }
@@ -160,9 +164,8 @@ SplitterController(
 				// the bottle has already cleared it, not a move that carries the
 				// bottle anywhere, so asking the operator for a tick here would add
 				// a button press that changes nothing. It is also the one place a
-				// gate would not fit: a second abort in this reaction takes the
-				// compiler past 3 GB, and the sequencer's timeout loops are already
-				// the most branch-heavy in the project.
+				// gate would not fit: a further abort in this reaction takes the
+				// compiler past 3 GB.
 				home = false;
 				while(!home){
 					emit diverterRetract;

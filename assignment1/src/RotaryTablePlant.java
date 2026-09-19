@@ -31,8 +31,8 @@ public class RotaryTablePlant extends ClockDomain{
   private boolean triggered_thread_1;//sysj\rotaryTablePlant.sysj line: 54, column: 3
   private boolean last_thread_1;//sysj\rotaryTablePlant.sysj line: 63, column: 7
   private int i_thread_1;//sysj\rotaryTablePlant.sysj line: 64, column: 7
-  private int S315867 = 1;
-  private int S312583 = 1;
+  private int S315864 = 1;
+  private int S312580 = 1;
   
   private int[] ends = new int[2];
   private int[] tdone = new int[2];
@@ -44,17 +44,17 @@ public class RotaryTablePlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S315867){
+      switch(S315864){
         case 0 : 
-          S315867=0;
+          S315864=0;
           break RUN;
         
         case 1 : 
-          S315867=2;
-          S315867=2;
-          S312583=0;
+          S315864=2;
+          S315864=2;
+          S312580=0;
           if(reset.getprestatus()){//sysj\rotaryTablePlant.sysj line: 44, column: 19
-            S312583=1;
+            S312580=1;
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -2443,10 +2443,10 @@ public class RotaryTablePlant extends ClockDomain{
           }
         
         case 2 : 
-          switch(S312583){
+          switch(S312580){
             case 0 : 
               if(reset.getprestatus()){//sysj\rotaryTablePlant.sysj line: 44, column: 19
-                S312583=1;
+                S312580=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;
@@ -4828,10 +4828,10 @@ public class RotaryTablePlant extends ClockDomain{
               }
             
             case 1 : 
-              S312583=1;
-              S312583=0;
+              S312580=1;
+              S312580=0;
               if(reset.getprestatus()){//sysj\rotaryTablePlant.sysj line: 44, column: 19
-                S312583=1;
+                S312580=1;
                 active[1]=1;
                 ends[1]=1;
                 break RUN;

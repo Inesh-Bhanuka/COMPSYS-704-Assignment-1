@@ -68,11 +68,10 @@ FillerController(
 				// further on, because a sealed container cannot be filled and
 				// this is the first station the bottle meets.
 				//
-				// The lid is recorded on the workpiece because it is true, and
-				// every station downstream needs to know - including the
-				// recycling station that has to unscrew it. That is also what
-				// makes the second filler skip the bottle without being told:
-				// it asks, and the bottle already knows.
+				// The lid is recorded on the workpiece, because every station
+				// downstream needs to know - including the recycling station
+				// that has to unscrew it, and the second filler, which skips
+				// the bottle by asking it rather than by being told.
 				lidded = false;
 				if(w != null){
 					if(w.catchFault("lid-fitted")){
@@ -112,9 +111,9 @@ FillerController(
 						// flat 30ml and a recipe component can be smaller than
 						// that - 25% of a 100ml bottle is 25ml - and a target
 						// at or below zero is one the plant can never reach,
-						// which hangs this station and the table barrier with
-						// it. Whether 1ml is far enough out to be rejected is
-						// the tolerance check's decision, not this line's.
+						// which would hang this station and the table barrier
+						// with it. The tolerance check below decides whether
+						// the clamped figure counts as a reject.
 						ml = ml - 30;
 						if(ml < 1){
 							ml = 1;
@@ -126,8 +125,8 @@ FillerController(
 					if(t.update(PlantClock.now(), MachineStatus.WORKING, "valveOpen", ml + "ml")){
 						emit twin(t);
 					}
-					// Both are held for the whole fill. fillTarget used to be a
-					// single emit, which the plant can miss entirely - it is
+					// Both are held for the whole fill. A single emit of
+					// fillTarget can be missed by the plant entirely - it is
 					// on the far side of a link, same as any other signal.
 					abort(immediate auto){ await(immediate valveOpenM); }
 					abort(immediate filled){

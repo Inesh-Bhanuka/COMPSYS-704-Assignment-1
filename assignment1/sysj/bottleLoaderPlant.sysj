@@ -2,8 +2,8 @@
  * Plant model for the Bottle Loader.
  *
  * Models a pick-and-place arm that lifts empty bottles from a supply point
- * and carries them to the conveyor load point. Fundamentally the same as the LidLoader,
- * with some minor differences
+ * and carries them to the conveyor load point. The arm and gripper behave the
+ * same way as the lid loader's.
  */
 BottleLoaderPlant(
 		// from the Bottle Loader Controller

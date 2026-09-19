@@ -34,17 +34,17 @@ public class LidRemovalPlant extends ClockDomain{
   private boolean ejecting_thread_4;//sysj\lidRemovalPlant.sysj line: 82, column: 3
   private int BIN_CAPACITY_thread_5;//sysj\lidRemovalPlant.sysj line: 122, column: 3
   private RecyclingCapacity bin_thread_5;//sysj\lidRemovalPlant.sysj line: 123, column: 3
-  private int S156730 = 1;
-  private int S156266 = 1;
-  private int S156394 = 1;
-  private int S156648 = 1;
-  private int S156728 = 1;
+  private int S156727 = 1;
+  private int S156263 = 1;
+  private int S156391 = 1;
+  private int S156645 = 1;
+  private int S156725 = 1;
   
   private int[] ends = new int[6];
   private int[] tdone = new int[6];
   
-  public void thread156740(int [] tdone, int [] ends){
-        switch(S156728){
+  public void thread156737(int [] tdone, int [] ends){
+        switch(S156725){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -130,8 +130,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156739(int [] tdone, int [] ends){
-        switch(S156648){
+  public void thread156736(int [] tdone, int [] ends){
+        switch(S156645){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -291,8 +291,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156738(int [] tdone, int [] ends){
-        switch(S156394){
+  public void thread156735(int [] tdone, int [] ends){
+        switch(S156391){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -453,8 +453,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156737(int [] tdone, int [] ends){
-        switch(S156266){
+  public void thread156734(int [] tdone, int [] ends){
+        switch(S156263){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -544,8 +544,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156735(int [] tdone, int [] ends){
-        S156728=1;
+  public void thread156732(int [] tdone, int [] ends){
+        S156725=1;
     BIN_CAPACITY_thread_5 = RecyclingCapacity.LID_BIN;//sysj\lidRemovalPlant.sysj line: 122, column: 3
     bin_thread_5 = new RecyclingCapacity("Lid waste bin", BIN_CAPACITY_thread_5);//sysj\lidRemovalPlant.sysj line: 123, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 126, column: 12
@@ -623,8 +623,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156734(int [] tdone, int [] ends){
-        S156648=1;
+  public void thread156731(int [] tdone, int [] ends){
+        S156645=1;
     GRIP_thread_4 = PlantTiming.ticks(3);//sysj\lidRemovalPlant.sysj line: 79, column: 3
     grip_thread_4 = 0;//sysj\lidRemovalPlant.sysj line: 80, column: 3
     held_thread_4 = false;//sysj\lidRemovalPlant.sysj line: 81, column: 3
@@ -778,8 +778,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156733(int [] tdone, int [] ends){
-        S156394=1;
+  public void thread156730(int [] tdone, int [] ends){
+        S156391=1;
     TURN_thread_3 = PlantTiming.ticks(6);//sysj\lidRemovalPlant.sysj line: 55, column: 3
     turn_thread_3 = 0;//sysj\lidRemovalPlant.sysj line: 56, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 59, column: 12
@@ -932,8 +932,8 @@ public class LidRemovalPlant extends ClockDomain{
     }
   }
 
-  public void thread156732(int [] tdone, int [] ends){
-        S156266=1;
+  public void thread156729(int [] tdone, int [] ends){
+        S156263=1;
     ZTRAVEL_thread_2 = PlantTiming.ticks(4);//sysj\lidRemovalPlant.sysj line: 36, column: 3
     z_thread_2 = 0;//sysj\lidRemovalPlant.sysj line: 37, column: 3
     if(enable.getprestatus()){//sysj\lidRemovalPlant.sysj line: 40, column: 12
@@ -1022,33 +1022,33 @@ public class LidRemovalPlant extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S156730){
+      switch(S156727){
         case 0 : 
-          S156730=0;
+          S156727=0;
           break RUN;
         
         case 1 : 
-          S156730=2;
-          S156730=2;
+          S156727=2;
+          S156727=2;
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 29, column: 2
+          thread156729(tdone,ends);
+          thread156730(tdone,ends);
+          thread156731(tdone,ends);
           thread156732(tdone,ends);
-          thread156733(tdone,ends);
-          thread156734(tdone,ends);
-          thread156735(tdone,ends);
-          int biggest156736 = 0;
-          if(ends[2]>=biggest156736){
-            biggest156736=ends[2];
+          int biggest156733 = 0;
+          if(ends[2]>=biggest156733){
+            biggest156733=ends[2];
           }
-          if(ends[3]>=biggest156736){
-            biggest156736=ends[3];
+          if(ends[3]>=biggest156733){
+            biggest156733=ends[3];
           }
-          if(ends[4]>=biggest156736){
-            biggest156736=ends[4];
+          if(ends[4]>=biggest156733){
+            biggest156733=ends[4];
           }
-          if(ends[5]>=biggest156736){
-            biggest156736=ends[5];
+          if(ends[5]>=biggest156733){
+            biggest156733=ends[5];
           }
-          if(biggest156736 == 1){
+          if(biggest156733 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -1056,34 +1056,34 @@ public class LidRemovalPlant extends ClockDomain{
         
         case 2 : 
           lidDropped_1.setClear();//sysj\lidRemovalPlant.sysj line: 29, column: 2
+          thread156734(tdone,ends);
+          thread156735(tdone,ends);
+          thread156736(tdone,ends);
           thread156737(tdone,ends);
-          thread156738(tdone,ends);
-          thread156739(tdone,ends);
-          thread156740(tdone,ends);
-          int biggest156741 = 0;
-          if(ends[2]>=biggest156741){
-            biggest156741=ends[2];
+          int biggest156738 = 0;
+          if(ends[2]>=biggest156738){
+            biggest156738=ends[2];
           }
-          if(ends[3]>=biggest156741){
-            biggest156741=ends[3];
+          if(ends[3]>=biggest156738){
+            biggest156738=ends[3];
           }
-          if(ends[4]>=biggest156741){
-            biggest156741=ends[4];
+          if(ends[4]>=biggest156738){
+            biggest156738=ends[4];
           }
-          if(ends[5]>=biggest156741){
-            biggest156741=ends[5];
+          if(ends[5]>=biggest156738){
+            biggest156738=ends[5];
           }
-          if(biggest156741 == 1){
+          if(biggest156738 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest156741 == 0){
-            S156730=0;
+          if(biggest156738 == 0){
+            S156727=0;
             active[1]=0;
             ends[1]=0;
-            S156730=0;
+            S156727=0;
             break RUN;
           }
         

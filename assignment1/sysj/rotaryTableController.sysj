@@ -1,28 +1,26 @@
 /*
  * Controller for the rotary index table.
  *
- * One index cycle is still:
+ * One index cycle is:
  *   A. unload position 6 to the outfeed conveyor, if occupied
  *   B. place an accepted bottle at position 1, if the load point is free
  *   C. run every occupied station and wait for ALL of them to finish
  *   D. rotate 60 degrees
  *
- * What changed is how the table talks to its neighbours. Every link is now a
- * channel, and SystemJ has no way to test a channel without committing to it,
- * so the reactions are arranged around that:
+ * Every link to a neighbour is a channel, and SystemJ has no way to test a
+ * channel without committing to it, so the reactions are arranged around that:
  *
  *   - the intake reaction blocks on the conveyor's offer, so it is not the
  *     sequencer that waits for a bottle;
- *   - the barrier became four sends followed by four receives. A station is
+ *   - the barrier is four sends followed by four receives. A station is
  *     parked at its receive whenever it is idle, so starting them costs no
  *     time and they run concurrently; the receives then wait for the slowest.
  *
- * The one semantic consequence worth stating in the report: a rendezvous
- * completes at whatever instant both parties are ready, which is not
- * necessarily an instant at which the table is aligned. An accepted bottle
+ * A rendezvous completes at whatever instant both parties are ready, which is
+ * not necessarily an instant at which the table is aligned. An accepted bottle
  * therefore waits in a one-deep intake buffer and is physically placed at the
  * next alignment. Nothing is lost or duplicated; the transfer and the
- * placement are simply separate events.
+ * placement are separate events.
  *
  * Occupancy and identity live in TableModel rather than in the reactions, so
  * the generated state machine stays well inside the JVM's 64 KB method limit.
@@ -82,9 +80,10 @@ RotaryTableController(
 	||
 	{ // Auto
 		//
-		// Sequencer and intake drop together. The barrier holds four stations
-		// against one table, so half a table in manual would deadlock the
-		// stations still waiting on it.
+		// Sequencer and intake sit inside one reset abort, so a reset drops
+		// both together. The barrier holds four stations against one table,
+		// and restarting half the table would leave the other half waiting on
+		// a rendezvous its partner is never going to reach.
 		while(true){
 			abort(immediate reset){
 	{ // ---- Sequencer ----
@@ -103,9 +102,8 @@ RotaryTableController(
 			// ---- A. Unload the exit position ----
 			//
 			// The send blocks until the outfeed belt can take the bottle, so
-			// a busy outfeed holds up the table. That is correct backpressure
-			// and it replaces the old assumption that the collector was
-			// always available.
+			// a busy outfeed holds up the table. That is the backpressure the
+			// line needs: the collector is not always available.
 			if(m.exitOccupied()){
 				exiting = m.exitWorkpiece();
 				m.sayUnloading();
@@ -118,9 +116,9 @@ RotaryTableController(
 			}
 
 			// Load-bearing, like the one before the index below. Unload and
-			// place each carry a manual gate now, and inlined into one state
-			// they overflow the JVM's 64 KB method limit. Splitting them costs
-			// one tick between clearing the exit and loading position 1.
+			// place each carry a manual gate, and inlined into one state they
+			// overflow the JVM's 64 KB method limit. Splitting them costs one
+			// tick between clearing the exit and loading position 1.
 			pause;
 
 			// ---- B. Place an accepted bottle at position 1 ----
@@ -153,9 +151,8 @@ RotaryTableController(
 			// it is issued and work begins immediately; by the time the
 			// fourth is started the first three are already running. The
 			// receives then block until every station has reported back, so
-			// the table waits for the slowest. That sequence of receives IS
-			// the barrier - no enable levels to hold or drop, and no
-			// acknowledgement padding.
+			// the table waits for the slowest. That sequence of receives is
+			// the barrier.
 			send startFiller1(m.at(1));
 			send startFiller2(m.at(2));
 			send startLid(m.at(3));
